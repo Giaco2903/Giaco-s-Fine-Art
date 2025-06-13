@@ -210,7 +210,7 @@
                 </p>
                 <h3 class="text-3xl font-medium text-white mb-6">How It Works:</h3>
                 <ol class="list-decimal list-inside text-left text-gray-300 space-y-4 mb-10 pl-4">
-                    <li>Initial Inquiry: Reach out to discuss your interests and goals.</li>
+                    <li>Initial Inquiry: Reach out to discuss your  and goals.</li>
                     <li>Personalized Assessment: We'll review your preferences, budget, and existing collection (if any).</li>
                     <li>Curated Selection: I will present a meticulously chosen selection of artworks that align with your vision.</li>
                     <li>Acquisition Guidance: I'll provide expert advice and support through the acquisition process.</li>
@@ -226,7 +226,7 @@
                     <form onsubmit="handleBookingSubmit(event)">
                         <input type="text" id="booking-name" placeholder="Your Name" class="w-full p-3 mb-4 rounded bg-zinc-800 border border-zinc-600 text-white placeholder-gray-400 focus:outline-none focus:border-gray-400" required>
                         <input type="email" id="booking-email" placeholder="Your Email" class="w-full p-3 mb-4 rounded bg-zinc-800 border border-zinc-600 text-white placeholder-gray-400 focus:outline-none focus:border-gray-400" required>
-                        <textarea id="booking-message" placeholder="Your Message / Interests / Availability" class="w-full p-3 mb-4 rounded bg-zinc-800 border border-zinc-600 text-white placeholder-gray-400 h-24 focus:outline-none focus:border-gray-400"></textarea>
+                        <textarea id="booking-message" placeholder="Interest & Availability" class="w-full p-3 mb-4 rounded bg-zinc-800 border border-zinc-600 text-white placeholder-gray-400 h-24 focus:outline-none focus:border-gray-400"></textarea>
                         <button type="submit" class="btn-primary w-full text-lg">Submit Request</button>
                     </form>
                 </div>
@@ -283,7 +283,16 @@
         // Firebase Initialization and Global Variables
         // __app_id and __firebase_config are provided by the Canvas environment.
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-giacos-app-id';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+ const firebaseConfig = {
+          apiKey: "AIzaSyCpFs30Ur55UXjHW0qbXCq09gzRU_1iysI", // EJEMPLO: Reemplaza con tu propia clave
+          authDomain: "giacosfineartwebsite.firebaseapp.com", // EJEMPLO: Reemplaza con tu propio dominio
+          projectId: "giacosfineartwebsite", // EJEMPLO: Reemplaza con tu propio ID de proyecto
+          storageBucket: "giacosfineartwebsite.firebasestorage.app", // EJEMPLO: Reemplaza con tu propio bucket
+          messagingSenderId: "1024663890722", // EJEMPLO: Reemplaza con tu propio ID de remitente
+          appId: "1:1024663890722:web:18e799c18d0c18cf21137b", // EJEMPLO: Reemplaza con tu propio ID de app
+          measurementId: "G-HØVL95BCHK" // EJEMPLO: Opcional, si tienes Google Analytics en Firebase
+        };       
+        
         const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
 
         let app;
