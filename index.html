@@ -69,26 +69,7 @@
             padding-bottom: 16px;
             margin-bottom: 32px;
         }
-        /* Style for the logo */
-  .logo-container {
-  display: flex;
-  align-items: center;
-  }
 
-  .logo {
-  max-height: 50px; /* Adjust the height as needed */
-  margin-right: 10px; /* Add some spacing between the logo and the title */
-  }
-  </style>
- </head>
- <body class="bg-gray-100 font-sans">
-  <nav class="bg-white shadow-md fixed w-full z-10">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <div class="flex justify-between h-16 items-center">
-  <div class="flex items-center logo-container">
-  <img src="Logo_final.jpg" alt="Giaco's Fine Art Logo" class="logo">
-  <h1 class="text-2xl font-bold text-gray-800">Giaco's Fine Art</h1>
-  </div>
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -97,9 +78,11 @@
     <header class="bg-zinc-900 shadow-xl py-6 sticky top-0 z-50">
         <nav class="max-w-7xl mx-auto px-6 flex justify-between items-center">
             <!-- Logo/Site Title -->
-            <a href="#home" class="text-4xl font-extrabold tracking-tight text-white transition-colors duration-300 hover:text-gray-300" onclick="navigate('#home')">
-                Giaco's Fine Art
-            </a>
+         <a href="#home" class="flex items-center space-x-3 text-white transition-colors duration-300 hover:text-gray-300" onclick="navigate('#home')">
+    <!-- Añade esta línea para tu logo -->
+    <img src="Logo_final.jpg" alt="Giaco's Fine Art Logo" class="h-10 w-auto rounded-md shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/80x40/52525b/f5f5f5?text=GFA';"/>
+    <span class="text-4xl font-extrabold tracking-tight">Giaco's Fine Art</span>
+</a>
             <!-- Navigation Links -->
             <div class="space-x-8">
                 <a href="#gallery" class="nav-link text-lg" onclick="navigate('#gallery')">Gallery</a>
