@@ -215,9 +215,9 @@
                     <li>Curated Selection: I will present a meticulously chosen selection of artworks that align with your vision.</li>
                     <li>Acquisition Guidance: I'll provide expert advice and support through the acquisition process.</li>
                 </ol>
-                <button onclick="showBookingForm()" class="btn-primary text-xl font-semibold inline-block">
-                    Book a Consultation Call
-                </button>
+               <button onclick="window.showBookingForm()" class="btn-primary text-xl font-semibold inline-block">
+    Book a Consultation Call
+</button>
                 <div id="booking-form" class="hidden mt-8 p-6 bg-zinc-700 rounded-lg">
                     <h3 class="text-2xl font-medium text-white mb-4">Schedule Your Zoom Call</h3>
 <p class="text-gray-300 mb-4">
@@ -314,6 +314,19 @@
             if (modal) { // Asegúrate de que el elemento modal exista
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
+            }
+        };
+          window.showBookingForm = function() {
+            const form = document.getElementById('booking-form');
+            form.classList.toggle('hidden'); // Alterna la visibilidad del formulario de reserva
+            if (!form.classList.contains('hidden')) { // Si el formulario ahora es visible
+                form.scrollIntoView({ behavior: 'smooth', block: 'center' }); // Desplaza la vista hacia el formulario
+                currentCalendarDate = new Date(); // Reinicia el calendario al mes actual
+                window.renderCalendar(currentCalendarDate); // Renderiza el calendario con la fecha actual
+                selectedBookingDate = null; // Borra la selección de fecha previa
+                selectedBookingTime = null; // Borra la selección de hora previa
+                document.getElementById('time-slots-container').innerHTML = ''; // Borra las franjas horarias previas
+                document.getElementById('time-slots-container').classList.add('hidden'); // Oculta las franjas horarias hasta que se seleccione una fecha
             }
         };
         // --- Fin de funciones del Custom Modal ---
