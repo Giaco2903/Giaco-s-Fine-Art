@@ -73,6 +73,15 @@
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
+    <!-- Custom Modal Structure (Hidden by default) -->
+    <div id="custom-modal" class="custom-modal-overlay hidden">
+        <div class="custom-modal-content">
+            <button class="custom-modal-close-btn" onclick="window.closeModal()">&times;</button>
+            <h3 id="modal-title" class="text-3xl font-semibold text-white mb-4"></h3>
+            <p id="modal-message" class="text-gray-300 text-lg leading-relaxed"></p>
+            <button onclick="window.closeModal()" class="btn-primary mt-6 text-lg">Close</button>
+        </div>
+    </div>
 
     <!-- Header Section -->
     <header class="bg-zinc-900 shadow-xl py-6 sticky top-0 z-50">
@@ -210,10 +219,10 @@
                     Book a Consultation Call
                 </button>
                 <div id="booking-form" class="hidden mt-8 p-6 bg-zinc-700 rounded-lg">
-                    <h3 class="text-2xl font-medium text-white mb-4">Schedule Your Call</h3>
-                    <p class="text-gray-300 mb-4">
-                        Please provide your contact details, and we will get in touch to arrange your personalized consultation.
-                    </p>
+                    <h3 class="text-2xl font-medium text-white mb-4">Schedule Your Zoom Call</h3>
+<p class="text-gray-300 mb-4">
+    Please select a suitable date and time for your personalized consultation. This will be a **Zoom video call directly on our website**. Provide your details below, and we will contact you to confirm and share the meeting link.
+</p>
                     <form onsubmit="handleBookingSubmit(event)">
                         <input type="text" id="booking-name" placeholder="Your Name" class="w-full p-3 mb-4 rounded bg-zinc-800 border border-zinc-600 text-white placeholder-gray-400 focus:outline-none focus:border-gray-400" required>
                         <input type="email" id="booking-email" placeholder="Your Email" class="w-full p-3 mb-4 rounded bg-zinc-800 border border-zinc-600 text-white placeholder-gray-400 focus:outline-none focus:border-gray-400" required>
@@ -281,7 +290,33 @@
         let db;
         let auth;
         let userId = 'loading...'; // Default loading state for userId
+        // --- Custom Modal functions ---
+        // Estas funciones controlan la visibilidad y el contenido del modal personalizado.
+        window.showModal = function(title, message) {
+            const modal = document.getElementById('custom-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalMessage = document.getElementById('modal-message');
 
+            if (modal) { // Asegúrate de que el elemento modal exista
+                modalTitle.textContent = title;
+                modalMessage.textContent = message;
+                modal.classList.remove('hidden');
+                modal.classList.add('flex'); // Usar flexbox para centrar el contenido del modal
+            } else {
+                // Fallback si el HTML del modal no está presente
+                console.error("Modal element not found. Displaying content via alert.");
+                alert(`${title}\n\n${message}`);
+            }
+        };
+
+        window.closeModal = function() {
+            const modal = document.getElementById('custom-modal');
+            if (modal) { // Asegúrate de que el elemento modal exista
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        };
+        // --- Fin de funciones del Custom Modal ---
         // Sample Data (Fallback if Firestore is empty or fails)
         const sampleArtists = [
             {
