@@ -1,263 +1,852 @@
 <!DOCTYPE html>
- <html lang="es">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Galería de arte contemporáneo dirigida por Giaco, especializada en artistas emergentes y abstracción geométrica.">
-  <meta name="keywords" content="arte contemporáneo, galería de arte, marchante de arte, artistas emergentes, abstracción geométrica">
-  <meta name="author" content="Giaco">
-  <title>Giaco's Fine Art</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-  .carousel-item { display: none; }
-  .carousel-item.active { display: block; }
-  .artwork-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
-  .artwork-card:hover img { transform: scale(1.05); transition: transform 0.3s ease; }
-  .artwork-card img { transition: transform 0.3s ease; }
-  .zoomable { cursor: zoom-in; }
-  @media (max-width: 768px) {
-  .artwork-grid { grid-template-columns: 1fr; }
-  }
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giaco's Fine Art - Curating Masterpieces</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter for general text (modern) and a fallback serif for elegance -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles to enhance the elegant and luxurious feel */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d0d0d; /* Very dark background */
+            color: #e0e0e0; /* Light text for contrast */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif; /* Elegant serif for headings */
+            color: #f5f5f5; /* Lighter headings */
+        }
+        .nav-link {
+            position: relative;
+            padding: 8px 0;
+            color: #d1d5db; /* Light gray for nav links */
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #f5f5f5; /* Brighter on hover */
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #a3a3a3; /* Subtle underline */
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .btn-primary {
+            background-color: #52525b; /* A sophisticated grey for buttons */
+            color: #f5f5f5;
+            padding: 12px 28px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .btn-primary:hover {
+            background-color: #3f3f46; /* Darker on hover */
+            transform: translateY(-2px);
+        }
+        .card {
+            background-color: #1a1a1a; /* Darker card background */
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+        }
+        .section-heading {
+            border-bottom: 1px solid #333; /* Subtle separator */
+            padding-bottom: 16px;
+            margin-bottom: 32px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
 
-  /* Style for the logo */
-  .logo-container {
-  display: flex;
-  align-items: center;
-  }
+    <!-- Header Section -->
+    <header class="bg-zinc-900 shadow-xl py-6 sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <!-- Logo/Site Title -->
+            <a href="#home" class="text-4xl font-extrabold tracking-tight text-white transition-colors duration-300 hover:text-gray-300" onclick="navigate('#home')">
+                Giaco's Fine Art
+            </a>
+            <!-- Navigation Links -->
+            <div class="space-x-8">
+                <a href="#gallery" class="nav-link text-lg" onclick="navigate('#gallery')">Gallery</a>
+                <a href="#artists" class="nav-link text-lg" onclick="navigate('#artists')">Artists</a>
+                <a href="#insights" class="nav-link text-lg" onclick="navigate('#insights')">Insights</a>
+                <a href="#advisory" class="nav-link text-lg" onclick="navigate('#advisory')">Advisory</a>
+                <a href="#contact" class="nav-link text-lg" onclick="navigate('#contact')">Contact</a>
+            </div>
+        </nav>
+    </header>
 
-  .logo {
-  max-height: 50px; /* Adjust the height as needed */
-  margin-right: 10px; /* Add some spacing between the logo and the title */
-  }
-  </style>
- </head>
- <body class="bg-gray-100 font-sans">
-  <nav class="bg-white shadow-md fixed w-full z-10">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <div class="flex justify-between h-16 items-center">
-  <div class="flex items-center logo-container">
-  <img src="Logo_final.jpg" alt="Giaco's Fine Art Logo" class="logo">
-  <h1 class="text-2xl font-bold text-gray-800">Giaco's Fine Art</h1>
-  </div>
-  <div class="flex items-center space-x-4">
-  <a href="#home" class="text-gray-600 hover:text-gray-900">Inicio</a>
-  <a href="#artworks" class="text-gray-600 hover:text-gray-900">Obras</a>
-  <a href="#artists" class="text-gray-600 hover:text-gray-900">Artistas</a>
-  <a href="#exhibitions" class="text-gray-600 hover:text-gray-900">Exposiciones</a>
-  <a href="#about" class="text-gray-600 hover:text-gray-900">Sobre Mí</a>
-  <a href="#contact" class="text-gray-600 hover:text-gray-900">Contacto</a>
-  <a href="#blog" class="text-gray-600 hover:text-gray-900">Blog</a>
-  </div>
-  </div>
-  </div>
-  </nav>
+    <!-- Main Content Area -->
+    <main class="flex-grow">
+        <!-- User ID Display - MANDATORY for multi-user apps in Canvas environment -->
+        <div id="userIdDisplay" class="bg-neutral-800 text-neutral-400 p-2 text-center text-sm">
+            <!-- User ID will be inserted here by JavaScript -->
+        </div>
 
-  <section id="home" class="min-h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('https://via.placeholder.com/1920x1080?text=Obra+Destacada')">
-  <div class="text-center text-white bg-black bg-opacity-50 p-8 rounded">
-  <h2 class="text-4xl md:text-5xl font-bold mb-4">Tu fuente de arte contemporáneo emergente</h2>
-  <p class="text-lg md:text-xl mb-6">Descubre obras únicas y artistas innovadores con Giaco's Fine Art.</p>
-  <a href="#artworks" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700">Explora las obras</a>
-  </div>
-  </section>
+        <!-- Section for Home -->
+        <section id="home" class="min-h-screen bg-zinc-900 flex items-center justify-center relative overflow-hidden p-6 hidden">
+            <div class="absolute inset-0 bg-cover bg-center opacity-30" style="background-image: url('https://placehold.co/1920x1080/262626/808080?text=Featured+Art');"></div>
+            <div class="relative z-10 text-center max-w-4xl mx-auto">
+                <h2 class="text-6xl font-bold text-white leading-tight mb-6">
+                    Curating Masterpieces for Discerning Collectors
+                </h2>
+                <p class="text-xl text-gray-300 mb-10">
+                    Discover a meticulously selected collection of exceptional artworks, bridging timeless elegance with contemporary vision.
+                </p>
+                <a href="#gallery" class="btn-primary text-xl font-semibold inline-block" onclick="navigate('#gallery')">
+                    Explore Our Gallery
+                </a>
+            </div>
+        </section>
 
-  <section id="artworks" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <h2 class="text-3xl font-bold text-center mb-8">Obras Disponibles</h2>
-  <div class="mb-8 flex justify-center space-x-4">
-  <select id="filter-artist" class="p-2 border rounded">
-  <option value="">Todos los Artistas</option>
-  <option value="artist1">Artista 1</option>
-  <option value="artist2">Artista 2</option>
-  </select>
-  <select id="filter-technique" class="p-2 border rounded">
-  <option value="">Todas las Técnicas</option>
-  <option value="oil">Óleo</option>
-  <option value="acrylic">Acrílico</option>
-  </select>
-  </div>
-  <div class="artwork-grid">
-  <div class="artwork-card bg-white shadow-md rounded overflow-hidden">
-  <img src="https://via.placeholder.com/400x300?text=Obra+1" alt="Obra 1" class="w-full h-64 object-cover zoomable">
-  <div class="p-4">
-  <h3 class="text-xl font-semibold">Título de la Obra 1</h3>
-  <p class="text-gray-600">Artista 1, 2023</p>
-  <p class="text-gray-600">Óleo sobre lienzo, 120x80 cm</p>
-  <p class="text-gray-800 font-bold">Disponible</p>
-  <button class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Solicitar Precio</button>
-  </div>
-  </div>
-  <div class="artwork-card bg-white shadow-md rounded overflow-hidden">
-  <img src="https://via.placeholder.com/400x300?text=Obra+2" alt="Obra 2" class="w-full h-64 object-cover zoomable">
-  <div class="p-4">
-  <h3 class="text-xl font-semibold">Título de la Obra 2</h3>
-  <p class="text-gray-600">Artista 2, 2022</p>
-  <p class="text-gray-600">Acrílico, 100x70 cm</p>
-  <p class="text-gray-800 font-bold">Vendido</p>
-  <button class="mt-2 bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700" disabled>Consultar</button>
-  </div>
-  </div>
-  </div>
-  </section>
+        <!-- Section for Gallery -->
+        <section id="gallery" class="py-20 px-6 bg-zinc-950 hidden">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-5xl font-semibold text-white section-heading text-center mb-12">Available Works</h2>
+                <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Artworks will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </section>
 
-  <section id="artists" class="py-16 bg-gray-200 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <h2 class="text-3xl font-bold text-center mb-8">Nuestros Artistas</h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-  <div class="bg-white shadow-md rounded p-4 flex items-center">
-  <img src="https://via.placeholder.com/150?text=Artista+1" alt="Artista 1" class="w-32 h-32 rounded-full mr-4">
-  <div>
-  <h3 class="text-xl font-semibold">Artista 1</h3>
-  <p class="text-gray-600">Biografía breve del artista. Conocido por su trabajo en abstracción geométrica.</p>
-  <a href="#artworks" class="text-blue-600 hover:underline">Ver obras</a>
-  </div>
-  </div>
-  <div class="bg-white shadow-md rounded p-4 flex items-center">
-  <img src="https://via.placeholder.com/150?text=Artista+2" alt="Artista 2" class="w-32 h-32 rounded-full mr-4">
-  <div>
-  <h3 class="text-xl font-semibold">Artista 2</h3>
-  <p class="text-gray-600">Biografía breve del artista. Especialista en esculturas contemporáneas.</p>
-  <a href="#artworks" class="text-blue-600 hover:underline">Ver obras</a>
-  </div>
-  </div>
-  </div>
-  </section>
+        <!-- Section for Artist Details (Dynamic) -->
+        <section id="artist-detail" class="py-20 px-6 bg-zinc-950 hidden">
+            <div class="max-w-7xl mx-auto bg-zinc-900 p-10 rounded-xl shadow-2xl">
+                <button onclick="navigate('#artists')" class="text-gray-400 hover:text-gray-200 flex items-center mb-8 transition-colors duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    Back to Artists
+                </button>
+                <div id="artist-detail-content">
+                    <!-- Artist details will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </section>
 
-  <section id="exhibitions" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <h2 class="text-3xl font-bold text-center mb-8">Exposiciones</h2>
-  <div class="space-y-8">
-  <div class="bg-white shadow-md rounded p-6">
-  <h3 class="text-xl font-semibold">Exposición Actual: "Geometría Viva"</h3>
-  <p class="text-gray-600">Fecha: 10-20 Junio 2025 | Lugar: Galería Giaco's Fine Art, Madrid</p>
-  <p class="text-gray-600">Una muestra de obras abstractas de nuestros artistas emergentes.</p>
-  <a href="#" class="text-blue-600 hover:underline">Ver detalles</a>
-  </div>
-  <div class="bg-white shadow-md rounded p-6">
-  <h3 class="text-xl font-semibold">Próxima Exposición: "Luz y Forma"</h3>
-  <p class="text-gray-600">Fecha: 15-25 Julio 2025 | Lugar: Feria de Arte ARCO, Madrid</p>
-  <p class="text-gray-600">Explora la interacción entre luz y formas geométricas.</p>
-  <a href="#" class="text-blue-600 hover:underline">Ver detalles</a>
-  </div>
-  </div>
-  </section>
+        <!-- Section for Artwork Details (Dynamic) -->
+        <section id="artwork-detail" class="py-20 px-6 bg-zinc-950 hidden">
+            <div class="max-w-7xl mx-auto bg-zinc-900 p-10 rounded-xl shadow-2xl">
+                <button onclick="navigate('#gallery')" class="text-gray-400 hover:text-gray-200 flex items-center mb-8 transition-colors duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    Back to Gallery
+                </button>
+                <div id="artwork-detail-content">
+                    <!-- Artwork details will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </section>
 
-  <section id="about" class="py-16 bg-gray-200 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <h2 class="text-3xl font-bold text-center mb-8">Sobre Mí</h2>
-  <div class="flex flex-col md:flex-row items-center">
-  <img src="https://via.placeholder.com/300?text=Tu+Foto" alt="Tu Foto" class="w-64 h-64 rounded-full mb-4 md:mb-0 md:mr-8">
-  <div>
-  <p class="text-gray-600 mb-4">Soy Alejandro Giacomelli, un apasionado marchante de arte con un enfoque en artistas emergentes y abstracción geométrica. Mi misión es conectar coleccionistas con obras que inspiran y transforman espacios.</p>
-  <p class="text-gray-600">Con años de experiencia en el mundo del arte, mi visión es promover talentos únicos y crear experiencias memorables a través de exposiciones y eventos.</p>
-  </div>
-  </div>
-  </section>
+        <!-- Section for Artists -->
+        <section id="artists" class="py-20 px-6 bg-zinc-900 hidden">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-5xl font-semibold text-white section-heading text-center mb-12">Our Visionary Artists</h2>
+                <div id="artists-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Artists will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </section>
 
-  <section id="contact" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <h2 class="text-3xl font-bold text-center mb-8">Contacto</h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-  <div>
-  <h3 class="text-xl font-semibold mb-4">Envíanos un mensaje</h3>
-  <div class="space-y-4">
-  <input type="text" placeholder="Nombre" class="w-full p-2 border rounded">
-  <input type="email" placeholder="Email" class="w-full p-2 border rounded">
-  <textarea placeholder="Mensaje" class="w-full p-2 border rounded h-32"></textarea>
-  <button class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Enviar</button>
-  </div>
-  </div>
-  <div>
-  <h3 class="text-xl font-semibold mb-4">Información de Contacto</h3>
-  <p class="text-gray-600">Email: alegiacomelli@icloud.com</p>
-  <p class="text-gray-600">Teléfono: +34 608029301</p>
-  <div class="mt-4">
-  <iframe src="https://www.google.com/maps/embed?pb=" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-  </div>
-  <div class="mt-4 flex space-x-4">
-  <a href="https://instagram.com" target="_blank" class="text-gray-600 hover:text-gray-900"><i class="fab fa-instagram fa-2x"></i></a>
-  <a href="https://linkedin.com" target="_blank" class="text-gray-600 hover:text-gray-900"><i class="fab fa-linkedin fa-2x"></i></a>
-  </div>
-  </div>
-  </div>
-  </section>
+        <!-- Section for Insights/Articles -->
+        <section id="insights" class="py-20 px-6 bg-zinc-950 hidden">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-5xl font-semibold text-white section-heading text-center mb-12">Curator's Insights & Articles</h2>
+                <div id="articles-list" class="space-y-12">
+                    <!-- Articles will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </section>
 
-  <section id="blog" class="py-16 bg-gray-200 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <h2 class="text-3xl font-bold text-center mb-8">Blog</h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-  <div class="bg-white shadow-md rounded p-4">
-  <h3 class="text-xl font-semibold">Nueva Adquisición: "Horizonte Abstracto"</h3>
-  <p class="text-gray-600">Fecha: 01 Junio 2025</p>
-  <p class="text-gray-600">Explora la historia detrás de nuestra última obra adquirida y su impacto en el arte contemporáneo.</p>
-  <a href="#" class="text-blue-600 hover:underline">Leer más</a>
-  </div>
-  <div class="bg-white shadow-md rounded p-4">
-  <h3 class="text-xl font-semibold">Entrevista con Artista 1</h3>
-  <p class="text-gray-600">Fecha: 25 Mayo 2025</p>
-  <p class="text-gray-600">Conoce las inspiraciones y procesos creativos de uno de nuestros artistas destacados.</p>
-  <a href="#" class="text-blue-600 hover:underline">Leer más</a>
-  </div>
-  </div>
-  </section>
+        <!-- Section for Article Details (Dynamic) -->
+        <section id="article-detail" class="py-20 px-6 bg-zinc-950 hidden">
+            <div class="max-w-7xl mx-auto bg-zinc-900 p-10 rounded-xl shadow-2xl">
+                <button onclick="navigate('#insights')" class="text-gray-400 hover:text-gray-200 flex items-center mb-8 transition-colors duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    Back to Insights
+                </button>
+                <div id="article-detail-content">
+                    <!-- Article full content will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </section>
 
-  <footer class="bg-gray-800 text-white py-8">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-  <div>
-  <h3 class="text-lg font-semibold mb-4">Giaco's Fine Art</h3>
-  <p class="text-gray-400">Promoviendo artistas emergentes y abstracción geométrica.</p>
-  </div>
-  <div>
-  <h3 class="text-lg font-semibold mb-4">Enlaces Rápidos</h3>
-  <ul class="space-y-2">
-  <li><a href="#home" class="text-gray-400 hover:text-white">Inicio</a></li>
-  <li><a href="#artworks" class="text-gray-400 hover:text-white">Obras</a></li>
-  <li><a href="#artists" class="text-gray-400 hover:text-white">Artistas</a></li>
-  <li><a href="#exhibitions" class="text-gray-400 hover:text-white">Exposiciones</a></li>
-  <li><a href="#contact" class="text-gray-400 hover:text-white">Contacto</a></li>
-  </ul>
-  </div>
-  <div>
-  <h3 class="text-lg font-semibold mb-4">Suscríbete</h3>
-  <p class="text-gray-400 mb-2">Recibe noticias sobre nuevas obras y exposiciones.</p>
-  <input type="email" placeholder="Tu email" class="w-full p-2 mb-2 border rounded">
-  <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Suscribirse</button>
-  </div>
-  </div>
-  <div class="mt-8 text-center">
-  <p class="text-gray-400">© 2025 Giaco's Fine Art. Todos los derechos reservados.</p>
-  <p class="text-gray-400"><a href="#terms" class="hover:underline">Términos y Condiciones</a> | <a href="#privacy" class="hover:underline">Política de Privacidad</a></p>
-  </div>
-  </div>
-  </footer>
+        <!-- Section for Advisory -->
+        <section id="advisory" class="py-20 px-6 bg-zinc-900 hidden">
+            <div class="max-w-4xl mx-auto bg-zinc-800 p-10 rounded-xl shadow-2xl text-center">
+                <h2 class="text-5xl font-semibold text-white section-heading mb-8">Art Advisory Services</h2>
+                <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+                    Elevate your collection or begin your journey into the art world with personalized guidance from Giaco's Fine Art. I offer tailored consultation services, from identifying key acquisitions to building a cohesive collection.
+                </p>
+                <h3 class="text-3xl font-medium text-white mb-6">How It Works:</h3>
+                <ol class="list-decimal list-inside text-left text-gray-300 space-y-4 mb-10 pl-4">
+                    <li>**Initial Inquiry:** Reach out to discuss your interests and goals.</li>
+                    <li>**Personalized Assessment:** We'll review your preferences, budget, and existing collection (if any).</li>
+                    <li>**Curated Selection:** I will present a meticulously chosen selection of artworks that align with your vision.</li>
+                    <li>**Acquisition Guidance:** I'll provide expert advice and support through the acquisition process.</li>
+                </ol>
+                <button onclick="showBookingForm()" class="btn-primary text-xl font-semibold inline-block">
+                    Book a Consultation Call
+                </button>
+                <div id="booking-form" class="hidden mt-8 p-6 bg-zinc-700 rounded-lg">
+                    <h3 class="text-2xl font-medium text-white mb-4">Schedule Your Call</h3>
+                    <p class="text-gray-300 mb-4">
+                        Please provide your contact details, and we will get in touch to arrange your personalized consultation.
+                    </p>
+                    <form onsubmit="handleBookingSubmit(event)">
+                        <input type="text" id="booking-name" placeholder="Your Name" class="w-full p-3 mb-4 rounded bg-zinc-800 border border-zinc-600 text-white placeholder-gray-400 focus:outline-none focus:border-gray-400" required>
+                        <input type="email" id="booking-email" placeholder="Your Email" class="w-full p-3 mb-4 rounded bg-zinc-800 border border-zinc-600 text-white placeholder-gray-400 focus:outline-none focus:border-gray-400" required>
+                        <textarea id="booking-message" placeholder="Your Message / Interests (Optional)" class="w-full p-3 mb-4 rounded bg-zinc-800 border border-zinc-600 text-white placeholder-gray-400 h-24 focus:outline-none focus:border-gray-400"></textarea>
+                        <button type="submit" class="btn-primary w-full text-lg">Submit Request</button>
+                    </form>
+                </div>
+            </div>
+        </section>
 
-  <script>
-  // Placeholder for carousel functionality
-  let currentSlide = 0;
-  const slides = document.querySelectorAll('.carousel-item');
-  function showSlide(index) {
-  slides.forEach((slide, i) => {
-  slide.classList.toggle('active', i === index);
-  });
-  }
-  function nextSlide() {
-  currentSlide = (currentSlide + 1) % slides.length;
-  showSlide(currentSlide);
-  }
-  setInterval(nextSlide, 5000); // Change slide every 5 seconds
+        <!-- Section for Contact -->
+        <section id="contact" class="py-20 px-6 bg-zinc-950 hidden">
+            <div class="max-w-4xl mx-auto bg-zinc-900 p-10 rounded-xl shadow-2xl text-center">
+                <h2 class="text-5xl font-semibold text-white section-heading mb-8">Contact Giaco's Fine Art</h2>
+                <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+                    For inquiries, appointments, or any questions regarding our collection and services, please feel free to reach out.
+                </p>
+                <div class="space-y-4 text-gray-300 text-xl">
+                    <p>Email: <a href="mailto:info@giacosfineart.com" class="text-gray-200 hover:text-white transition-colors duration-300">info@giacosfineart.com</a></p>
+                    <p>Phone: <a href="tel:+1234567890" class="text-gray-200 hover:text-white transition-colors duration-300">+1 (234) 567-890</a></p>
+                    <p>Follow Us on Social Media:</p>
+                    <div class="flex justify-center space-x-6 text-3xl">
+                        <!-- Placeholder social media icons -->
+                        <a href="https://instagram.com" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-instagram"></i> <!-- Font Awesome for icons -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.269.088 3.85.048 4.703.01 5.555 0 5.827 0 8s.01 2.444.048 3.297c.04.853.174 1.434.372 1.943.205.526.478.972.923 1.417.444.445.89.719 1.416.923.509.198 1.09.332 1.943.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.297-.048c.853-.04 1.434-.174 1.943-.372.526-.205.972-.478 1.417-.923.445-.444.719-.89.923-1.416.198-.509.332-1.09.372-1.943.038-.853.048-1.127.048-3.297s-.01-2.445-.048-3.298c-.04-.852-.174-1.433-.372-1.942a3.917 3.917 0 0 0-.923-1.417A3.927 3.927 0 0 0 13.24 0.42c-.509-.198-1.09-.332-1.943-.372C10.445.01 10.173 0 8 0ZM8 1.5c2.172 0 2.444.012 3.296.048.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.036.853.048 1.127.048 3.296s-.012 2.444-.048 3.296c-.035.78-.166 1.204-.275 1.486a2.59 2.59 0 0 1-.599.92.259 2.59 0 0 1-.92.598c-.281.11-.705.24-1.485.275-.853.036-1.127.048-3.296.048s-2.444-.012-3.296-.048c-.78-.035-1.204-.166-1.486-.275a2.59 2.59 0 0 1-.92-.599 2.59 2.59 0 0 1-.598-.92c-.11-.281-.24-.705-.275-1.485C1.512 10.444 1.5 10.172 1.5 8s.012-2.444.048-3.296c.035-.78.166-1.204.275-1.486a2.59 2.59 0 0 1 .599-.92 2.59 2.59 0 0 1 .92-.598c.281-.11.705-.24 1.485-.275C5.556 1.512 5.828 1.5 8 1.5Zm0 3.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9Zm0 1.5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 1.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/>
+                            </svg>
+                        </a>
+                        <a href="https://facebook.com" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.5V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+                                <path d="M0 1.146C0 .513.526 0 1.176 0h13.648c.65 0 1.176.513 1.176 1.146v13.708c0 .633-.526 1.146-1.176 1.146H1.176C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542V13.394zm-1.229-8.171c.882 0 1.408-.542 1.408-1.249-.011-.7-.538-1.242-1.408-1.242-.871 0-1.409.542-1.409 1.242s.538 1.249 1.409 1.249m6.036 6.172V9.56c0-.987-.348-1.659-1.218-1.659-.667 0-1.059.43-.909.843v3.743h-2.31V6.169h2.31v.993c.316-.484.992-1.17 2.222-1.17 1.625 0 2.842 1.059 2.842 3.3v4.401z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-  // Placeholder for artwork filtering
-  document.getElementById('filter-artist').addEventListener('change', filterArtworks);
-  document.getElementById('filter-technique').addEventListener('change', filterArtworks);
-  function filterArtworks() {
-  const artist = document.getElementById('filter-artist').value;
-  const technique = document.getElementById('filter-technique').value;
-  // Implement filtering logic here (e.g., hide/show artwork cards based on filters)
-  console.log('Filtering by artist:', artist, 'and technique:', technique);
-  }
+    <!-- Footer Section -->
+    <footer class="bg-zinc-900 py-8 text-center text-gray-400 border-t border-zinc-800">
+        <p>&copy; <span id="current-year"></span> Giaco's Fine Art. All rights reserved.</p>
+        <p class="mt-2">Connecting you with exceptional art worldwide.</p>
+    </footer>
 
-  // Zoom functionality for artwork images
-  document.querySelectorAll('.zoomable').forEach(img => {
-  img.addEventListener('click', () => {
-  // Implement zoom modal or functionality here
-  alert('Zoom functionality to be implemented');
-  });
-  });
-  </script>
- </body>
- </html>
+    <!-- Firebase SDK Imports -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, onSnapshot, doc, getDoc, addDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Firebase Initialization and Global Variables
+        // __app_id and __firebase_config are provided by the Canvas environment.
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-giacos-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        let app;
+        let db;
+        let auth;
+        let userId = 'loading...'; // Default loading state for userId
+
+        // Sample Data (Fallback if Firestore is empty or fails)
+        const sampleArtists = [
+            {
+                id: 'marco_gastini',
+                name: 'Marco Gastini',
+                portraitUrl: 'https://placehold.co/400x400/363636/A0A0A0?text=Artist+Portrait',
+                bio: `Marco Gastini (1935-2021) was an influential Italian artist, known for his abstract works that explored the relationship between space, material, and light. His art often involved the use of raw materials like canvas, wood, and metal, focusing on the expressive potential of the surface itself. Gastini's work evolved from an initial fascination with geometric abstraction to more tactile and experimental compositions, often incorporating dust, ash, and pigments directly onto his canvases or installations. His unique approach to materiality and the perception of space has earned him a significant place in post-war Italian art.`,
+                philosophy: `Gastini believed that art should not merely represent reality but should be an active part of it, engaging with the viewer through its physical presence. His philosophy centered on the idea of the "expanded field" of painting, where the artwork extends beyond the canvas, interacting with its environment and inviting a multi-sensory experience.`,
+                exhibitions: [
+                    "Venice Biennale (multiple editions)",
+                    "Documenta, Kassel",
+                    "Museum of Modern Art, New York",
+                    "Centre Pompidou, Paris",
+                    "Castello di Rivoli, Turin"
+                ],
+                works: [] // This will be populated by joining with artworks
+            },
+            {
+                id: 'artist_b',
+                name: 'Elena Petrova',
+                portraitUrl: 'https://placehold.co/400x400/404040/B0B0B0?text=Artist+Portrait',
+                bio: 'Elena Petrova is a contemporary artist renowned for her captivating mixed-media installations that challenge perceptions of urban landscapes and human interaction. Her work often incorporates salvaged materials, giving new life to discarded objects and exploring themes of memory, decay, and transformation. Petrova’s intricate pieces invite viewers to discover hidden narratives within everyday structures, urging a closer look at the overlooked beauty in our surroundings.',
+                philosophy: 'Petrova’s artistic philosophy centers on the recontextualization of forgotten elements, transforming them into reflections on modern existence. She believes that beauty can be found in imperfection and that art has the power to elevate the mundane into the profound, fostering a deeper connection between the audience and their environment.',
+                exhibitions: [
+                    "Saatchi Gallery, London",
+                    "Centre for Contemporary Art, Warsaw",
+                    "Biennale of Urban Art, Berlin"
+                ],
+                works: []
+            }
+        ];
+
+        const sampleArtworks = [
+            {
+                id: 'gastini_001',
+                artistId: 'marco_gastini',
+                title: 'Untitled (Spazio e Materia)',
+                year: 1982,
+                medium: 'Mixed media on canvas',
+                dimensions: '180 x 150 cm',
+                price: '€45,000',
+                imageUrl: 'https://placehold.co/600x800/292929/b0b0b0?text=Gastini+Artwork+1',
+                description: `An exemplary piece by Marco Gastini, showcasing his profound exploration of material and void. The textured surface, characteristic of his 80s work, invites the viewer to contemplate the subtle interplay of light and shadow, and the raw beauty of the chosen mediums. This work embodies his continuous dialogue with spatial perception.`,
+                provenance: 'Private collection, Milan',
+                isSold: false
+            },
+            {
+                id: 'gastini_002',
+                artistId: 'marco_gastini',
+                title: 'Fragments of Time',
+                year: 1995,
+                medium: 'Pigment, dust, and acrylic on wood panel',
+                dimensions: '120 x 120 cm',
+                price: '€38,000',
+                imageUrl: 'https://placehold.co/600x600/3d3d3d/c0c0c0?text=Gastini+Artwork+2',
+                description: `This work from the mid-90s reflects Gastini's later experiments with unconventional materials and the concept of time's passage. The delicate integration of dust and pigment creates a surface that feels ancient yet utterly contemporary, inviting introspection on memory and presence.`,
+                provenance: 'Acquired directly from the artist',
+                isSold: false
+            },
+            {
+                id: 'gastini_003',
+                artistId: 'marco_gastini',
+                title: 'Chromatic Surface',
+                year: 1978,
+                medium: 'Oil and sand on canvas',
+                dimensions: '200 x 170 cm',
+                price: '€55,000',
+                imageUrl: 'https://placehold.co/600x800/4a4a4a/d0d0d0?text=Gastini+Artwork+3',
+                description: `A monumental work from his pivotal period, 'Chromatic Surface' exemplifies Gastini's ability to imbue abstract forms with profound emotional resonance. The interplay of granular textures and muted colors creates a visual symphony that shifts with the viewer's perspective, typical of his early engagement with materiality.`,
+                provenance: 'Courtesy of prestigious gallery, London',
+                isSold: false
+            },
+            {
+                id: 'petrova_001',
+                artistId: 'artist_b',
+                title: 'Urban Echoes',
+                year: 2022,
+                medium: 'Mixed media on reclaimed steel',
+                dimensions: '90 x 120 cm',
+                price: '€12,000',
+                imageUrl: 'https://placehold.co/600x800/505050/e0e0e0?text=Petrova+Artwork+1',
+                description: 'A striking piece by Elena Petrova, capturing the essence of urban decay and rebirth. The textured surface and industrial materials reflect the artist\'s deep engagement with the city as a living, breathing entity.',
+                provenance: 'Artist\'s studio',
+                isSold: false
+            }
+        ];
+
+        const sampleArticles = [
+            {
+                id: 'article_001',
+                title: 'Understanding Gastini: The Poetry of Material',
+                author: 'Giaco',
+                date: 'June 10, 2025',
+                content: `Marco Gastini's unique approach to art challenges conventional notions of painting. He saw the canvas not as a flat surface, but as a three-dimensional space, a field for material intervention. His early works, often characterized by raw, untreated canvases and the incorporation of industrial elements, spoke to a desire to break free from traditional artistic boundaries. This revolutionary spirit continued throughout his career, leading him to experiment with dust, ash, and unusual pigments, transforming them into expressive languages. His art is a dialogue between the visible and the invisible, the physical and the metaphysical. It invites us to slow down, observe, and experience art not just with our eyes, but with all our senses.`,
+                imageUrl: 'https://placehold.co/800x400/222222/a0a0a0?text=Article+Image+1'
+            },
+            {
+                id: 'article_002',
+                title: 'The Rise of Digital Art in Contemporary Collecting',
+                author: 'Giaco',
+                date: 'May 28, 2025',
+                content: `Digital art, once a niche within the contemporary art scene, has rapidly ascended to prominence in the collecting world. With the advent of NFTs and blockchain technology, digital creations now offer verifiable authenticity and scarcity, attracting a new generation of collectors. This shift challenges traditional notions of ownership and materiality in art, opening up exciting possibilities for both artists and patrons. Collecting digital art requires an understanding of new platforms and market dynamics, but the rewards can be significant, both culturally and financially.`,
+                imageUrl: 'https://placehold.co/800x400/333333/b0b0b0?text=Article+Image+2'
+            },
+            {
+                id: 'article_003',
+                title: 'Investing in Art: A Long-Term Perspective',
+                author: 'Giaco',
+                date: 'April 15, 2025',
+                content: `Investing in art is often seen as a passion-driven endeavor, but it can also be a valuable long-term asset. Unlike conventional investments, art offers aesthetic enjoyment and cultural enrichment. Key factors for a sound art investment include provenance, rarity, condition, and the artist's historical significance. Diversifying your portfolio with different art forms and periods can mitigate risks. Consulting with an experienced art advisor is crucial to navigate the market complexities and make informed decisions that align with both your financial goals and artistic taste.`,
+                imageUrl: 'https://placehold.co/800x400/444444/c0c0c0?text=Article+Image+3'
+            }
+        ];
+
+
+        // Function to initialize Firebase
+        async function initFirebase() {
+            if (Object.keys(firebaseConfig).length === 0) {
+                console.warn("Firebase config not found. Using sample data only.");
+                return;
+            }
+            try {
+                app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                // Authenticate user
+                if (initialAuthToken) {
+                    await signInWithCustomToken(auth, initialAuthToken);
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                // Listen for auth state changes to get the user ID
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        userId = user.uid;
+                        document.getElementById('userIdDisplay').textContent = `User ID: ${userId}`;
+                        console.log("User signed in:", user.uid);
+                        // Fetch data once authenticated
+                        fetchAndDisplayContent();
+                    } else {
+                        userId = crypto.randomUUID(); // Assign a random UUID if anonymous
+                        document.getElementById('userIdDisplay').textContent = `User ID: ${userId} (Anonymous)`;
+                        console.log("No user signed in, using anonymous ID.");
+                        // Fetch data even if anonymous
+                        fetchAndDisplayContent();
+                    }
+                });
+
+            } catch (error) {
+                console.error("Error initializing Firebase:", error);
+                document.getElementById('userIdDisplay').textContent = `Firebase Error: ${error.message}`;
+                // Fallback to sample data if Firebase init fails
+                displayContentFromSamples();
+            }
+        }
+
+        // Function to fetch and display content from Firestore or samples
+        async function fetchAndDisplayContent() {
+            let fetchedArtworks = [];
+            let fetchedArtists = [];
+            let fetchedArticles = [];
+
+            if (db && userId) {
+                try {
+                    // Fetch Artworks
+                    const artworksColRef = collection(db, `artifacts/${appId}/public/data/artworks`);
+                    onSnapshot(artworksColRef, (snapshot) => {
+                        fetchedArtworks = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                        console.log("Fetched artworks:", fetchedArtworks);
+                        renderGallery(fetchedArtworks.length > 0 ? fetchedArtworks : sampleArtworks);
+                    }, (error) => {
+                        console.error("Error fetching artworks from Firestore:", error);
+                        renderGallery(sampleArtworks); // Fallback to sample data on error
+                    });
+
+                    // Fetch Artists
+                    const artistsColRef = collection(db, `artifacts/${appId}/public/data/artists`);
+                    onSnapshot(artistsColRef, (snapshot) => {
+                        fetchedArtists = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                        console.log("Fetched artists:", fetchedArtists);
+                        renderArtists(fetchedArtists.length > 0 ? fetchedArtists : sampleArtists);
+                    }, (error) => {
+                        console.error("Error fetching artists from Firestore:", error);
+                        renderArtists(sampleArtists); // Fallback to sample data on error
+                    });
+
+                    // Fetch Articles
+                    const articlesColRef = collection(db, `artifacts/${appId}/public/data/articles`);
+                    onSnapshot(articlesColRef, (snapshot) => {
+                        fetchedArticles = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                        console.log("Fetched articles:", fetchedArticles);
+                        renderInsights(fetchedArticles.length > 0 ? fetchedArticles : sampleArticles);
+                    }, (error) => {
+                        console.error("Error fetching articles from Firestore:", error);
+                        renderInsights(sampleArticles); // Fallback to sample data on error
+                    });
+
+                } catch (error) {
+                    console.error("Error setting up Firestore listeners:", error);
+                    displayContentFromSamples(); // Fallback if listener setup fails
+                }
+            } else {
+                displayContentFromSamples(); // Use sample data if Firebase not ready
+            }
+        }
+
+        // Function to display content from sample data if Firebase is not used or fails
+        function displayContentFromSamples() {
+            renderGallery(sampleArtworks);
+            renderArtists(sampleArtists);
+            renderInsights(sampleArticles);
+        }
+
+        // Navigation logic for single page application feel
+        window.navigate = function(hash) {
+            // Hide all sections that are dynamically shown/hidden
+            document.querySelectorAll('section:not(#home)').forEach(section => {
+                section.classList.add('hidden');
+            });
+             // Ensure home is hidden if not navigating to it
+            if (hash !== '#home') {
+                 document.getElementById('home').classList.add('hidden');
+            }
+
+
+            // Remove 'active' class from all nav links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            const targetId = hash.substring(1); // Remove '#'
+            const targetSection = document.getElementById(targetId);
+
+            if (targetSection) {
+                targetSection.classList.remove('hidden'); // Show target section
+                // Add 'active' class to the corresponding nav link only if it exists
+                const activeNavLink = document.querySelector(`.nav-link[href="${hash}"]`);
+                if (activeNavLink) {
+                    activeNavLink.classList.add('active');
+                }
+            }
+            // All other cases (e.g., #artwork-detail, #artist-detail, #article-detail) are handled by specific functions
+            // that call navigate and then reveal their section.
+            // No need for 'else if' for detail pages here as they are navigated to explicitly by showArtworkDetail, etc.
+
+
+            // Scroll to top of the page if navigating to a new section
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        };
+
+        // Initial navigation based on URL hash or default to home
+        window.onload = function() {
+            // Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // Initialize Firebase and fetch content
+            initFirebase();
+
+            // Set up navigation for header links
+            // The onclick attributes in HTML handle navigation now,
+            // so we don't need to re-attach listeners here for standard nav links.
+            // The home link and explore button also have onclick.
+
+            // Handle initial page load or deep links
+            if (window.location.hash) {
+                window.navigate(window.location.hash);
+            } else {
+                window.navigate('#home'); // Default to home page
+            }
+        };
+
+        // Render functions for dynamic content
+        function renderGallery(artworksData) {
+            const galleryGrid = document.getElementById('gallery-grid');
+            galleryGrid.innerHTML = ''; // Clear previous content
+
+            artworksData.forEach(artwork => {
+                // Find the artist's name for display (using sample artist data as a reference for now)
+                const artistInfo = sampleArtists.find(a => a.id === artwork.artistId);
+                const artistDisplayName = artistInfo ? artistInfo.name : artwork.artistId;
+
+                const artworkCard = `
+                    <div class="card bg-zinc-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer" onclick="showArtworkDetail('${artwork.id}')">
+                        <img src="${artwork.imageUrl}" alt="${artwork.title}" class="w-full h-80 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/600x800/292929/b0b0b0?text=Artwork+Image';"/>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold text-white mb-2">${artwork.title}</h3>
+                            <p class="text-gray-400 text-lg">${artistDisplayName}</p>
+                            <p class="text-white mt-4 text-xl font-bold">${artwork.price}</p>
+                        </div>
+                    </div>
+                `;
+                galleryGrid.innerHTML += artworkCard;
+            });
+        }
+
+        async function showArtworkDetail(artworkId) {
+            let artwork = sampleArtworks.find(a => a.id === artworkId);
+
+            // Try to fetch from Firestore if connected
+            if (db) {
+                try {
+                    const artworkDocRef = doc(db, `artifacts/${appId}/public/data/artworks`, artworkId);
+                    const artworkDocSnap = await getDoc(artworkDocRef);
+                    if (artworkDocSnap.exists()) {
+                        artwork = { id: artworkDocSnap.id, ...artworkDocSnap.data() };
+                    }
+                } catch (error) {
+                    console.error("Error fetching single artwork from Firestore:", error);
+                }
+            }
+
+            if (!artwork) {
+                console.error("Artwork not found:", artworkId);
+                return;
+            }
+
+            const artistInfo = sampleArtists.find(a => a.id === artwork.artistId);
+            const artistDisplayName = artistInfo ? artistInfo.name : artwork.artistId;
+
+            const artworkDetailContent = document.getElementById('artwork-detail-content');
+            artworkDetailContent.innerHTML = `
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div>
+                        <img src="${artwork.imageUrl}" alt="${artwork.title}" class="w-full h-auto object-cover rounded-lg shadow-xl" onerror="this.onerror=null;this.src='https://placehold.co/800x600/292929/b0b0b0?text=Artwork+Image';"/>
+                    </div>
+                    <div class="flex flex-col justify-between">
+                        <div>
+                            <h2 class="text-5xl font-bold text-white mb-4">${artwork.title}</h2>
+                            <p class="text-gray-300 text-2xl mb-6">${artistDisplayName}, ${artwork.year}</p>
+                            <div class="text-gray-400 text-lg leading-relaxed space-y-3 mb-8">
+                                <p><strong>Medium:</strong> ${artwork.medium}</p>
+                                <p><strong>Dimensions:</strong> ${artwork.dimensions}</p>
+                                ${artwork.provenance ? `<p><strong>Provenance:</strong> ${artwork.provenance}</p>` : ''}
+                                <p class="mt-6">${artwork.description}</p>
+                            </div>
+                        </div>
+                        <div class="mt-10">
+                            <p class="text-white text-4xl font-bold mb-8">${artwork.price}</p>
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <button onclick="handleEnquire('${artwork.title}')" class="btn-primary text-xl font-semibold flex-grow">
+                                    Inquire / Purchase
+                                </button>
+                                <button onclick="handleViewInSpace('${artwork.imageUrl}')" class="btn-primary text-xl font-semibold flex-grow bg-zinc-700 hover:bg-zinc-600">
+                                    View in Your Space (AR)
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            window.navigate('#artwork-detail'); // Show artwork detail section
+        }
+
+        function renderArtists(artistsData) {
+            const artistsGrid = document.getElementById('artists-grid');
+            artistsGrid.innerHTML = ''; // Clear previous content
+
+            // Join artists with their works from sampleArtworks for display in the artist card
+            const artistsWithWorks = artistsData.map(artist => ({
+                ...artist,
+                works: sampleArtworks.filter(artwork => artwork.artistId === artist.id)
+            }));
+
+            artistsWithWorks.forEach(artist => {
+                const artistCard = `
+                    <div class="card bg-zinc-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer" onclick="showArtistDetail('${artist.id}')">
+                        <img src="${artist.portraitUrl}" alt="${artist.name}" class="w-full h-64 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/400x400/363636/A0A0A0?text=Artist+Portrait';"/>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold text-white mb-2">${artist.name}</h3>
+                            <p class="text-gray-400 text-lg">${artist.bio.substring(0, 100)}...</p>
+                            <p class="text-gray-500 mt-4 text-sm">${artist.works.length} works available</p>
+                        </div>
+                    </div>
+                `;
+                artistsGrid.innerHTML += artistCard;
+            });
+        }
+
+        async function showArtistDetail(artistId) {
+            let artist = sampleArtists.find(a => a.id === artistId);
+            let artworksByArtist = sampleArtworks.filter(a => a.artistId === artistId);
+
+            // Try to fetch from Firestore if connected
+            if (db) {
+                try {
+                    const artistDocRef = doc(db, `artifacts/${appId}/public/data/artists`, artistId);
+                    const artistDocSnap = await getDoc(artistDocRef);
+                    if (artistDocSnap.exists()) {
+                        artist = { id: artistDocSnap.id, ...artistDocSnap.data() };
+                    }
+                    // Also fetch artworks for this artist from Firestore
+                    const artworksColRef = collection(db, `artifacts/${appId}/public/data/artworks`);
+                    const q = query(artworksColRef, where("artistId", "==", artistId)); // Note: orderBy is avoided as per instructions.
+                    const artworksSnapshot = await getDocs(q);
+                    artworksByArtist = artworksSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+                } catch (error) {
+                    console.error("Error fetching single artist or their artworks from Firestore:", error);
+                }
+            }
+
+            if (!artist) {
+                console.error("Artist not found:", artistId);
+                return;
+            }
+
+            const artistDetailContent = document.getElementById('artist-detail-content');
+            artistDetailContent.innerHTML = `
+                <div class="flex flex-col md:flex-row items-center md:items-start mb-10 gap-10">
+                    <img src="${artist.portraitUrl}" alt="${artist.name}" class="w-64 h-64 object-cover rounded-full shadow-lg border-4 border-zinc-700" onerror="this.onerror=null;this.src='https://placehold.co/400x400/363636/A0A0A0?text=Artist+Portrait';"/>
+                    <div class="text-center md:text-left">
+                        <h2 class="text-5xl font-bold text-white mb-3">${artist.name}</h2>
+                        <p class="text-gray-400 text-xl">${artist.bio.split('.')[0]}...</p>
+                    </div>
+                </div>
+                <div class="space-y-8 text-gray-300 text-lg leading-relaxed">
+                    <h3 class="text-3xl font-semibold text-white border-b border-zinc-700 pb-3 mb-5">Biography</h3>
+                    <p>${artist.bio}</p>
+                    <h3 class="text-3xl font-semibold text-white border-b border-zinc-700 pb-3 mb-5">Artistic Philosophy</h3>
+                    <p>${artist.philosophy}</p>
+                    ${artist.exhibitions && artist.exhibitions.length > 0 ? `
+                        <h3 class="text-3xl font-semibold text-white border-b border-zinc-700 pb-3 mb-5">Notable Exhibitions</h3>
+                        <ul class="list-disc list-inside space-y-2 pl-4">
+                            ${artist.exhibitions.map(ex => `<li>${ex}</li>`).join('')}
+                        </ul>
+                    ` : ''}
+                </div>
+                <div class="mt-16">
+                    <h3 class="text-3xl font-semibold text-white border-b border-zinc-700 pb-3 mb-8">Works by ${artist.name}</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        ${artworksByArtist.length > 0 ? artworksByArtist.map(artwork => `
+                            <div class="card bg-zinc-700 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer" onclick="showArtworkDetail('${artwork.id}')">
+                                <img src="${artwork.imageUrl}" alt="${artwork.title}" class="w-full h-64 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/600x600/3d3d3d/c0c0c0?text=Artwork+Image';"/>
+                                <div class="p-5">
+                                    <h4 class="text-xl font-medium text-white mb-1">${artwork.title}</h4>
+                                    <p class="text-gray-400">${artwork.year}</p>
+                                </div>
+                            </div>
+                        `).join('') : '<p class="text-gray-400 text-center col-span-full">No artworks available for this artist yet.</p>'}
+                    </div>
+                </div>
+            `;
+            window.navigate('#artist-detail'); // Show artist detail section
+        }
+
+        function renderInsights(articlesData) {
+            const articlesList = document.getElementById('articles-list');
+            articlesList.innerHTML = ''; // Clear previous content
+
+            articlesData.forEach(article => {
+                const articleCard = `
+                    <div class="card bg-zinc-800 rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row items-center md:items-start hover:shadow-xl transition-all duration-300">
+                        <img src="${article.imageUrl}" alt="${article.title}" class="w-full md:w-1/3 h-64 md:h-auto object-cover rounded-t-xl md:rounded-l-xl md:rounded-t-none" onerror="this.onerror=null;this.src='https://placehold.co/800x400/222222/a0a0a0?text=Article+Image';"/>
+                        <div class="p-8 md:w-2/3">
+                            <h3 class="text-3xl font-semibold text-white mb-3">${article.title}</h3>
+                            <p class="text-gray-400 text-sm mb-4">By ${article.author} on ${article.date}</p>
+                            <p class="text-gray-300 leading-relaxed line-clamp-4">${article.content}</p>
+                            <button onclick="showArticleDetail('${article.id}')" class="mt-6 btn-primary inline-flex items-center text-lg bg-zinc-700 hover:bg-zinc-600">
+                                Read More
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                articlesList.innerHTML += articleCard;
+            });
+        }
+
+        async function showArticleDetail(articleId) {
+            let article = sampleArticles.find(a => a.id === articleId);
+
+            // Try to fetch from Firestore if connected
+            if (db) {
+                try {
+                    const articleDocRef = doc(db, `artifacts/${appId}/public/data/articles`, articleId);
+                    const articleDocSnap = await getDoc(articleDocRef);
+                    if (articleDocSnap.exists()) {
+                        article = { id: articleDocSnap.id, ...articleDocSnap.data() };
+                    }
+                } catch (error) {
+                    console.error("Error fetching single article from Firestore:", error);
+                }
+            }
+
+            if (!article) {
+                console.error("Article not found:", articleId);
+                return;
+            }
+
+            const articleDetailContent = document.getElementById('article-detail-content');
+            articleDetailContent.innerHTML = `
+                <div class="mb-10">
+                    <h2 class="text-5xl font-bold text-white mb-4">${article.title}</h2>
+                    <p class="text-gray-400 text-lg">By ${article.author} on ${article.date}</p>
+                </div>
+                <img src="${article.imageUrl}" alt="${article.title}" class="w-full h-96 object-cover rounded-lg shadow-md mb-10" onerror="this.onerror=null;this.src='https://placehold.co/1200x600/222222/a0a0a0?text=Article+Image';"/>
+                <div class="text-gray-300 text-lg leading-relaxed space-y-6">
+                    <p>${article.content.split('\n').map(paragraph => `<p>${paragraph}</p>`).join('')}</p>
+                </div>
+            `;
+            window.navigate('#article-detail'); // Show article detail section
+        }
+
+        // Simulated actions for inquiry, AR view, and consultation booking
+        function handleEnquire(artworkTitle) {
+            alert(`Thank you for your interest in "${artworkTitle}". Please contact us directly at info@giacosfineart.com or through our Contact section for purchase inquiries.`);
+        }
+
+        function handleViewInSpace(imageUrl) {
+            // In a real web application, this would integrate with a WebAR library (e.g., Google Model Viewer)
+            // or instruct the user to download a mobile app.
+            alert(`This "View in Your Space" feature would allow you to virtually place this artwork in your room using AR technology. For a fully immersive experience, consider a dedicated mobile app or contact us for an AR demo.`);
+            // For a basic WebAR demo, you might eventually integrate something like:
+            // const modelViewer = document.createElement('model-viewer');
+            // modelViewer.src = 'path/to/3d-model-of-artwork.glb';
+            // modelViewer.alt = 'Artwork 3D model';
+            // modelViewer.ar = true;
+            // modelViewer.ar-modes = 'webxr scene-viewer quick-look';
+            // modelViewer.camera-controls = true;
+            // document.body.appendChild(modelViewer);
+            // model-viewer requires specific script tags and 3D models of artworks.
+        }
+
+        function showBookingForm() {
+            const form = document.getElementById('booking-form');
+            form.classList.toggle('hidden'); // Toggle visibility
+            if (!form.classList.contains('hidden')) {
+                form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        async function handleBookingSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('booking-name').value;
+            const email = document.getElementById('booking-email').value;
+            const message = document.getElementById('booking-message').value;
+
+            if (db) {
+                try {
+                    // Store consultation request in Firestore
+                    await addDoc(collection(db, `artifacts/${appId}/public/data/consultation_requests`), {
+                        name: name,
+                        email: email,
+                        message: message,
+                        timestamp: new Date()
+                    });
+                    alert('Your consultation request has been successfully submitted! We will contact you shortly.');
+                } catch (error) {
+                    console.error("Error submitting consultation request to Firestore:", error);
+                    alert('There was an error submitting your request. Please try again or contact us directly via email.');
+                }
+            } else {
+                 alert(`Consultation Request Submitted (Simulation)\nName: ${name}\nEmail: ${email}\nMessage: ${message}\n\nIn a real application, this would be sent to the gallery for follow-up.`);
+            }
+
+            // Clear form
+            document.getElementById('booking-name').value = '';
+            document.getElementById('booking-email').value = '';
+            document.getElementById('booking-message').value = '';
+            showBookingForm(); // Hide form after submission
+        }
+    </script>
+</body>
+</html>
