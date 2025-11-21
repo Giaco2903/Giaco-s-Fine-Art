@@ -1,512 +1,512 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alejandro Giacomelli | Fine Art Dealer & Advisor</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --background: #0c0c0f;
-            --surface: #15161c;
-            --surface-light: #1d1f27;
-            --accent: #b3925f;
-            --accent-soft: rgba(179, 146, 95, 0.18);
-            --text-primary: #f5f4f1;
-            --text-secondary: #b2b6c3;
-            --border: rgba(255, 255, 255, 0.08);
-            --max-width: 1180px;
-        }
+  <meta charset="UTF-8" />
+  <title>Spresso – Cápsulas de café de especialidad</title>
+  <meta name="description" content="Spresso: cápsulas de café de especialidad compatibles con Nespresso®. Elegantes, atrevidas y con mucho sabor." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg-dark: #111111;
+      --bg-light: #f7f4ef;
+      --accent: #c89a5b;
+      --text-main: #222222;
+      --text-muted: #777777;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      color: var(--text-main);
+      background: #ffffff;
+    }
+    a { text-decoration: none; }
 
-        * {
-            box-sizing: border-box;
-        }
+    /* HEADER / NAV */
+    .nav {
+      background: var(--bg-dark);
+      color: #fff;
+      padding: 14px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-logo {
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+    }
+    .nav-menu {
+      display: flex;
+      gap: 22px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+    .nav-menu a { color: #ddd; }
+    .nav-menu a:hover { color: #fff; }
 
-        body {
-            margin: 0;
-            font-family: 'Source Sans 3', sans-serif;
-            background: var(--background);
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
+    /* BUTTONS */
+    .btn {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: transparent;
+    }
+    .btn-primary {
+      background: #ffffff;
+      color: #000000;
+    }
+    .btn-primary-dark {
+      background: var(--accent);
+      color: #000;
+    }
+    .btn-ghost {
+      border-color: #fff;
+      color: #fff;
+      background: transparent;
+    }
+    .btn-secondary {
+      border-color: var(--text-main);
+      color: var(--text-main);
+      background: transparent;
+    }
 
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            color: var(--text-primary);
-            margin: 0 0 0.5em;
-        }
+    /* SECTIONS */
+    .hero {
+      background: radial-gradient(circle at top left, #333 0, #000 38%, #000 100%);
+      color: #fff;
+      padding: 70px 22px 80px;
+    }
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: center;
+    }
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      color: #aaa;
+      margin-bottom: 8px;
+    }
+    .hero h1 {
+      font-size: 2.7rem;
+      line-height: 1.1;
+      margin: 0 0 12px;
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: #cfcfcf;
+      margin-bottom: 22px;
+      max-width: 460px;
+    }
+    .hero-tags {
+      font-size: 0.85rem;
+      color: #aaa;
+      margin-top: 10px;
+    }
+    .hero-img-placeholder {
+      border-radius: 20px;
+      border: 1px solid #333;
+      padding: 26px;
+      background: linear-gradient(135deg, #222, #111);
+      text-align: center;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+    }
+    .hero-img-placeholder span {
+      display: block;
+      font-size: 0.8rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+    .hero-img-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
 
-        p {
-            margin: 0 0 1em;
-        }
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 22px;
+    }
+    .section-title {
+      font-size: 1.9rem;
+      margin-bottom: 10px;
+    }
+    .section-eyebrow {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .section-sub {
+      color: var(--text-muted);
+      margin-bottom: 30px;
+      max-width: 540px;
+    }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+    .bg-light { background: var(--bg-light); }
+    .bg-contrast { background: #000; color: #fff; }
 
-        header {
-            background: rgba(12, 12, 15, 0.92);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            backdrop-filter: blur(12px);
-        }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      border-radius: 14px;
+      border: 1px solid #ececec;
+      background: #fff;
+      padding: 20px;
+    }
+    .card-dark {
+      background: #111;
+      border-color: #333;
+      color: #f4f4f4;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .pill {
+      display: inline-block;
+      font-size: 0.78rem;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.08);
+      padding: 5px 10px;
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+    .pill-dark {
+      border-color: rgba(255,255,255,0.18);
+      color: #ddd;
+    }
 
-        .nav-container {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 1.2rem 1.8rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .cta-box {
+      border-radius: 18px;
+      padding: 32px 24px;
+      text-align: center;
+      background: #000;
+      color: #fff;
+      margin-top: 10px;
+    }
 
-        .brand {
-            display: flex;
-            flex-direction: column;
-        }
+    .input-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 18px;
+    }
+    .input-row input {
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px solid #ddd;
+      min-width: 220px;
+      font-size: 0.95rem;
+    }
 
-        .brand span:first-child {
-            letter-spacing: 0.14em;
-            font-size: 0.78rem;
-            text-transform: uppercase;
-            color: var(--accent);
-        }
+    .faq-item { margin-bottom: 18px; }
+    .faq-item h4 { margin-bottom: 4px; }
 
-        .brand span:last-child {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.45rem;
-            letter-spacing: 0.08em;
-            color: var(--text-primary);
-        }
+    footer {
+      padding: 40px 22px 26px;
+      font-size: 0.8rem;
+      color: #999;
+      text-align: center;
+      border-top: 1px solid #eee;
+      margin-top: 30px;
+    }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 1.6rem;
-            padding: 0;
-            margin: 0;
-            font-size: 0.92rem;
-            letter-spacing: 0.05em;
-        }
-
-        nav li {
-            border-bottom: 1px solid transparent;
-            padding-bottom: 0.2rem;
-            transition: border-color 0.3s ease, color 0.3s ease;
-        }
-
-        nav li:hover {
-            border-color: var(--accent);
-            color: var(--text-primary);
-        }
-
-        .hero {
-            background: linear-gradient(135deg, rgba(16,17,24,0.95), rgba(20,22,30,0.88)), url('Logo_arte.jpg') center/cover no-repeat;
-            color: var(--text-primary);
-            padding: 7rem 1.8rem 6rem;
-        }
-
-        .hero-inner {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            display: grid;
-            gap: 3.5rem;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            align-items: center;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.4rem, 3.4vw, 3.6rem);
-            line-height: 1.18;
-            margin-bottom: 1.4rem;
-        }
-
-        .hero p {
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-        }
-
-        .hero-credentials {
-            background: var(--surface);
-            padding: 2rem;
-            border-radius: 18px;
-            border: 1px solid var(--border);
-            display: grid;
-            gap: 1.2rem;
-        }
-
-        .hero-credentials h3 {
-            letter-spacing: 0.12em;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            color: var(--accent);
-        }
-
-        .credential {
-            display: flex;
-            flex-direction: column;
-            gap: 0.3rem;
-        }
-
-        .credential strong {
-            font-size: 1.05rem;
-            color: var(--text-primary);
-        }
-
-        section {
-            padding: 5rem 1.8rem;
-        }
-
-        .section-inner {
-            max-width: var(--max-width);
-            margin: 0 auto;
-        }
-
-        .lead {
-            font-size: 1.08rem;
-            color: var(--text-secondary);
-            max-width: 750px;
-        }
-
-        .grid-two {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.6rem;
-            margin-top: 2.6rem;
-        }
-
-        .card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2.2rem;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-6px);
-            border-color: var(--accent);
-        }
-
-        .card h3 {
-            margin-bottom: 1.2rem;
-        }
-
-        .card ul {
-            padding-left: 1.1rem;
-            margin: 0;
-        }
-
-        .card li {
-            margin-bottom: 0.7rem;
-        }
-
-        .highlight {
-            background: linear-gradient(140deg, rgba(27,29,38,0.9), rgba(19,19,25,0.95));
-            border-radius: 18px;
-            border: 1px solid var(--border);
-            padding: 2.8rem;
-        }
-
-        .highlight h2 {
-            margin-bottom: 1rem;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            padding: 0.4rem 0.8rem;
-            border-radius: 999px;
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            font-size: 0.75rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        .client-profile {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.4rem;
-            margin-top: 2rem;
-            align-items: start;
-        }
-
-        .timeline {
-            border-left: 1px solid var(--border);
-            padding-left: 1.6rem;
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        .timeline-item {
-            position: relative;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -1.8rem;
-            top: 0.3rem;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--accent);
-        }
-
-        .cta {
-            background: linear-gradient(120deg, rgba(27,29,38,0.96), rgba(24,24,30,0.9));
-            padding: 4.5rem 1.8rem 5rem;
-            border-top: 1px solid var(--border);
-        }
-
-        .cta-inner {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.8rem;
-            align-items: center;
-        }
-
-        .cta h2 {
-            font-size: clamp(2rem, 2.4vw, 2.6rem);
-        }
-
-        .cta p {
-            font-size: 1.02rem;
-        }
-
-        .cta a {
-            display: inline-block;
-            margin-top: 1.8rem;
-            padding: 0.9rem 2.4rem;
-            border-radius: 999px;
-            background: var(--accent);
-            color: #0f0f15;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .cta a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 16px 32px rgba(179, 146, 95, 0.22);
-        }
-
-        footer {
-            border-top: 1px solid var(--border);
-            background: #0b0b0e;
-            color: var(--text-secondary);
-            text-align: center;
-            padding: 2.2rem 1.4rem;
-            font-size: 0.85rem;
-        }
-
-        @media (max-width: 720px) {
-            nav ul {
-                display: none;
-            }
-        }
-    </style>
+    @media (max-width: 800px) {
+      .hero-inner {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="nav-container">
-            <div class="brand">
-                <span>Fine Art Advisory</span>
-                <span>Alejandro Giacomelli</span>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#profile">Profile</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#client">Client Spotlight</a></li>
-                    <li><a href="#partnership">Partnership</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="nav-logo">SPRESSO</div>
+    <nav class="nav-menu">
+      <a href="#capsulas">Cápsulas</a>
+      <a href="#experiencia">Experiencia</a>
+      <a href="#reciclaje">Reciclaje</a>
+      <a href="#club">Club Spresso</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">Cápsulas de café de especialidad</div>
+        <h1>Más café. Menos pose.</h1>
+        <p class="hero-sub">
+          Spresso lleva café de especialidad a tu máquina compatible con Nespresso®. Elegante como tu ritual de la mañana, pero con bastante más carácter.
+        </p>
+        <div>
+          <a href="#capsulas" class="btn btn-primary">Ver colección de cápsulas</a>
+          <a href="#club" class="btn btn-ghost">Unirme al Club Spresso</a>
         </div>
-    </header>
+        <p class="hero-tags">
+          Compatible con máquinas Nespresso® originales · Envíos a toda España · Producciones pequeñas, sabor enorme
+        </p>
+      </div>
+      <div class="hero-img-placeholder">
+        <span>Spresso · Colección inicial</span>
+        <div class="hero-img-title">Tu cafetera se merece algo mejor.</div>
+        <p style="font-size:0.9rem; color:#ccc;">
+          Imagina aquí tu foto hero: cápsulas Spresso, una taza brutal de espresso y mucha crema. Lo único que falta es pulsar el botón.
+        </p>
+      </div>
+    </div>
+    <p style="max-width:1100px;margin:18px auto 0;font-size:0.75rem;color:#777;text-align:left;">
+      Nespresso® es una marca de Société des Produits Nestlé S.A. Spresso es un productor independiente y no está afiliado, patrocinado ni respaldado por Nespresso®.
+    </p>
+  </section>
 
-    <section class="hero" id="profile">
-        <div class="hero-inner">
-            <div>
-                <h1>Guiding Galleries and Collectors Through Exceptional Art Transactions</h1>
-                <p>Alejandro Giacomelli is an Argentinian art dealer and trusted advisor with a decade of experience structuring acquisitions, managing cross-border consignments, and building lasting relationships between contemporary artists and international galleries. Alejandro combines rigorous market intelligence with a personalized, discreet approach to protecting the legacy of every collection he stewards.</p>
-            </div>
-            <div class="hero-credentials">
-                <h3>Credentials at a Glance</h3>
-                <div class="credential">
-                    <strong>Global Network</strong>
-                    <span>Active collaborations across Buenos Aires, Madrid, Tbilisi, New York, and Milan with blue-chip galleries and independent curators.</span>
-                </div>
-                <div class="credential">
-                    <strong>Due Diligence Expertise</strong>
-                    <span>Provenance research, condition reporting, and compliance with international transport and customs regulations.</span>
-                </div>
-                <div class="credential">
-                    <strong>Strategic Partnerships</strong>
-                    <span>Long-term placement strategies that align artists with curatorial programs and gallery positioning.</span>
-                </div>
-            </div>
+  <!-- COLECCIÓN CÁPSULAS -->
+  <section class="section" id="capsulas">
+    <div class="section-eyebrow">Colección Spresso</div>
+    <h2 class="section-title">Tres cápsulas para olvidarte del café aburrido</h2>
+    <p class="section-sub">
+      Si ya usas cápsulas, tienes la mitad del trabajo hecho. Ahora solo falta que lo que hay dentro esté a la altura. Empezamos con tres perfiles pensados para el mercado español.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <div class="badge">Spresso Daily</div>
+        <h3>Tu café de todos los días (pero bien)</h3>
+        <p>
+          Blend de especialidad con notas a <strong>chocolate</strong>, <strong>avellana</strong> y un toque de caramelo. Cuerpo medio, final redondo y cero amargor agresivo.
+        </p>
+        <p class="pill">Intensidad: 7/13</p>
+        <p class="pill">Espresso · Lungo</p>
+        <p class="pill">Leche friendly</p>
+      </div>
+
+      <div class="card">
+        <div class="badge">Spresso Bold</div>
+        <h3>Para los que venían “a lo fuerte”</h3>
+        <p>
+          Tu cápsula intensa, pero sin quemar el café. Cuerpo alto, crema densa y notas a cacao amargo y frutos secos. Perfecto para cortado, café con leche o ese postcomida que no perdonas.
+        </p>
+        <p class="pill">Intensidad: 9/13</p>
+        <p class="pill">Espresso corto</p>
+        <p class="pill">Ideal con leche</p>
+      </div>
+
+      <div class="card">
+        <div class="badge">Spresso Origin</div>
+        <h3>Single origin para días especiales</h3>
+        <p>
+          Café de un solo origen de especialidad, tostado para cápsula. Dependiendo de la cosecha, encontrarás matices más frutales, florales o especiados.
+        </p>
+        <p class="pill">Intensidad: 6/13</p>
+        <p class="pill">Origen único</p>
+        <p class="pill">Para tomar solo</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCIA SPRESSO -->
+  <section class="section bg-light" id="experiencia">
+    <div class="section-eyebrow">Experiencia Spresso</div>
+    <h2 class="section-title">La misma máquina. Otra liga de café.</h2>
+    <p class="section-sub">
+      No hace falta romper con tu cafetera, solo con tus cápsulas. Spresso está pensado para quienes quieren subir de nivel sin cambiar de ritual.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Café de especialidad real</h3>
+        <p>
+          Trabajamos con cafés que superan los 80 puntos SCA. Traducido: granos seleccionados, limpios y con perfil de sabor definido.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Tostado en lotes pequeños</h3>
+        <p>
+          Tostamos en pequeñas cantidades para mantener la frescura. Menos almacén, más aroma. Tu nariz y tu taza lo notan desde el primer disparo.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Diseñado para tu rutina</h3>
+        <p>
+          Intensidades, perfiles y formatos pensados para cómo se toma el café en España: espresso, cortado, con leche y esa taza rápida antes de salir por la puerta.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Elegante por fuera, gamberro por dentro</h3>
+        <p>
+          Packaging minimalista, cápsulas sobrias y un café que se sale del guion. Spresso vive entre el diseño cuidado y el “voy a hacer las cosas a mi manera”.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CÓMO FUNCIONA -->
+  <section class="section">
+    <div class="section-eyebrow">Cómo funciona</div>
+    <h2 class="section-title">De “ok” a “wow” en tres pasos</h2>
+
+    <div class="grid">
+      <div class="card">
+        <div class="badge">Paso 1</div>
+        <h3>Elige tus cápsulas Spresso</h3>
+        <p>
+          Daily, Bold u Origin. O las tres. Haz tu pedido online en menos de dos minutos.
+        </p>
+      </div>
+      <div class="card">
+        <div class="badge">Paso 2</div>
+        <h3>Recíbelo en casa</h3>
+        <p>
+          Envíos a toda España con packaging pensado para proteger el café y caber en tu cocina sin dramas.
+        </p>
+      </div>
+      <div class="card">
+        <div class="badge">Paso 3</div>
+        <h3>Inserta, pulsa y disfruta</h3>
+        <p>
+          Mismo botón, otra historia. Si tu cafetera pudiera hablar, te pediría Spresso.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECICLAJE / SOSTENIBILIDAD -->
+  <section class="section bg-contrast" id="reciclaje">
+    <div class="section-eyebrow">Reciclaje</div>
+    <h2 class="section-title">Porque el planeta también está invitado al café</h2>
+    <p class="section-sub" style="color:#ccc;">
+      Buen café sin discurso vacío. Te lo ponemos fácil para reciclar y seguir disfrutando sin remordimientos.
+    </p>
+
+    <div class="grid">
+      <div class="card card-dark">
+        <h3>Cápsulas reciclables</h3>
+        <p>
+          Cápsulas diseñadas para poder separarse y reciclarse. Café por un lado, cápsula por otro.
+        </p>
+      </div>
+      <div class="card card-dark">
+        <h3>Puntos y recogida</h3>
+        <p>
+          Puedes acumular tus cápsulas usadas y llevarlas a los puntos de reciclaje indicados o seguir las instrucciones de nuestro programa de recogida (muy pronto en España).
+        </p>
+      </div>
+      <div class="card card-dark">
+        <h3>Transparencia antes que postureo</h3>
+        <p>
+          Menos palabras vacías y más claridad: origen del café, condiciones y procesos explicados sin humo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLUB SPRESSO / LEADS -->
+  <section class="section" id="club">
+    <div class="section-eyebrow">Club Spresso</div>
+    <h2 class="section-title">Donde acaba tu cápsula y empieza la comunidad</h2>
+    <p class="section-sub">
+      Apúntate para recibir lanzamientos, ofertas y contenido sobre café de especialidad en cápsulas. Prometemos más crema que spam.
+    </p>
+
+    <div class="cta-box">
+      <h3>Consigue un <span style="color:var(--accent);">10% de bienvenida</span> en tu primer pedido</h3>
+      <p style="margin-bottom: 4px;">
+        Déjanos tu email y te enviaremos tu código exclusivo para tu primera caja Spresso.
+      </p>
+
+      <form>
+        <div class="input-row">
+          <input type="text" name="nombre" placeholder="Tu nombre" />
+          <input type="email" name="email" placeholder="Tu email" required />
+          <button type="submit" class="btn btn-primary-dark">Quiero mi código</button>
         </div>
-    </section>
+        <p style="font-size:0.78rem; color:#bbb; margin-top:10px; max-width:480px; margin-left:auto; margin-right:auto;">
+          Al enviar este formulario aceptas recibir comunicaciones de Spresso. Puedes darte de baja en cualquier momento con un solo clic.
+        </p>
+      </form>
+    </div>
+  </section>
 
-    <section id="services">
-        <div class="section-inner">
-            <h2>Bespoke Services for Galleries and Collectors</h2>
-            <p class="lead">Each engagement is tailored to the character of the collection and the ambitions of the gallery partner. Alejandro offers transparent guidance grounded in current market analytics, art historical knowledge, and a commitment to safeguarding cultural value.</p>
-            <div class="grid-two">
-                <div class="card">
-                    <h3>Gallery Representation &amp; Placement</h3>
-                    <ul>
-                        <li>Curated artist portfolios prepared for gallery review, supported by sales performance data and exhibition history.</li>
-                        <li>Negotiation of exclusive representation agreements with clear growth milestones.</li>
-                        <li>Coordination of shipping, insurance, and installation for international fairs and exhibitions.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>Collector Advisory</h3>
-                    <ul>
-                        <li>Collection audits and acquisition strategies aligned with fiscal planning and long-term cultural objectives.</li>
-                        <li>Access to primary-market works and discrete secondary-market opportunities.</li>
-                        <li>End-to-end management of conservation, framing, and storage through vetted partners.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>Market Intelligence</h3>
-                    <ul>
-                        <li>Quarterly insight reports covering regional trends, key sales, and emerging artists.</li>
-                        <li>Benchmark valuations informed by auction comparables, gallery pricing, and institutional interest.</li>
-                        <li>Advisory on philanthropic initiatives, museum loans, and cultural partnerships.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>Compliance &amp; Ethics</h3>
-                    <ul>
-                        <li>Anti-money laundering protocols, KYC procedures, and contractual transparency for every transaction.</li>
-                        <li>Provenance verification supported by archival research and independent condition specialists.</li>
-                        <li>Confidential stewardship of client data with controlled access agreements.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="section-eyebrow">Preguntas frecuentes</div>
+    <h2 class="section-title">Por si tu cerebro necesita café antes que tú</h2>
 
-    <section id="client">
-        <div class="section-inner highlight">
-            <span class="badge">Client Spotlight</span>
-            <h2>Nina Khatashvili — Contemporary Painter, Tbilisi &amp; Berlin</h2>
-            <p class="lead">Alejandro is honored to represent Georgian-born artist Nina Khatashvili as his first client. Through a focused collaboration initiated in 2023, Alejandro has positioned Nina for strategic exposure in European and Latin American markets, bridging her abstract figurative language with curatorial narratives that resonate internationally.</p>
-            <div class="client-profile">
-                <div>
-                    <h3>Representation Strategy</h3>
-                    <ul>
-                        <li>Secured solo presentation opportunities with boutique galleries in Madrid and Buenos Aires, supported by tailored curatorial statements.</li>
-                        <li>Structured a two-year development roadmap covering residency placements, press outreach, and collector preview events.</li>
-                        <li>Implemented a provenance and authentication protocol that supports museum loan readiness.</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3>Results to Date</h3>
-                    <ul>
-                        <li>Reserved placements for 80% of Nina's latest series prior to public release through targeted collector previews.</li>
-                        <li>Coordinated institutional studio visits with curators from Barcelona and Milan, leading to confirmed group exhibition invitations.</li>
-                        <li>Established a data-backed pricing model that increased average work valuation by 27% across two market cycles.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="faq-item">
+      <h4>¿Spresso es compatible con mi cafetera?</h4>
+      <p>
+        Nuestras cápsulas están diseñadas para ser compatibles con la mayoría de máquinas Nespresso® originales domésticas.
+      </p>
+    </div>
 
-    <section id="partnership">
-        <div class="section-inner">
-            <h2>Partnership Framework for Galleries</h2>
-            <p class="lead">Alejandro collaborates with galleries as an embedded partner, aligning commercial objectives with curatorial integrity. His process ensures that every introduction is thoroughly vetted and supported by comprehensive documentation.</p>
-            <div class="grid-two">
-                <div class="card">
-                    <h3>Engagement Process</h3>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <strong>1. Strategic Assessment</strong>
-                            <p>Detailed review of gallery programming, collector base, and growth objectives to define the mandate.</p>
-                        </div>
-                        <div class="timeline-item">
-                            <strong>2. Curatorial Alignment</strong>
-                            <p>Preparation of artist dossiers, exhibition concepts, and projected sales scenarios tailored to the gallery's voice.</p>
-                        </div>
-                        <div class="timeline-item">
-                            <strong>3. Execution &amp; Stewardship</strong>
-                            <p>Hands-on coordination of consignments, contract negotiation, post-sale reporting, and collector relationship management.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <h3>Trust &amp; Compliance</h3>
-                    <ul>
-                        <li>Member, International Confederation of Art Dealers (CINOA) affiliate network.</li>
-                        <li>Collaborations with legal counsel specializing in cultural property and cross-border transactions.</li>
-                        <li>Digital registry of certificates, condition reports, and sales agreements accessible via secure client portal.</li>
-                        <li>Transparent fee structures with quarterly performance reviews and KPI dashboards.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="faq-item">
+      <h4>¿Qué significa “café de especialidad” en cápsulas?</h4>
+      <p>
+        Que partimos de café seleccionado, con puntuaciones de especialidad, y lo tostamos pensando en el formato cápsula.
+      </p>
+    </div>
 
-    <section>
-        <div class="section-inner">
-            <div class="grid-two">
-                <div class="card">
-                    <h3>Selected Highlights</h3>
-                    <ul>
-                        <li>Negotiated private acquisitions for collectors featuring works by Latin American masters including Julio Le Parc and Graciela Hasper.</li>
-                        <li>Coordinated cross-continental logistics for over 150 artworks with zero insurance claims.</li>
-                        <li>Delivered bespoke market analyses that informed museum acquisition committees in Buenos Aires and Santiago.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>Advisory Network</h3>
-                    <ul>
-                        <li>Conservation studios in Madrid and Florence for restoration and technical studies.</li>
-                        <li>Fine art logistics partners certified for climate-controlled transport and customs brokerage.</li>
-                        <li>Public relations consultants managing multilingual press campaigns and catalogue production.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="faq-item">
+      <h4>¿Hacéis envíos a toda España?</h4>
+      <p>
+        Sí, enviamos a península y Baleares. Estamos trabajando para ampliar zonas de envío.
+      </p>
+    </div>
 
-    <section class="cta" id="contact">
-        <div class="cta-inner">
-            <div>
-                <h2>Connect with Alejandro</h2>
-                <p>For gallery partnerships, collector representation, or bespoke market briefings, please reach out directly. Alejandro is available for in-person meetings across Europe and Latin America, and maintains secure digital channels for remote consultations.</p>
-                <a href="mailto:alejandro@giacomelliart.com">Schedule a conversation</a>
-            </div>
-            <div class="card" style="background: var(--surface-light);">
-                <h3>Contact Information</h3>
-                <p><strong>Email:</strong> alejandro@giacomelliart.com</p>
-                <p><strong>Phone:</strong> +39 02 1234 5678 (Milan) &nbsp;|&nbsp; +54 9 11 2345 6789 (Buenos Aires)</p>
-                <p><strong>Studio Visits:</strong> Available by appointment in Milan, Madrid, and Buenos Aires.</p>
-                <p><strong>Languages:</strong> Spanish, English, Italian.</p>
-            </div>
-        </div>
-    </section>
+    <div class="faq-item">
+      <h4>¿Necesito suscribirme sí o sí?</h4>
+      <p>
+        No. Puedes comprar cuando quieras. Más adelante lanzaremos suscripciones opcionales.
+      </p>
+    </div>
 
-    <footer>
-        © <span id="year"></span> Alejandro Giacomelli · Fine Art Dealer &amp; Advisor. All rights reserved.
-    </footer>
+    <div class="faq-item">
+      <h4>¿Puedo darme de baja del Club Spresso?</h4>
+      <p>
+        Claro. Cada email incluye un enlace para darte de baja al instante.
+      </p>
+    </div>
+  </section>
 
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
+  <!-- FOOTER -->
+  <footer>
+    <p>Spresso © <span id="year"></span>. Todos los derechos reservados.</p>
+    <p style="margin-top:6px;">
+      Nespresso® es una marca registrada de Société des Produits Nestlé S.A. Spresso no está afiliada, patrocinada ni asociada con Nespresso®.
+    </p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
