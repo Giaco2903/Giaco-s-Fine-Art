@@ -3,246 +3,628 @@
 <head>
   <meta charset="UTF-8" />
   <title>Spresso – Cápsulas de café de especialidad</title>
-  <meta name="description" content="Spresso: cápsulas de café de especialidad compatibles con Nespresso®. Elegantes, atrevidas y con mucho sabor." />
+  <meta name="description" content="Spresso: cápsulas y café de especialidad en grano, compatibles con Nespresso®. Café de origen, tostado con mimo, directo a tu taza." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
-      --bg-dark: #111111;
-      --bg-light: #f7f4ef;
-      --accent: #c89a5b;
-      --text-main: #222222;
-      --text-muted: #777777;
+      --bg-dark: #050505;
+      --bg-darker: #020202;
+      --bg-light: #f6f2ec;
+      --cherry: #7c171c;       /* rojo cereza madura */
+      --cherry-soft: #a8262e;
+      --accent-gold: #c89a5b;  /* toque cálido estilo Nespresso */
+      --text-main: #f5f5f5;
+      --text-muted: #b1aaaa;
+      --card-bg: #111111;
+      --border-subtle: #262626;
     }
+
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       line-height: 1.6;
       color: var(--text-main);
-      background: #ffffff;
-    }
-    a { text-decoration: none; }
-
-    /* HEADER / NAV */
-    .nav {
       background: var(--bg-dark);
-      color: #fff;
-      padding: 14px 22px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
     }
-    .nav-logo {
-      font-weight: 700;
+
+    a { text-decoration: none; color: inherit; }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* LAYOUT UTILITIES */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+
+    .section {
+      padding: 70px 0;
+    }
+
+    .section--light {
+      background: var(--bg-light);
+      color: #111;
+    }
+
+    .section--dark {
+      background: radial-gradient(circle at top left, #321010 0, var(--bg-darker) 42%, #000 100%);
+    }
+
+    .section--cherry {
+      background: linear-gradient(135deg, #3b0609, #7c171c 60%, #3b0609 100%);
+    }
+
+    .section-eyebrow {
+      font-size: 0.8rem;
       letter-spacing: .18em;
       text-transform: uppercase;
-      font-size: 0.95rem;
+      color: var(--cherry-soft);
+      margin-bottom: 8px;
     }
-    .nav-menu {
+
+    .section-title {
+      font-size: 2.2rem;
+      margin: 0 0 12px;
+    }
+
+    .section-sub {
+      max-width: 560px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      font-size: 0.98rem;
+    }
+
+    .section--light .section-sub {
+      color: #706868;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 26px;
+    }
+
+    /* NAVBAR */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(0, 0, 0, 0.82);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 22px;
       display: flex;
-      gap: 22px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .nav-logo {
+      font-weight: 700;
+      letter-spacing: .20em;
       font-size: 0.9rem;
       text-transform: uppercase;
-      letter-spacing: .12em;
     }
-    .nav-menu a { color: #ddd; }
-    .nav-menu a:hover { color: #fff; }
 
-    /* BUTTONS */
-    .btn {
-      display: inline-block;
-      padding: 12px 22px;
-      border-radius: 999px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      letter-spacing: .06em;
+    .nav-logo span {
+      color: var(--cherry-soft);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 18px;
+      font-size: 0.8rem;
+      letter-spacing: .16em;
       text-transform: uppercase;
-      border: 1px solid transparent;
-      cursor: pointer;
-      background: transparent;
-    }
-    .btn-primary {
-      background: #ffffff;
-      color: #000000;
-    }
-    .btn-primary-dark {
-      background: var(--accent);
-      color: #000;
-    }
-    .btn-ghost {
-      border-color: #fff;
-      color: #fff;
-      background: transparent;
-    }
-    .btn-secondary {
-      border-color: var(--text-main);
-      color: var(--text-main);
-      background: transparent;
     }
 
-    /* SECTIONS */
-    .hero {
-      background: radial-gradient(circle at top left, #333 0, #000 38%, #000 100%);
-      color: #fff;
-      padding: 70px 22px 80px;
+    .nav-menu a {
+      color: #ddd;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
     }
+
+    .nav-menu a:hover {
+      border-bottom-color: var(--cherry-soft);
+      color: #fff;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.8rem;
+    }
+
+    .nav-cta {
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--cherry-soft);
+      color: var(--cherry-soft);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-weight: 600;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .nav-cta:hover {
+      background: var(--cherry-soft);
+      color: #fff;
+    }
+
+    /* HERO */
+    .hero {
+      background: radial-gradient(circle at 0 0, #5b1417 0, #070707 40%, #000 100%);
+      color: #fff;
+      padding: 80px 0 80px;
+    }
+
     .hero-inner {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
+      padding: 0 22px;
       display: grid;
       grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
       gap: 40px;
       align-items: center;
     }
+
     .hero-eyebrow {
       font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: .18em;
-      color: #aaa;
+      color: #f1c4c7;
       margin-bottom: 8px;
     }
-    .hero h1 {
-      font-size: 2.7rem;
-      line-height: 1.1;
+
+    .hero-title {
+      font-size: 3rem;
+      line-height: 1.05;
       margin: 0 0 12px;
     }
+
+    .hero-title span {
+      color: var(--cherry-soft);
+    }
+
     .hero-sub {
-      font-size: 1.05rem;
-      color: #cfcfcf;
+      color: #e5dede;
+      font-size: 1.02rem;
+      max-width: 480px;
       margin-bottom: 22px;
-      max-width: 460px;
-    }
-    .hero-tags {
-      font-size: 0.85rem;
-      color: #aaa;
-      margin-top: 10px;
-    }
-    .hero-img-placeholder {
-      border-radius: 20px;
-      border: 1px solid #333;
-      padding: 26px;
-      background: linear-gradient(135deg, #222, #111);
-      text-align: center;
-      min-height: 260px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 10px;
-    }
-    .hero-img-placeholder span {
-      display: block;
-      font-size: 0.8rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: #aaa;
-    }
-    .hero-img-title {
-      font-size: 1.3rem;
-      font-weight: 600;
     }
 
-    .section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 60px 22px;
-    }
-    .section-title {
-      font-size: 1.9rem;
-      margin-bottom: 10px;
-    }
-    .section-eyebrow {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: .18em;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-    .section-sub {
-      color: var(--text-muted);
-      margin-bottom: 30px;
-      max-width: 540px;
-    }
-
-    .bg-light { background: var(--bg-light); }
-    .bg-contrast { background: #000; color: #fff; }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
-    }
-    .card {
-      border-radius: 14px;
-      border: 1px solid #ececec;
-      background: #fff;
-      padding: 20px;
-    }
-    .card-dark {
-      background: #111;
-      border-color: #333;
-      color: #f4f4f4;
-    }
-    .badge {
-      display: inline-block;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: .16em;
-      color: var(--accent);
-      margin-bottom: 10px;
-    }
-    .pill {
-      display: inline-block;
-      font-size: 0.78rem;
-      border-radius: 999px;
-      border: 1px solid rgba(0,0,0,0.08);
-      padding: 5px 10px;
-      margin-right: 6px;
-      margin-bottom: 6px;
-    }
-    .pill-dark {
-      border-color: rgba(255,255,255,0.18);
-      color: #ddd;
-    }
-
-    .cta-box {
-      border-radius: 18px;
-      padding: 32px 24px;
-      text-align: center;
-      background: #000;
-      color: #fff;
-      margin-top: 10px;
-    }
-
-    .input-row {
+    .hero-badges {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      justify-content: center;
-      margin-top: 18px;
+      margin-bottom: 20px;
+      font-size: 0.75rem;
     }
-    .input-row input {
-      padding: 12px 14px;
+
+    .badge-pill {
+      padding: 5px 12px;
       border-radius: 999px;
-      border: 1px solid #ddd;
-      min-width: 220px;
-      font-size: 0.95rem;
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #f3eaea;
     }
 
-    .faq-item { margin-bottom: 18px; }
-    .faq-item h4 { margin-bottom: 4px; }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
 
-    footer {
-      padding: 40px 22px 26px;
+    .btn-hero-primary {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      border: none;
+      background: #fff;
+      color: #000;
+      cursor: pointer;
+    }
+
+    .btn-hero-secondary {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      border: 1px solid #fff;
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .hero-note {
+      font-size: 0.78rem;
+      color: #b9b0b0;
+      max-width: 420px;
+    }
+
+    .hero-media {
+      position: relative;
+    }
+
+    .hero-image-frame {
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 28px 60px rgba(0,0,0,0.8);
+      background: radial-gradient(circle at 20% 0%, #7c171c, #050505 60%);
+    }
+
+    .hero-image-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-tag {
+      position: absolute;
+      bottom: -14px;
+      left: 16px;
+      background: rgba(0,0,0,0.92);
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 0.78rem;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    /* PRODUCT CARDS CAPSULES */
+    .card {
+      border-radius: 18px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      padding: 18px 18px 20px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      gap: 10px;
+    }
+
+    .card-eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      color: var(--cherry-soft);
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    .card-body {
+      font-size: 0.92rem;
+      color: #d0c8c8;
+    }
+
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
       font-size: 0.8rem;
-      color: #999;
-      text-align: center;
-      border-top: 1px solid #eee;
-      margin-top: 30px;
     }
 
-    @media (max-width: 800px) {
+    .meta-pill {
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 4px 10px;
+      color: #e9e3e3;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-top: 14px;
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+
+    .card-price {
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .card-cta {
+      font-size: 0.8rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding-bottom: 3px;
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+      cursor: pointer;
+    }
+
+    .card-cta:hover {
+      color: var(--accent-gold);
+      border-bottom-color: var(--accent-gold);
+    }
+
+    .card-image {
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      background: radial-gradient(circle at 0 0, #7c171c 0, #050505 55%);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    /* BEANS SECTION */
+    .beans-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .beans-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+      font-size: 0.78rem;
+    }
+
+    .beans-tag {
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.18);
+      color: #333;
+      background: rgba(255,255,255,0.88);
+    }
+
+    .beans-media {
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid #e3d1c0;
+      box-shadow: 0 24px 50px rgba(0,0,0,0.2);
+    }
+
+    .beans-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ECOMMERCE SECTION */
+    .shop-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-end;
+      margin-bottom: 22px;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.85rem;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .filter-label {
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .filter-select {
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: #060606;
+      color: #f5f5f5;
+      font-size: 0.85rem;
+    }
+
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+    }
+
+    .product-card {
+      border-radius: 16px;
+      background: #111;
+      border: 1px solid #262626;
+      padding: 14px 14px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .product-image {
+      border-radius: 12px;
+      overflow: hidden;
+      background: radial-gradient(circle at 0 0, #7c171c 0, #050505 55%);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+    }
+
+    .product-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+    }
+
+    .product-meta {
+      font-size: 0.8rem;
+      color: #d0c8c8;
+    }
+
+    .product-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .product-tag {
+      font-size: 0.7rem;
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+    }
+
+    .product-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+      font-size: 0.85rem;
+    }
+
+    .product-price {
+      font-weight: 600;
+    }
+
+    .product-btn {
+      border-radius: 999px;
+      padding: 6px 14px;
+      border: 1px solid var(--cherry-soft);
+      color: var(--cherry-soft);
+      background: transparent;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      cursor: pointer;
+    }
+
+    .product-btn:hover {
+      background: var(--cherry-soft);
+      color: #fff;
+    }
+
+    /* SOSTENIBILIDAD / MANIFIESTO */
+    .columns-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 30px;
+      align-items: flex-start;
+    }
+
+    .highlight-block {
+      padding: 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.4);
+      font-size: 0.9rem;
+    }
+
+    /* FAQ */
+    .faq-item {
+      margin-bottom: 14px;
+    }
+
+    .faq-q {
+      font-weight: 600;
+      font-size: 0.96rem;
+    }
+
+    .faq-a {
+      font-size: 0.9rem;
+      color: #d0c8c8;
+    }
+
+    .section--light .faq-a {
+      color: #575050;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #050404;
+      border-top: 1px solid #1b1b1b;
+      padding: 26px 0 26px;
+      font-size: 0.8rem;
+      color: #8d8686;
+    }
+
+    footer .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 22px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+    }
+
+    footer a {
+      color: #b4ada9;
+      margin-right: 14px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
       .hero-inner {
-        grid-template-columns: minmax(0,1fr);
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .beans-layout,
+      .columns-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .nav-menu {
+        display: none; /* simplificado para móvil */
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-title {
+        font-size: 2.3rem;
+      }
+      .section {
+        padding: 50px 0;
       }
     }
   </style>
@@ -250,263 +632,458 @@
 <body>
   <!-- NAV -->
   <header class="nav">
-    <div class="nav-logo">SPRESSO</div>
-    <nav class="nav-menu">
-      <a href="#capsulas">Cápsulas</a>
-      <a href="#experiencia">Experiencia</a>
-      <a href="#reciclaje">Reciclaje</a>
-      <a href="#club">Club Spresso</a>
-    </nav>
+    <div class="nav-inner">
+      <div class="nav-left">
+        <div class="nav-logo">SPRESSO<span>●</span></div>
+        <nav class="nav-menu">
+          <a href="#capsulas">Cápsulas</a>
+          <a href="#grano">Café en grano</a>
+          <a href="#shop">Comprar</a>
+          <a href="#club">Club Spresso</a>
+        </nav>
+      </div>
+      <div class="nav-right">
+        <button class="nav-cta" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
+          Comprar cápsulas
+        </button>
+      </div>
+    </div>
   </header>
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" id="home">
     <div class="hero-inner">
       <div>
-        <div class="hero-eyebrow">Cápsulas de café de especialidad</div>
-        <h1>Más café. Menos pose.</h1>
+        <div class="hero-eyebrow">Cápsulas & café de especialidad</div>
+        <h1 class="hero-title">
+          El café que tu<br><span>cafetera de cápsulas</span> estaba esperando.
+        </h1>
         <p class="hero-sub">
-          Spresso lleva café de especialidad a tu máquina compatible con Nespresso®. Elegante como tu ritual de la mañana, pero con bastante más carácter.
+          Spresso lleva café de especialidad a tu máquina compatible con Nespresso®. Cereza madura, tostado preciso y crema densa, sin cambiar tu ritual.
         </p>
-        <div>
-          <a href="#capsulas" class="btn btn-primary">Ver colección de cápsulas</a>
-          <a href="#club" class="btn btn-ghost">Unirme al Club Spresso</a>
+        <div class="hero-badges">
+          <div class="badge-pill">Compatibles con Nespresso®</div>
+          <div class="badge-pill">Origen Colombia · Guatemala · Brasil · Etiopía</div>
+          <div class="badge-pill">Suave · Medio · Intenso</div>
         </div>
-        <p class="hero-tags">
-          Compatible con máquinas Nespresso® originales · Envíos a toda España · Producciones pequeñas, sabor enorme
+        <div class="hero-actions">
+          <button class="btn-hero-primary" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
+            Ver cápsulas
+          </button>
+          <button class="btn-hero-secondary" onclick="document.getElementById('grano').scrollIntoView({behavior:'smooth'})">
+            Ver café en grano
+          </button>
+        </div>
+        <p class="hero-note">
+          Nespresso® es una marca de Société des Produits Nestlé S.A. Spresso no está afiliado, patrocinado ni respaldado por Nespresso®. Solo nos aseguramos de que tu máquina siga haciendo su magia… con mejor café dentro.
         </p>
       </div>
-      <div class="hero-img-placeholder">
-        <span>Spresso · Colección inicial</span>
-        <div class="hero-img-title">Tu cafetera se merece algo mejor.</div>
-        <p style="font-size:0.9rem; color:#ccc;">
-          Imagina aquí tu foto hero: cápsulas Spresso, una taza brutal de espresso y mucha crema. Lo único que falta es pulsar el botón.
-        </p>
-      </div>
-    </div>
-    <p style="max-width:1100px;margin:18px auto 0;font-size:0.75rem;color:#777;text-align:left;">
-      Nespresso® es una marca de Société des Produits Nestlé S.A. Spresso es un productor independiente y no está afiliado, patrocinado ni respaldado por Nespresso®.
-    </p>
-  </section>
-
-  <!-- COLECCIÓN CÁPSULAS -->
-  <section class="section" id="capsulas">
-    <div class="section-eyebrow">Colección Spresso</div>
-    <h2 class="section-title">Tres cápsulas para olvidarte del café aburrido</h2>
-    <p class="section-sub">
-      Si ya usas cápsulas, tienes la mitad del trabajo hecho. Ahora solo falta que lo que hay dentro esté a la altura. Empezamos con tres perfiles pensados para el mercado español.
-    </p>
-
-    <div class="grid">
-      <div class="card">
-        <div class="badge">Spresso Daily</div>
-        <h3>Tu café de todos los días (pero bien)</h3>
-        <p>
-          Blend de especialidad con notas a <strong>chocolate</strong>, <strong>avellana</strong> y un toque de caramelo. Cuerpo medio, final redondo y cero amargor agresivo.
-        </p>
-        <p class="pill">Intensidad: 7/13</p>
-        <p class="pill">Espresso · Lungo</p>
-        <p class="pill">Leche friendly</p>
-      </div>
-
-      <div class="card">
-        <div class="badge">Spresso Bold</div>
-        <h3>Para los que venían “a lo fuerte”</h3>
-        <p>
-          Tu cápsula intensa, pero sin quemar el café. Cuerpo alto, crema densa y notas a cacao amargo y frutos secos. Perfecto para cortado, café con leche o ese postcomida que no perdonas.
-        </p>
-        <p class="pill">Intensidad: 9/13</p>
-        <p class="pill">Espresso corto</p>
-        <p class="pill">Ideal con leche</p>
-      </div>
-
-      <div class="card">
-        <div class="badge">Spresso Origin</div>
-        <h3>Single origin para días especiales</h3>
-        <p>
-          Café de un solo origen de especialidad, tostado para cápsula. Dependiendo de la cosecha, encontrarás matices más frutales, florales o especiados.
-        </p>
-        <p class="pill">Intensidad: 6/13</p>
-        <p class="pill">Origen único</p>
-        <p class="pill">Para tomar solo</p>
+      <div class="hero-media">
+        <div class="hero-image-frame">
+          <!-- HERO IMAGE: pon aquí tu foto principal -->
+          <img src="assets/images/hero-spresso-capsules.jpg" alt="Cápsulas Spresso sobre cerezas de café y una taza de espresso con crema" loading="lazy">
+        </div>
+        <div class="hero-tag">
+          Colección cápsulas Spresso · Lotes pequeños · Cherry roast
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- EXPERIENCIA SPRESSO -->
-  <section class="section bg-light" id="experiencia">
-    <div class="section-eyebrow">Experiencia Spresso</div>
-    <h2 class="section-title">La misma máquina. Otra liga de café.</h2>
-    <p class="section-sub">
-      No hace falta romper con tu cafetera, solo con tus cápsulas. Spresso está pensado para quienes quieren subir de nivel sin cambiar de ritual.
-    </p>
-
-    <div class="grid">
-      <div class="card">
-        <h3>Café de especialidad real</h3>
-        <p>
-          Trabajamos con cafés que superan los 80 puntos SCA. Traducido: granos seleccionados, limpios y con perfil de sabor definido.
-        </p>
-      </div>
-      <div class="card">
-        <h3>Tostado en lotes pequeños</h3>
-        <p>
-          Tostamos en pequeñas cantidades para mantener la frescura. Menos almacén, más aroma. Tu nariz y tu taza lo notan desde el primer disparo.
-        </p>
-      </div>
-      <div class="card">
-        <h3>Diseñado para tu rutina</h3>
-        <p>
-          Intensidades, perfiles y formatos pensados para cómo se toma el café en España: espresso, cortado, con leche y esa taza rápida antes de salir por la puerta.
-        </p>
-      </div>
-      <div class="card">
-        <h3>Elegante por fuera, gamberro por dentro</h3>
-        <p>
-          Packaging minimalista, cápsulas sobrias y un café que se sale del guion. Spresso vive entre el diseño cuidado y el “voy a hacer las cosas a mi manera”.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CÓMO FUNCIONA -->
-  <section class="section">
-    <div class="section-eyebrow">Cómo funciona</div>
-    <h2 class="section-title">De “ok” a “wow” en tres pasos</h2>
-
-    <div class="grid">
-      <div class="card">
-        <div class="badge">Paso 1</div>
-        <h3>Elige tus cápsulas Spresso</h3>
-        <p>
-          Daily, Bold u Origin. O las tres. Haz tu pedido online en menos de dos minutos.
-        </p>
-      </div>
-      <div class="card">
-        <div class="badge">Paso 2</div>
-        <h3>Recíbelo en casa</h3>
-        <p>
-          Envíos a toda España con packaging pensado para proteger el café y caber en tu cocina sin dramas.
-        </p>
-      </div>
-      <div class="card">
-        <div class="badge">Paso 3</div>
-        <h3>Inserta, pulsa y disfruta</h3>
-        <p>
-          Mismo botón, otra historia. Si tu cafetera pudiera hablar, te pediría Spresso.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- RECICLAJE / SOSTENIBILIDAD -->
-  <section class="section bg-contrast" id="reciclaje">
-    <div class="section-eyebrow">Reciclaje</div>
-    <h2 class="section-title">Porque el planeta también está invitado al café</h2>
-    <p class="section-sub" style="color:#ccc;">
-      Buen café sin discurso vacío. Te lo ponemos fácil para reciclar y seguir disfrutando sin remordimientos.
-    </p>
-
-    <div class="grid">
-      <div class="card card-dark">
-        <h3>Cápsulas reciclables</h3>
-        <p>
-          Cápsulas diseñadas para poder separarse y reciclarse. Café por un lado, cápsula por otro.
-        </p>
-      </div>
-      <div class="card card-dark">
-        <h3>Puntos y recogida</h3>
-        <p>
-          Puedes acumular tus cápsulas usadas y llevarlas a los puntos de reciclaje indicados o seguir las instrucciones de nuestro programa de recogida (muy pronto en España).
-        </p>
-      </div>
-      <div class="card card-dark">
-        <h3>Transparencia antes que postureo</h3>
-        <p>
-          Menos palabras vacías y más claridad: origen del café, condiciones y procesos explicados sin humo.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CLUB SPRESSO / LEADS -->
-  <section class="section" id="club">
-    <div class="section-eyebrow">Club Spresso</div>
-    <h2 class="section-title">Donde acaba tu cápsula y empieza la comunidad</h2>
-    <p class="section-sub">
-      Apúntate para recibir lanzamientos, ofertas y contenido sobre café de especialidad en cápsulas. Prometemos más crema que spam.
-    </p>
-
-    <div class="cta-box">
-      <h3>Consigue un <span style="color:var(--accent);">10% de bienvenida</span> en tu primer pedido</h3>
-      <p style="margin-bottom: 4px;">
-        Déjanos tu email y te enviaremos tu código exclusivo para tu primera caja Spresso.
+  <!-- COLECCIÓN CÁPSULAS DESTACADAS -->
+  <section class="section section--dark" id="capsulas">
+    <div class="container">
+      <div class="section-eyebrow">Colección cápsulas</div>
+      <h2 class="section-title">Tu café diario, en versión especialidad</h2>
+      <p class="section-sub">
+        Si ya usas cápsulas, tienes medio camino hecho. Spresso solo cambia lo que hay dentro: café de origen, tostado con precisión y pensado para cómo se toma el café en España.
       </p>
 
-      <form>
-        <div class="input-row">
-          <input type="text" name="nombre" placeholder="Tu nombre" />
-          <input type="email" name="email" placeholder="Tu email" required />
-          <button type="submit" class="btn btn-primary-dark">Quiero mi código</button>
+      <div class="grid">
+        <!-- CARD 1 -->
+        <article class="card">
+          <div class="card-image">
+            <img src="assets/images/product-daily-colombia.jpg" alt="Cápsulas Spresso Daily con notas de chocolate y avellana" loading="lazy">
+          </div>
+          <div class="card-header">
+            <div>
+              <div class="card-eyebrow">Spresso Daily · Colombia & Brasil</div>
+              <h3 class="card-title">Tu café de todos los días (pero bien)</h3>
+            </div>
+            <span style="font-size:0.8rem;color:#f3e2d6;">Intensidad media</span>
+          </div>
+          <div class="card-body">
+            Blend de especialidad con notas a chocolate con leche, avellana tostada y caramelo suave. Cuerpo medio y final redondo. El que puedes tomar tres veces al día sin cansarte.
+            <div class="card-meta">
+              <span class="meta-pill">Origen: Colombia · Brasil</span>
+              <span class="meta-pill">Intensidad: Medio</span>
+              <span class="meta-pill">Espresso · Lungo</span>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">6,90 € · 10 cápsulas</div>
+            <div class="card-cta" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
+              Añadir al carrito
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 2 -->
+        <article class="card">
+          <div class="card-image">
+            <img src="assets/images/product-bold-ethiopia.jpg" alt="Cápsulas Spresso Bold intensas con crema densa" loading="lazy">
+          </div>
+          <div class="card-header">
+            <div>
+              <div class="card-eyebrow">Spresso Bold · Brasil & Etiopía</div>
+              <h3 class="card-title">Intenso sin quemar el café</h3>
+            </div>
+            <span style="font-size:0.8rem;color:#f3e2d6;">Intensidad alta</span>
+          </div>
+          <div class="card-body">
+            Cuerpo alto, crema densa y notas a cacao amargo, nuez y un toque especiado. Para quienes venían “a lo fuerte” pero no quieren café quemado.
+            <div class="card-meta">
+              <span class="meta-pill">Origen: Brasil · Etiopía</span>
+              <span class="meta-pill">Intensidad: Intenso</span>
+              <span class="meta-pill">Espresso corto · Cortado</span>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">6,90 € · 10 cápsulas</div>
+            <div class="card-cta" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
+              Añadir al carrito
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 3 -->
+        <article class="card">
+          <div class="card-image">
+            <img src="assets/images/product-origin-guatemala.jpg" alt="Cápsulas Spresso Origin de origen único Guatemala" loading="lazy">
+          </div>
+          <div class="card-header">
+            <div>
+              <div class="card-eyebrow">Spresso Origin · Guatemala</div>
+              <h3 class="card-title">Origen único para días especiales</h3>
+            </div>
+            <span style="font-size:0.8rem;color:#f3e2d6;">Intensidad suave</span>
+          </div>
+          <div class="card-body">
+            Un solo origen de café de especialidad, con acidez media, dulzor a panela y matices florales. Para cuando “un café” no es solo un café.
+            <div class="card-meta">
+              <span class="meta-pill">Origen: Guatemala</span>
+              <span class="meta-pill">Intensidad: Suave</span>
+              <span class="meta-pill">Mejor solo</span>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">7,20 € · 10 cápsulas</div>
+            <div class="card-cta" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
+              Añadir al carrito
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAFÉ EN GRANO TOSTADO -->
+  <section class="section section--light" id="grano">
+    <div class="container">
+      <div class="beans-layout">
+        <div>
+          <div class="section-eyebrow">Café en grano</div>
+          <h2 class="section-title">De la cereza madura al tueste preciso</h2>
+          <p class="section-sub">
+            No todo el mundo quiere cápsulas. Para los que disfrutan el ritual completo —moler, oler, ajustar—, Spresso también vive en grano. Orígenes de finca, tuestes pensados para espresso y métodos de filtro.
+          </p>
+          <p>
+            Seleccionamos cerezas maduras en origen, trabajamos con procesos limpios (lavados, honey, naturales controlados) y tostamos en lotes pequeños para preservar dulzor y aroma. Ni subido de tueste ni “rubito” sin cuerpo: el punto en el que la cereza se convierte en taza.
+          </p>
+          <div class="beans-tags">
+            <span class="beans-tag">Colombia · Notas a caramelo & cítrico</span>
+            <span class="beans-tag">Etiopía · Floral & frutal</span>
+            <span class="beans-tag">Brasil · Chocolate & nuez</span>
+            <span class="beans-tag">Guatemala · Cacao & especias suaves</span>
+          </div>
         </div>
-        <p style="font-size:0.78rem; color:#bbb; margin-top:10px; max-width:480px; margin-left:auto; margin-right:auto;">
-          Al enviar este formulario aceptas recibir comunicaciones de Spresso. Puedes darte de baja en cualquier momento con un solo clic.
-        </p>
-      </form>
+        <div class="beans-media">
+          <!-- IMAGEN DE GRANO -->
+          <img src="assets/images/hero-spresso-beans.jpg" alt="Granos de café tostado Spresso y cerezas maduras" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ECOMMERCE CAPSULAS CON FILTROS -->
+  <section class="section section--dark" id="shop">
+    <div class="container">
+      <div class="shop-header">
+        <div>
+          <div class="section-eyebrow">Comprar</div>
+          <h2 class="section-title">Elige tus cápsulas Spresso</h2>
+          <p class="section-sub">
+            Filtra por origen y por intensidad para encontrar tu cápsula perfecta. Mismo gesto de siempre; otra liga de café.
+          </p>
+        </div>
+        <div class="filters">
+          <div class="filter-group">
+            <span class="filter-label">Origen</span>
+            <select id="filter-origin" class="filter-select">
+              <option value="todos">Todos los orígenes</option>
+              <option value="colombia">Colombia</option>
+              <option value="guatemala">Guatemala</option>
+              <option value="brasil">Brasil</option>
+              <option value="etiopia">Etiopía</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <span class="filter-label">Intensidad</span>
+            <select id="filter-intensity" class="filter-select">
+              <option value="todas">Todas</option>
+              <option value="suave">Suave</option>
+              <option value="media">Media</option>
+              <option value="intensa">Intensa</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="shop-grid" id="product-list">
+        <!-- Ejemplo de productos: añade o modifica según tu catálogo -->
+        <article class="product-card" data-origin="colombia,brasil" data-intensity="media">
+          <div class="product-image">
+            <img src="assets/images/product-daily-colombia.jpg" alt="Cápsulas Spresso Daily Colombia Brasil" loading="lazy">
+          </div>
+          <div class="product-title">Spresso Daily · Colombia & Brasil</div>
+          <div class="product-meta">
+            Notas a chocolate con leche, avellana y caramelo. El café de “todos los días” que no sabe a todos los días.
+            <div class="product-tags">
+              <span class="product-tag">Colombia</span>
+              <span class="product-tag">Brasil</span>
+              <span class="product-tag">Intensidad: Medio</span>
+            </div>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">6,90 € · 10 cápsulas</div>
+            <button class="product-btn">Añadir</button>
+          </div>
+        </article>
+
+        <article class="product-card" data-origin="brasil,etiopia" data-intensity="intensa">
+          <div class="product-image">
+            <img src="assets/images/product-bold-ethiopia.jpg" alt="Cápsulas Spresso Bold Brasil Etiopía" loading="lazy">
+          </div>
+          <div class="product-title">Spresso Bold · Brasil & Etiopía</div>
+          <div class="product-meta">
+            Espresso intenso sin quemar: cacao amargo, nuez y especias suaves. Para quienes despertaban al café con azúcar.
+            <div class="product-tags">
+              <span class="product-tag">Brasil</span>
+              <span class="product-tag">Etiopía</span>
+              <span class="product-tag">Intensidad: Intenso</span>
+            </div>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">6,90 € · 10 cápsulas</div>
+            <button class="product-btn">Añadir</button>
+          </div>
+        </article>
+
+        <article class="product-card" data-origin="guatemala" data-intensity="suave">
+          <div class="product-image">
+            <img src="assets/images/product-origin-guatemala.jpg" alt="Cápsulas Spresso Origin Guatemala" loading="lazy">
+          </div>
+          <div class="product-title">Spresso Origin · Guatemala</div>
+          <div class="product-meta">
+            Origen único con dulzor a panela, cacao suave y flor blanca. Ideal para tomar solo, sin prisas.
+            <div class="product-tags">
+              <span class="product-tag">Guatemala</span>
+              <span class="product-tag">Intensidad: Suave</span>
+            </div>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">7,20 € · 10 cápsulas</div>
+            <button class="product-btn">Añadir</button>
+          </div>
+        </article>
+
+        <article class="product-card" data-origin="etiopia" data-intensity="suave">
+          <div class="product-image">
+            <img src="assets/images/product-soft-ethiopia.jpg" alt="Cápsulas Spresso Etiopía floral suave" loading="lazy">
+          </div>
+          <div class="product-title">Spresso Bloom · Etiopía</div>
+          <div class="product-meta">
+            Etiopía lavada, floral y cítrica. Para quienes quieren descubrir que un café puede oler casi a té.
+            <div class="product-tags">
+              <span class="product-tag">Etiopía</span>
+              <span class="product-tag">Intensidad: Suave</span>
+            </div>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">7,50 € · 10 cápsulas</div>
+            <button class="product-btn">Añadir</button>
+          </div>
+        </article>
+
+        <article class="product-card" data-origin="brasil" data-intensity="media">
+          <div class="product-image">
+            <img src="assets/images/product-soft-brazil.jpg" alt="Cápsulas Spresso Brasil cremoso" loading="lazy">
+          </div>
+          <div class="product-title">Spresso Crema · Brasil</div>
+          <div class="product-meta">
+            Super cremoso, pensado para café con leche: chocolate, nuez y cuerpo dulce. El clásico subido de nivel.
+            <div class="product-tags">
+              <span class="product-tag">Brasil</span>
+              <span class="product-tag">Intensidad: Medio</span>
+            </div>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">6,90 € · 10 cápsulas</div>
+            <button class="product-btn">Añadir</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOSTENIBILIDAD + MANIFIESTO -->
+  <section class="section section--cherry">
+    <div class="container">
+      <div class="columns-2">
+        <div>
+          <div class="section-eyebrow">Manifiesto Spresso</div>
+          <h2 class="section-title">Más respeto por el café. Más respeto por ti.</h2>
+          <p class="section-sub" style="color:#f4dede;">
+            El café de cápsulas ya resolvió la parte fácil: comodidad. Ahora tocaba hacerlo con respeto por el grano, por quien lo cultiva y por quien se lo toma.
+          </p>
+          <p style="font-size:0.96rem;color:#fde9e9;">
+            Spresso nace para dejar de tratar el café como algo “de relleno”. Cada cápsula lleva café de especialidad, trazable, tostado en lotes pequeños y pensado para que tu cafetera deje de servir café anónimo.
+          </p>
+        </div>
+        <div class="highlight-block">
+          <h3 style="margin-top:0;">Reciclaje y materiales</h3>
+          <p>
+            Trabajamos con cápsulas reciclables y te explicamos, sin humo, cómo vaciarlas y dónde llevarlas. Café por un lado, cápsula por otro. Ni greenwashing ni promesas confusas.
+          </p>
+          <p>
+            Nuestro objetivo es que cada vez que pulses el botón, sepas qué hay detrás: origen, proceso, personas y lo que estamos haciendo para que tu pequeño lujo diario tenga el menor impacto posible.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLUB SPRESSO -->
+  <section class="section section--light" id="club">
+    <div class="container">
+      <div class="section-eyebrow">Club Spresso</div>
+      <h2 class="section-title">Donde la cápsula termina y empieza la comunidad</h2>
+      <p class="section-sub">
+        Lanzamientos limitados, perfiles nuevos según cosecha, contenido sobre café de especialidad en cápsulas y algún que otro código de descuento. Más crema que spam.
+      </p>
+      <div class="highlight-block" style="background:#fff;border-color:#e2d1c1;color:#2e2520;">
+        <form onsubmit="event.preventDefault(); alert('Gracias por unirte al Club Spresso 🙌');">
+          <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+            <input type="text" name="nombre" placeholder="Tu nombre" style="flex:1 1 160px;padding:10px 12px;border-radius:999px;border:1px solid #d4c3b5;font-size:0.9rem;">
+            <input type="email" name="email" placeholder="Tu email" required style="flex:1 1 220px;padding:10px 12px;border-radius:999px;border:1px solid #d4c3b5;font-size:0.9rem;">
+            <button type="submit" style="border:none;border-radius:999px;padding:11px 20px;background:var(--cherry-soft);color:#fff;font-size:0.85rem;text-transform:uppercase;letter-spacing:.12em;cursor:pointer;">
+              Unirme y recibir 10% de bienvenida
+            </button>
+          </div>
+          <p style="font-size:0.78rem;color:#7a6b63;margin-top:8px;">
+            Al enviar este formulario aceptas recibir comunicaciones de Spresso. Puedes darte de baja en cualquier momento con un solo clic.
+          </p>
+        </form>
+      </div>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section class="section" id="faq">
-    <div class="section-eyebrow">Preguntas frecuentes</div>
-    <h2 class="section-title">Por si tu cerebro necesita café antes que tú</h2>
-
-    <div class="faq-item">
-      <h4>¿Spresso es compatible con mi cafetera?</h4>
-      <p>
-        Nuestras cápsulas están diseñadas para ser compatibles con la mayoría de máquinas Nespresso® originales domésticas.
-      </p>
-    </div>
-
-    <div class="faq-item">
-      <h4>¿Qué significa “café de especialidad” en cápsulas?</h4>
-      <p>
-        Que partimos de café seleccionado, con puntuaciones de especialidad, y lo tostamos pensando en el formato cápsula.
-      </p>
-    </div>
-
-    <div class="faq-item">
-      <h4>¿Hacéis envíos a toda España?</h4>
-      <p>
-        Sí, enviamos a península y Baleares. Estamos trabajando para ampliar zonas de envío.
-      </p>
-    </div>
-
-    <div class="faq-item">
-      <h4>¿Necesito suscribirme sí o sí?</h4>
-      <p>
-        No. Puedes comprar cuando quieras. Más adelante lanzaremos suscripciones opcionales.
-      </p>
-    </div>
-
-    <div class="faq-item">
-      <h4>¿Puedo darme de baja del Club Spresso?</h4>
-      <p>
-        Claro. Cada email incluye un enlace para darte de baja al instante.
-      </p>
+  <section class="section section--dark" id="faq">
+    <div class="container">
+      <div class="section-eyebrow">FAQ</div>
+      <h2 class="section-title">Por si tu cerebro necesita respuestas antes que café</h2>
+      <div class="grid">
+        <div>
+          <div class="faq-item">
+            <div class="faq-q">¿Las cápsulas Spresso son compatibles con mi cafetera?</div>
+            <div class="faq-a">
+              Están diseñadas para ser compatibles con la mayoría de máquinas Nespresso® originales domésticas. Si tienes un modelo muy antiguo o de otra marca, escríbenos y lo comprobamos juntos.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">¿Qué significa “café de especialidad” en una cápsula?</div>
+            <div class="faq-a">
+              Que partimos de cafés que superan los 80 puntos SCA, con origen trazable y procesos cuidados, y los tostamos pensando en cómo se comportan dentro de una cápsula, no al revés.
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="faq-item">
+            <div class="faq-q">¿Hacéis envíos a toda España?</div>
+            <div class="faq-a">
+              Sí, enviamos a península y Baleares. Estamos trabajando para llegar también a otros países de Europa.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">¿Tengo que suscribirme sí o sí?</div>
+            <div class="faq-a">
+              No. Puedes comprar cuando quieras. Más adelante lanzaremos suscripción opcional para que nunca te quedes sin Spresso si así lo quieres.
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p>Spresso © <span id="year"></span>. Todos los derechos reservados.</p>
-    <p style="margin-top:6px;">
-      Nespresso® es una marca registrada de Société des Produits Nestlé S.A. Spresso no está afiliada, patrocinada ni asociada con Nespresso®.
-    </p>
+    <div class="footer-inner">
+      <div>
+        Spresso © <span id="year"></span>. Todos los derechos reservados.
+        <br>
+        Nespresso® es una marca registrada de Société des Produits Nestlé S.A. Spresso no está afiliada, patrocinada ni asociada con Nespresso®.
+      </div>
+      <div>
+        <a href="#home">Inicio</a>
+        <a href="#shop">Comprar</a>
+        <a href="#club">Club</a>
+      </div>
+    </div>
   </footer>
 
+  <!-- FILTROS JS -->
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    (function() {
+      const originSelect = document.getElementById('filter-origin');
+      const intensitySelect = document.getElementById('filter-intensity');
+      const products = Array.from(document.querySelectorAll('.product-card'));
+
+      function normalize(str) {
+        return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      }
+
+      function applyFilters() {
+        const originValue = originSelect.value;
+        const intensityValue = intensitySelect.value;
+
+        products.forEach(card => {
+          const origins = normalize(card.dataset.origin || '');
+          const intensity = normalize(card.dataset.intensity || '');
+
+          const originMatch = originValue === 'todos' || origins.includes(originValue);
+          const intensityMatch = intensityValue === 'todas' || intensity.includes(intensityValue);
+
+          card.style.display = (originMatch && intensityMatch) ? 'flex' : 'none';
+        });
+      }
+
+      originSelect.addEventListener('change', applyFilters);
+      intensitySelect.addEventListener('change', applyFilters);
+
+      // Año dinámico en footer
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
   </script>
 </body>
 </html>
