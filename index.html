@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Spresso · Cápsulas de café de especialidad</title>
+  <title>Spresso · Café de especialidad en cápsulas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
@@ -14,7 +14,6 @@
       --text: #f5f5f5;
       --muted: #b0b6c3;
       --border: #2c3441;
-      --danger: #f97373;
       --success: #4ade80;
       --radius-xl: 18px;
       --radius-lg: 14px;
@@ -22,15 +21,8 @@
       --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.45);
       --max-width: 1120px;
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
@@ -38,16 +30,8 @@
       color: var(--text);
       text-rendering: optimizeLegibility;
     }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
 
     /* Layout */
 
@@ -75,13 +59,11 @@
       justify-content: center;
       gap: 16px;
     }
-
     .top-bar span {
       display: inline-flex;
       align-items: center;
       gap: 6px;
     }
-
     .top-bar-icon {
       width: 6px;
       height: 6px;
@@ -108,7 +90,6 @@
       text-transform: uppercase;
       font-size: 13px;
     }
-
     .logo-mark {
       width: 24px;
       height: 24px;
@@ -126,20 +107,18 @@
     nav {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 16px;
       font-size: 13px;
       color: var(--muted);
+      flex-wrap: wrap;
+      justify-content: center;
     }
-
     nav a {
       position: relative;
       padding: 4px 0;
+      cursor: pointer;
     }
-
-    nav a:hover {
-      color: var(--text);
-    }
-
+    nav a:hover { color: var(--text); }
     nav a::after {
       content: "";
       position: absolute;
@@ -150,8 +129,11 @@
       background: var(--accent);
       transition: width 0.2s ease;
     }
-
-    nav a:hover::after {
+    nav a:hover::after { width: 100%; }
+    nav a.active-link {
+      color: var(--text);
+    }
+    nav a.active-link::after {
       width: 100%;
     }
 
@@ -173,7 +155,6 @@
       gap: 8px;
       cursor: pointer;
     }
-
     .btn-ghost span.icon {
       width: 18px;
       height: 18px;
@@ -200,25 +181,19 @@
       font-size: 13px;
       white-space: nowrap;
     }
-
     .btn-primary small {
       font-size: 11px;
       opacity: 0.9;
     }
 
-    main {
-      flex: 1;
-    }
+    main { flex: 1; }
 
     .section {
       max-width: var(--max-width);
       margin: 0 auto;
       padding: 60px 20px;
     }
-
-    .section.narrow {
-      max-width: 880px;
-    }
+    .section.narrow { max-width: 880px; }
 
     .section-title {
       font-size: 26px;
@@ -227,7 +202,6 @@
       text-transform: uppercase;
       color: #e5e7eb;
     }
-
     .section-kicker {
       font-size: 11px;
       letter-spacing: 0.2em;
@@ -235,12 +209,16 @@
       color: var(--muted);
       margin-bottom: 4px;
     }
-
     .section-subtitle {
       font-size: 14px;
       color: var(--muted);
       max-width: 520px;
     }
+
+    /* Páginas (SPA) */
+
+    .page-view { display: none; }
+    .page-view.active { display: block; }
 
     /* Hero */
 
@@ -252,7 +230,6 @@
       padding-top: 42px;
       padding-bottom: 72px;
     }
-
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -265,7 +242,6 @@
       font-size: 11px;
       margin-bottom: 16px;
     }
-
     .hero-badge-pill {
       padding: 4px 10px;
       border-radius: var(--radius-pill);
@@ -274,29 +250,23 @@
       font-weight: 500;
       font-size: 11px;
     }
-
     .hero-title {
       font-size: clamp(32px, 4vw, 40px);
       line-height: 1.1;
       margin: 0 0 14px;
     }
-
     .hero-title span.accent {
       background: linear-gradient(to right, #fde68a, #f97316);
       -webkit-background-clip: text;
       color: transparent;
     }
-
     .hero-copy {
       font-size: 14px;
       color: var(--muted);
       max-width: 520px;
       margin-bottom: 20px;
     }
-
-    .hero-copy p {
-      margin: 0 0 8px;
-    }
+    .hero-copy p { margin: 0 0 8px; }
 
     .hero-ctas {
       display: flex;
@@ -312,13 +282,11 @@
       font-size: 11px;
       color: var(--muted);
     }
-
     .hero-meta span {
       display: inline-flex;
       align-items: center;
       gap: 6px;
     }
-
     .hero-meta-pill {
       width: 7px;
       height: 7px;
@@ -335,17 +303,14 @@
       position: relative;
       overflow: hidden;
     }
-
     .hero-visual-inner {
       border-radius: 22px;
       background: linear-gradient(145deg, #020617, #111827);
       border: 1px solid rgba(148, 163, 184, 0.25);
       padding: 22px 20px 18px;
       display: grid;
-      grid-template-rows: auto auto;
       gap: 18px;
     }
-
     .hero-label-row {
       display: flex;
       justify-content: space-between;
@@ -353,14 +318,12 @@
       font-size: 11px;
       color: var(--muted);
     }
-
     .hero-label {
       text-transform: uppercase;
       letter-spacing: 0.18em;
       font-size: 10px;
       color: #9ca3af;
     }
-
     .hero-tag {
       padding: 4px 10px;
       border-radius: var(--radius-pill);
@@ -370,7 +333,6 @@
       gap: 6px;
       font-size: 11px;
     }
-
     .hero-tag-dot {
       width: 6px;
       height: 6px;
@@ -388,7 +350,6 @@
       gap: 8px;
       align-items: center;
     }
-
     .hero-cup-visual {
       position: relative;
       height: 100%;
@@ -396,7 +357,6 @@
       align-items: center;
       justify-content: center;
     }
-
     .cup {
       width: 96px;
       height: 96px;
@@ -409,7 +369,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .cup-inner {
       width: 70px;
       height: 70px;
@@ -418,7 +377,6 @@
       position: relative;
       box-shadow: inset 0 0 0 2px rgba(15, 23, 42, 0.9);
     }
-
     .cup-foam {
       position: absolute;
       inset: 10px;
@@ -427,7 +385,6 @@
       mix-blend-mode: screen;
       opacity: 0.8;
     }
-
     .cup-steam {
       position: absolute;
       top: -18px;
@@ -437,7 +394,6 @@
       opacity: 0.7;
       filter: blur(8px);
     }
-
     .capsules-row {
       position: absolute;
       bottom: 8px;
@@ -445,7 +401,6 @@
       display: flex;
       gap: 6px;
     }
-
     .capsule {
       width: 18px;
       height: 24px;
@@ -453,11 +408,9 @@
       background: linear-gradient(to bottom right, #e5e7eb, #9ca3af, #4b5563);
       border: 1px solid rgba(15, 23, 42, 0.4);
     }
-
     .capsule.choco {
       background: linear-gradient(to bottom right, #f59e0b, #92400e, #451a03);
     }
-
     .hero-cup-text {
       font-size: 11px;
       color: var(--muted);
@@ -465,19 +418,17 @@
       flex-direction: column;
       gap: 8px;
     }
-
     .hero-cup-heading {
       font-size: 13px;
       color: #e5e7eb;
       font-weight: 500;
     }
-
-    .hero-pill-row {
+    .pill-set {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      margin-top: 4px;
     }
-
     .pill {
       border-radius: var(--radius-pill);
       padding: 4px 8px;
@@ -488,18 +439,13 @@
       align-items: center;
       gap: 4px;
     }
-
     .pill-dot {
       width: 6px;
       height: 6px;
       border-radius: 999px;
       background: var(--accent);
     }
-
-    .pill-muted {
-      color: var(--muted);
-    }
-
+    .pill-muted { color: var(--muted); }
     .hero-footnote {
       font-size: 10px;
       color: var(--muted);
@@ -509,7 +455,7 @@
       gap: 12px;
     }
 
-    /* Cards / grids */
+    /* Grids / cards */
 
     .grid-2 {
       display: grid;
@@ -517,13 +463,11 @@
       gap: 30px;
       align-items: flex-start;
     }
-
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
     }
-
     .grid-4 {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -537,14 +481,12 @@
       padding: 18px 18px 16px;
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
     }
-
     .card-soft {
       border-radius: var(--radius-xl);
       background: radial-gradient(circle at top left, rgba(148, 163, 184, 0.08), #020617);
       border: 1px solid var(--border);
       padding: 16px 16px 14px;
     }
-
     .card-header {
       display: flex;
       justify-content: space-between;
@@ -552,11 +494,7 @@
       gap: 10px;
       margin-bottom: 10px;
     }
-
-    .card-title {
-      font-size: 14px;
-    }
-
+    .card-title { font-size: 14px; }
     .card-sub {
       font-size: 12px;
       color: var(--muted);
@@ -574,20 +512,18 @@
       background: var(--accent-soft);
       color: #fbbf77;
     }
-
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
     .badge-muted {
       border-radius: var(--radius-pill);
       padding: 3px 9px;
       font-size: 10px;
       border: 1px solid rgba(148, 163, 184, 0.3);
       color: var(--muted);
-    }
-
-    .badge-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--accent);
     }
 
     .inline-list {
@@ -600,81 +536,7 @@
       font-size: 12px;
       color: var(--muted);
     }
-
-    .inline-list strong {
-      color: #e5e7eb;
-      font-weight: 500;
-    }
-
-    .bullet {
-      display: flex;
-      gap: 8px;
-      align-items: flex-start;
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .bullet-icon {
-      margin-top: 2px;
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      border: 1px solid rgba(248, 250, 252, 0.12);
-    }
-
-    .pill-set {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 10px;
-    }
-
-    .pill-small {
-      border-radius: var(--radius-pill);
-      padding: 3px 8px;
-      font-size: 10px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      color: var(--muted);
-    }
-
-    /* “Qué hace diferente” section */
-
-    .compare-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-      margin-top: 24px;
-    }
-
-    .compare-col h3 {
-      font-size: 14px;
-      margin: 0 0 6px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .tag-negative {
-      border-radius: var(--radius-pill);
-      padding: 2px 8px;
-      font-size: 9px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      background: rgba(248, 113, 113, 0.12);
-      color: #fecaca;
-    }
-
-    .tag-positive {
-      border-radius: var(--radius-pill);
-      padding: 2px 8px;
-      font-size: 9px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      background: rgba(74, 222, 128, 0.09);
-      color: #bbf7d0;
-    }
+    .inline-list strong { color: #e5e7eb; }
 
     .compare-table {
       margin-top: 10px;
@@ -683,7 +545,6 @@
       overflow: hidden;
       font-size: 11px;
     }
-
     .compare-row {
       display: grid;
       grid-template-columns: 1.2fr 1fr 1fr;
@@ -691,34 +552,17 @@
       border-bottom: 1px solid rgba(15, 23, 42, 0.9);
       background: radial-gradient(circle at right, rgba(55, 65, 81, 0.25), #020617);
     }
-
     .compare-row:nth-child(odd) {
       background: radial-gradient(circle at left, rgba(30, 64, 175, 0.22), #020617);
     }
-
     .compare-row.compare-head {
       font-weight: 500;
       color: #e5e7eb;
       background: linear-gradient(to right, #020617, #111827);
     }
 
-    .compare-row span {
-      padding-right: 6px;
-    }
-
-    /* Estilos de sabor */
-
-    .flavor-card {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .flavor-chip {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
+    .flavor-card { display: flex; flex-direction: column; gap: 8px; }
+    .flavor-chip { font-size: 11px; color: var(--muted); }
     .flavor-notes {
       display: inline-flex;
       flex-wrap: wrap;
@@ -726,7 +570,6 @@
       font-size: 10px;
       color: var(--muted);
     }
-
     .note-pill {
       border-radius: var(--radius-pill);
       padding: 2px 7px;
@@ -734,15 +577,12 @@
       border: 1px solid rgba(148, 163, 184, 0.3);
     }
 
-    /* Testimonios */
-
     .testimonials {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
       margin-top: 18px;
     }
-
     .testimonial {
       border-radius: var(--radius-lg);
       border: 1px solid var(--border);
@@ -751,22 +591,11 @@
       font-size: 11px;
       color: var(--muted);
     }
+    .testimonial p { margin: 0 0 6px; }
+    .testimonial strong { color: #e5e7eb; font-size: 11px; }
+    .rating { color: #fbbf24; font-size: 11px; }
 
-    .testimonial p {
-      margin: 0 0 6px;
-    }
-
-    .testimonial strong {
-      color: #e5e7eb;
-      font-size: 11px;
-    }
-
-    .rating {
-      color: #fbbf24;
-      font-size: 11px;
-    }
-
-    /* Producto destacado (ficha cápsula ejemplo) */
+    /* Producto ejemplo */
 
     .product-feature {
       display: grid;
@@ -775,7 +604,6 @@
       align-items: stretch;
       margin-top: 24px;
     }
-
     .product-visual {
       border-radius: var(--radius-xl);
       background: radial-gradient(circle at top, rgba(251, 191, 36, 0.16), #020617);
@@ -786,24 +614,20 @@
       justify-content: space-between;
       gap: 12px;
     }
-
     .product-label {
       font-size: 10px;
       letter-spacing: 0.16em;
       color: var(--muted);
       text-transform: uppercase;
     }
-
     .product-title {
       font-size: 18px;
       margin: 2px 0 4px;
     }
-
     .product-subtitle {
       font-size: 12px;
       color: var(--muted);
     }
-
     .pricing-row {
       display: flex;
       align-items: baseline;
@@ -812,16 +636,8 @@
       margin: 8px 0;
       font-size: 12px;
     }
-
-    .price-main {
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-    .price-note {
-      font-size: 11px;
-      color: var(--muted);
-    }
+    .price-main { font-size: 18px; font-weight: 600; }
+    .price-note { font-size: 11px; color: var(--muted); }
 
     .product-meta-row {
       display: flex;
@@ -829,7 +645,6 @@
       gap: 8px;
       margin-top: 8px;
     }
-
     .product-meta {
       border-radius: var(--radius-pill);
       padding: 4px 9px;
@@ -841,7 +656,6 @@
       align-items: center;
       gap: 6px;
     }
-
     .intensity-bar {
       display: flex;
       align-items: center;
@@ -849,27 +663,29 @@
       font-size: 10px;
       color: var(--muted);
     }
-
     .intensity-dots {
       display: inline-flex;
       gap: 3px;
     }
-
     .intensity-dot {
       width: 8px;
       height: 8px;
       border-radius: 999px;
       background: rgba(51, 65, 85, 0.9);
     }
+    .intensity-dot.active { background: var(--accent); }
 
-    .intensity-dot.active {
-      background: var(--accent);
-    }
-
-    .product-desc {
-      font-size: 12px;
+    .product-notes-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 11px;
       color: var(--muted);
-      margin-bottom: 10px;
+      margin: 10px 0;
+    }
+    .product-notes-row strong {
+      color: #e5e7eb;
+      font-weight: 500;
     }
 
     .product-specs {
@@ -880,7 +696,6 @@
       color: var(--muted);
       margin-bottom: 10px;
     }
-
     .spec-label {
       font-size: 10px;
       text-transform: uppercase;
@@ -888,10 +703,7 @@
       color: #9ca3af;
       margin-bottom: 2px;
     }
-
-    .spec-value {
-      color: #e5e7eb;
-    }
+    .spec-value { color: #e5e7eb; }
 
     .origin-chip {
       border-radius: var(--radius-pill);
@@ -905,24 +717,7 @@
       color: var(--muted);
       margin-top: 6px;
     }
-
-    .origin-flag {
-      font-size: 12px;
-    }
-
-    .product-notes-row {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      font-size: 11px;
-      color: var(--muted);
-      margin: 10px 0;
-    }
-
-    .product-notes-row strong {
-      color: #e5e7eb;
-      font-weight: 500;
-    }
+    .origin-flag { font-size: 12px; }
 
     .product-cta-row {
       display: flex;
@@ -931,7 +726,7 @@
       margin-top: 6px;
     }
 
-    /* Encuentra tu café (quiz) */
+    /* Quiz */
 
     .quiz-grid {
       display: grid;
@@ -939,24 +734,20 @@
       gap: 24px;
       margin-top: 24px;
     }
-
     .quiz-options {
       display: flex;
       flex-direction: column;
       gap: 14px;
     }
-
     .quiz-step-title {
       font-size: 13px;
       margin-bottom: 6px;
     }
-
     .option-row {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
-
     .option-pill {
       border-radius: var(--radius-pill);
       padding: 5px 11px;
@@ -964,9 +755,7 @@
       border: 1px solid rgba(148, 163, 184, 0.4);
       background: rgba(15, 23, 42, 0.9);
       color: var(--muted);
-      cursor: default;
     }
-
     .option-pill.selected {
       background: var(--accent);
       color: #111827;
@@ -982,15 +771,7 @@
       font-size: 12px;
       color: var(--muted);
     }
-
-    .quiz-result h4 {
-      margin: 0 0 6px;
-      font-size: 14px;
-    }
-
-    .quiz-result strong {
-      color: #e5e7eb;
-    }
+    .quiz-result h4 { margin: 0 0 6px; font-size: 14px; }
 
     /* FAQ */
 
@@ -1000,7 +781,6 @@
       gap: 18px;
       margin-top: 20px;
     }
-
     details {
       border-radius: var(--radius-lg);
       border: 1px solid var(--border);
@@ -1009,34 +789,23 @@
       font-size: 12px;
       color: var(--muted);
     }
-
     summary {
       cursor: pointer;
       list-style: none;
       font-size: 12px;
       color: #e5e7eb;
     }
-
-    summary::-webkit-details-marker {
-      display: none;
-    }
-
+    summary::-webkit-details-marker { display: none; }
     summary::after {
       content: "+";
       float: right;
       color: var(--muted);
       font-size: 13px;
     }
+    details[open] summary::after { content: "–"; }
+    details p { margin: 8px 0 0; }
 
-    details[open] summary::after {
-      content: "–";
-    }
-
-    details p {
-      margin: 8px 0 0;
-    }
-
-    /* Para empresas */
+    /* Empresas / historia / sostenibilidad */
 
     .business-grid {
       display: grid;
@@ -1044,14 +813,12 @@
       gap: 24px;
       margin-top: 22px;
     }
-
     .business-bullets {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
       margin-top: 12px;
     }
-
     .business-pack {
       border-radius: var(--radius-lg);
       border: 1px solid var(--border);
@@ -1060,26 +827,11 @@
       font-size: 11px;
       color: var(--muted);
     }
-
     .business-pack h4 {
       margin: 0 0 4px;
       font-size: 13px;
       color: #e5e7eb;
     }
-
-    .business-tagline {
-      font-size: 11px;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-
-    .business-meta {
-      margin-top: 6px;
-      font-size: 10px;
-      color: var(--muted);
-    }
-
-    /* Historia */
 
     .story {
       margin-top: 18px;
@@ -1088,17 +840,34 @@
       display: grid;
       gap: 10px;
     }
-
     .story-highlight {
       font-size: 14px;
       color: #e5e7eb;
+    }
+
+    .badge-green {
+      border-radius: var(--radius-pill);
+      padding: 3px 9px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      background: rgba(22, 163, 74, 0.14);
+      color: #bbf7d0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .badge-leaf {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #4ade80;
     }
 
     footer {
       border-top: 1px solid rgba(148, 163, 184, 0.16);
       margin-top: 40px;
     }
-
     .footer-inner {
       max-width: var(--max-width);
       margin: 0 auto;
@@ -1110,7 +879,6 @@
       font-size: 11px;
       color: var(--muted);
     }
-
     .footer-links {
       display: flex;
       flex-wrap: wrap;
@@ -1118,10 +886,7 @@
     }
 
     @media (max-width: 960px) {
-      nav {
-        display: none;
-      }
-
+      nav { display: none; }
       .hero,
       .grid-2,
       .product-feature,
@@ -1130,12 +895,8 @@
         grid-template-columns: minmax(0, 1fr);
       }
     }
-
     @media (max-width: 768px) {
-      .section {
-        padding: 40px 18px;
-      }
-
+      .section { padding: 40px 18px; }
       .grid-3,
       .grid-4,
       .testimonials,
@@ -1144,10 +905,7 @@
       .product-specs {
         grid-template-columns: minmax(0, 1fr);
       }
-
-      .hero {
-        padding-top: 28px;
-      }
+      .hero { padding-top: 28px; }
     }
   </style>
 </head>
@@ -1157,8 +915,8 @@
     <header>
       <div class="top-bar">
         <span><span class="top-bar-icon"></span> Envío 24–48h en península</span>
-        <span>Desde 0,40€ por taza</span>
-        <span>Devolución fácil si el café no encaja</span>
+        <span>Desde 0,35–0,40€ por taza</span>
+        <span>Cápsulas sin aluminio · Opción home compost</span>
       </div>
       <div class="header-inner">
         <div class="logo">
@@ -1166,20 +924,22 @@
           <span>Spresso · Especialidad en cápsulas</span>
         </div>
         <nav>
-          <a href="#inicio">Inicio</a>
-          <a href="#capsulas">Cápsulas</a>
-          <a href="#encuentra">Encuentra tu café</a>
-          <a href="#especialidad">Café de especialidad</a>
-          <a href="#empresas">Para empresas</a>
-          <a href="#historia">Nuestra historia</a>
-          <a href="#faq">Ayuda</a>
+          <a data-page="home" class="active-link">Inicio</a>
+          <a data-page="capsulas">Cápsulas</a>
+          <a data-page="encuentra">Encuentra tu café</a>
+          <a data-page="especialidad">Café de especialidad</a>
+          <a data-page="sostenibilidad">Sostenibilidad</a>
+          <a data-page="regenerativa">Agricultura regenerativa</a>
+          <a data-page="empresas">Para empresas</a>
+          <a data-page="historia">Nuestra historia</a>
+          <a data-page="faq">Ayuda</a>
         </nav>
         <div class="header-actions">
           <button class="btn-ghost">
             <span class="icon">👤</span>
             Acceder
           </button>
-          <button class="btn-primary">
+          <button class="btn-primary" data-page="capsulas">
             Ver cápsulas
             <small>Nuevo</small>
           </button>
@@ -1188,815 +948,972 @@
     </header>
 
     <main>
-      <!-- HERO / HOME (texto ejemplo para Home) -->
-      <section class="section hero" id="inicio">
-        <div>
-          <div class="hero-badge">
-            <span class="hero-badge-pill">Café de especialidad</span>
-            El mismo gesto de siempre, otra liga de café
-          </div>
-          <h1 class="hero-title">
-            Cápsulas de <span class="accent">café de especialidad</span> para tu máquina de siempre.
-          </h1>
-          <div class="hero-copy">
-            <p>
-              Hasta ahora, el café en cápsulas era comodidad… pero no sabor.
-              Con Spresso, llevas café de especialidad real a tu rutina de siempre:
-              trazable, fresco y con matices que antes solo encontrabas en una cafetería.
-            </p>
-            <p>
-              Mismo botón. Misma máquina. Pero una taza que de verdad apetece disfrutar,
-              sin azúcar, sin prisas y sin tener que entender de café.
-            </p>
-          </div>
-          <div class="hero-ctas">
-            <a href="#capsulas">
-              <button class="btn-primary">
+      <!-- HOME PAGE -->
+      <div class="page-view active" data-page="home">
+        <!-- HERO -->
+        <section class="section hero">
+          <div>
+            <div class="hero-badge">
+              <span class="hero-badge-pill">Café de especialidad</span>
+              El mismo gesto de siempre, otra liga de café
+            </div>
+            <h1 class="hero-title">
+              Cápsulas de <span class="accent">café de especialidad</span> para tu máquina de siempre.
+            </h1>
+            <div class="hero-copy">
+              <p>
+                Hasta ahora, el café en cápsulas era comodidad… pero no sabor.
+                Con Spresso llevas café de especialidad real a tu rutina de siempre:
+                trazable, fresco y con matices que antes solo encontrabas en una cafetería.
+              </p>
+              <p>
+                Mismo botón. Misma máquina. Pero una taza que de verdad apetece disfrutar,
+                sin azúcar, sin complicaciones y sin tener que entender de café.
+              </p>
+            </div>
+            <div class="hero-ctas">
+              <button class="btn-primary" data-page="capsulas">
                 Ver cápsulas
                 <span>→</span>
               </button>
-            </a>
-            <a href="#encuentra">
-              <button class="btn-ghost">
+              <button class="btn-ghost" data-page="encuentra">
                 <span class="icon">✨</span>
                 Encuentra tu café ideal
               </button>
-            </a>
-          </div>
-          <div class="hero-meta">
-            <span><span class="hero-meta-pill"></span> Café de especialidad seleccionado por origen y proceso</span>
-            <span>Sin aromas añadidos · Dulzor natural de cada grano</span>
-          </div>
-        </div>
-        <div class="hero-visual">
-          <div class="hero-visual-inner">
-            <div class="hero-label-row">
-              <div class="hero-label">Vista previa de tu pausa</div>
-              <div class="hero-tag">
-                <span class="hero-tag-dot"></span>
-                Taza lista en 25 segundos
-              </div>
             </div>
-            <div class="hero-cup">
-              <div class="hero-cup-visual">
-                <div class="cup">
-                  <div class="cup-inner">
-                    <div class="cup-foam"></div>
-                  </div>
-                  <div class="cup-steam"></div>
-                </div>
-                <div class="capsules-row">
-                  <div class="capsule"></div>
-                  <div class="capsule choco"></div>
-                  <div class="capsule"></div>
+            <div class="hero-meta">
+              <span><span class="hero-meta-pill"></span> Café de especialidad seleccionado por origen y proceso</span>
+              <span>Sin aromas añadidos · Dulzor natural del grano</span>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-visual-inner">
+              <div class="hero-label-row">
+                <div class="hero-label">Vista previa de tu pausa</div>
+                <div class="hero-tag">
+                  <span class="hero-tag-dot"></span>
+                  Taza lista en 25 segundos
                 </div>
               </div>
-              <div class="hero-cup-text">
-                <div class="hero-cup-heading">Sabe a cafetería de especialidad. Con tu máquina de siempre.</div>
-                <div class="pill-set">
-                  <div class="pill">
-                    <span class="pill-dot"></span>
-                    Notas a chocolate, caramelo y avellana
+              <div class="hero-cup">
+                <div class="hero-cup-visual">
+                  <div class="cup">
+                    <div class="cup-inner">
+                      <div class="cup-foam"></div>
+                    </div>
+                    <div class="cup-steam"></div>
                   </div>
-                  <div class="pill pill-muted">
-                    <span class="pill-dot"></span>
-                    Menos amargor = menos necesidad de azúcar
+                  <div class="capsules-row">
+                    <div class="capsule"></div>
+                    <div class="capsule choco"></div>
+                    <div class="capsule"></div>
                   </div>
                 </div>
-                <div class="hero-footnote">
-                  <span>Tostado reciente · Cápsulas con sello de origen</span>
-                  <span>Compatible con la mayoría de máquinas Nespresso®*</span>
+                <div class="hero-cup-text">
+                  <div class="hero-cup-heading">Sabe a cafetería de especialidad. Con tu máquina de siempre.</div>
+                  <div class="pill-set">
+                    <div class="pill">
+                      <span class="pill-dot"></span>
+                      Notas a chocolate, caramelo y frutos secos
+                    </div>
+                    <div class="pill pill-muted">
+                      <span class="pill-dot"></span>
+                      Menos amargor = menos necesidad de azúcar
+                    </div>
+                  </div>
+                  <div class="hero-footnote">
+                    <span>Tostado reciente · Café de origen trazable</span>
+                    <span>Sin aluminio · Cápsulas 100% libres de metales pesados</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- QUÉ HACE DIFERENTE A ESTE CAFÉ -->
-      <section class="section">
-        <div class="grid-2">
-          <div>
-            <div class="section-kicker">Por qué no es “otro café en cápsulas”</div>
-            <h2 class="section-title">Del café funcional al café que se disfruta.</h2>
-            <p class="section-subtitle">
-              El café de especialidad nace cuando dejas de verlo como algo que te despierta
-              y empiezas a tomarlo como algo que te das. Como un buen vino:
-              importa el origen, la manera de trabajarlo y el momento en el que llega a tu copa…
-              o a tu taza.
-            </p>
-            <div style="margin-top:12px;font-size:13px;color:var(--muted);">
-              Con Spresso, cada cápsula está pensada para que notes matices reales sin tener
-              que estudiar café: solo cambias la cápsula, y de repente el café sabe distinto.
-            </div>
-          </div>
-          <div>
-            <div class="compare-table">
-              <div class="compare-row compare-head">
-                <span></span>
-                <span>Café habitual en cápsulas</span>
-                <span>Spresso · Especialidad</span>
-              </div>
-              <div class="compare-row">
-                <span>Origen</span>
-                <span>Mezcla genérica, sin información clara.</span>
-                <span>País, región y finca visibles en cada caja.</span>
-              </div>
-              <div class="compare-row">
-                <span>Selección de grano</span>
-                <span>Defectos permitidos, tueste más oscuro para taparlos.</span>
-                <span>Solo café de especialidad, seleccionado por calidad y sabor.</span>
-              </div>
-              <div class="compare-row">
-                <span>Sabor</span>
-                <span>Intenso pero plano, amargor dominante.</span>
-                <span>Matices de chocolate, frutos secos o fruta según el origen.</span>
-              </div>
-              <div class="compare-row">
-                <span>Azúcar</span>
-                <span>El amargor te pide endulzarlo.</span>
-                <span>Menos amargor, más dulzor natural: apetece tomarlo solo.</span>
-              </div>
-              <div class="compare-row">
-                <span>Transparencia</span>
-                <span>No sabes quién lo cultiva ni cuándo se tostó.</span>
-                <span>Productor, proceso y fecha de tueste a la vista.</span>
-              </div>
-              <div class="compare-row">
-                <span>Experiencia</span>
-                <span>Pausa rápida para seguir.</span>
-                <span>Pequeño ritual que disfrutas, incluso si tienes prisa.</span>
+        <!-- COMPARATIVA -->
+        <section class="section">
+          <div class="grid-2">
+            <div>
+              <div class="section-kicker">Por qué no es “otro café en cápsulas”</div>
+              <h2 class="section-title">Del café funcional al café que se disfruta.</h2>
+              <p class="section-subtitle">
+                El café de especialidad nace cuando dejas de verlo solo como algo que te despierta
+                y empiezas a tomarlo como algo que te das: como un buen vino.
+                Importa el origen, quién lo cultiva y cómo llega a tu taza.
+              </p>
+              <div style="margin-top:12px;font-size:13px;color:var(--muted);">
+                Con Spresso, cada cápsula está pensada para que notes matices reales sin tener
+                que estudiar café: solo cambias la cápsula, y de repente el café sabe distinto.
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- EL CAFÉ DE ESPECIALIDAD, AHORA EN CÁPSULAS -->
-      <section class="section">
-        <div class="grid-2">
-          <div>
-            <div class="section-kicker">El formato cambia. La esencia se queda.</div>
-            <h2 class="section-title">Café de especialidad, en cápsulas.</h2>
-            <p class="section-subtitle">
-              No queremos que cambies tu máquina. Queremos que cambie lo que hay dentro de tu taza.
-              Cápsulas que conservan lo mejor del café de especialidad: su origen, su frescura
-              y su sabor, en un gesto que ya conoces de memoria.
-            </p>
-            <ul class="inline-list" style="margin-top:12px;">
-              <li><strong>Trazable:</strong> cada cápsula viene de un origen concreto, con nombre y apellidos.</li>
-              <li><strong>Fresca:</strong> tostamos en pequeños lotes para que huela y sepa a café recién hecho.</li>
-              <li><strong>Real:</strong> las notas que lees en la caja vienen del grano, no de aromas añadidos.</li>
-            </ul>
-          </div>
-          <div class="card-soft">
-            <div class="card-header">
-              <div>
-                <div class="card-title">El mismo botón, otra liga de sabor</div>
-                <div class="card-sub">
-                  No aprender métodos nuevos. No cambiar hábitos. Solo cambiar lo que pones en la máquina.
+            <div>
+              <div class="compare-table">
+                <div class="compare-row compare-head">
+                  <span></span>
+                  <span>Café habitual en cápsulas</span>
+                  <span>Spresso · Especialidad</span>
+                </div>
+                <div class="compare-row">
+                  <span>Origen</span>
+                  <span>Mezcla genérica, sin información clara.</span>
+                  <span>País, región y finca visibles en cada caja.</span>
+                </div>
+                <div class="compare-row">
+                  <span>Selección de grano</span>
+                  <span>Defectos permitidos, tueste más oscuro para taparlos.</span>
+                  <span>Solo café de especialidad, seleccionado por calidad y sabor.</span>
+                </div>
+                <div class="compare-row">
+                  <span>Sabor</span>
+                  <span>Intenso pero plano, amargor dominante.</span>
+                  <span>Matices de chocolate, frutos secos o fruta según el origen.</span>
+                </div>
+                <div class="compare-row">
+                  <span>Azúcar</span>
+                  <span>El amargor te pide endulzarlo.</span>
+                  <span>Menos amargor, más dulzor natural: apetece tomarlo solo.</span>
+                </div>
+                <div class="compare-row">
+                  <span>Transparencia</span>
+                  <span>No sabes quién lo cultiva ni cuándo se tostó.</span>
+                  <span>Productor, proceso y fecha de tueste a la vista.</span>
+                </div>
+                <div class="compare-row">
+                  <span>Impacto</span>
+                  <span>Cápsulas de aluminio, difícil reciclaje real.</span>
+                  <span>Opción sin aluminio y 100% compostable, pensada para cerrar el ciclo.</span>
                 </div>
               </div>
-              <div class="badge">
-                <span class="badge-dot"></span>
-                25 segundos
-              </div>
-            </div>
-            <div class="inline-list">
-              <li><strong>1.</strong> Metes una cápsula Spresso en tu máquina habitual.</li>
-              <li><strong>2.</strong> Pulsas el mismo botón de siempre.</li>
-              <li><strong>3.</strong> La diferencia está en la taza: más aroma, más sabor, menos necesidad de azúcar.</li>
-            </div>
-            <div class="pill-set" style="margin-top:12px;">
-              <div class="pill-small">Compatible con la mayoría de máquinas Nespresso®*</div>
-              <div class="pill-small">Cápsulas reciclables / compostables (según gama)</div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- ELIGE TU ESTILO DE CAFÉ -->
-      <section class="section" id="capsulas">
-        <div class="section-kicker">Elige según lo que te apetece, no según tecnicismos</div>
-        <h2 class="section-title">Encuentra tu sabor en 4 estilos.</h2>
-        <p class="section-subtitle">
-          No hace falta hablar de altitud y variedades para saber qué café te va a gustar.
-          Piensa en cómo te gusta sentir el café y empieza por ahí.
-        </p>
-        <div class="grid-4" style="margin-top:22px;">
-          <div class="card flavor-card">
-            <div class="badge">Intenso y achocolatado</div>
-            <div class="flavor-chip">
-              Para quien dice: “si no es café con carácter, no es café”.
-            </div>
-            <div class="product-notes-row">
-              <span><strong>En taza:</strong> cuerpo alto, crema densa, notas a chocolate negro, cacao y frutos secos.</span>
-            </div>
-            <div class="flavor-notes">
-              <span class="note-pill">Chocolate negro</span>
-              <span class="note-pill">Avellana tostada</span>
-              <span class="note-pill">Caramelo</span>
-            </div>
-            <div class="product-cta-row">
-              <button class="btn-ghost">Ver cápsulas intensas</button>
-            </div>
-          </div>
-          <div class="card flavor-card">
-            <div class="badge">Equilibrado y dulce</div>
-            <div class="flavor-chip">
-              Si quieres que el café te acompañe, no que te invada.
-            </div>
-            <div class="product-notes-row">
-              <span><strong>En taza:</strong> dulzor suave, nada agresivo, perfecto para tomar solo o con un poco de leche.</span>
-            </div>
-            <div class="flavor-notes">
-              <span class="note-pill">Chocolate con leche</span>
-              <span class="note-pill">Caramelo blando</span>
-              <span class="note-pill">Galleta</span>
-            </div>
-            <div class="product-cta-row">
-              <button class="btn-ghost">Ver cápsulas equilibradas</button>
-            </div>
-          </div>
-          <div class="card flavor-card">
-            <div class="badge">Frutal y jugoso</div>
-            <div class="flavor-chip">
-              Para quienes disfrutan probar cosas distintas sin pasarse de raros.
-            </div>
-            <div class="product-notes-row">
-              <span><strong>En taza:</strong> acidez amable, tipo fruta madura; ideal para tomar solo y notar cómo el sabor cambia al enfriar.</span>
-            </div>
-            <div class="flavor-notes">
-              <span class="note-pill">Frutos rojos</span>
-              <span class="note-pill">Fruta de hueso</span>
-              <span class="note-pill">Miel</span>
-            </div>
-            <div class="product-cta-row">
-              <button class="btn-ghost">Ver cápsulas frutales</button>
-            </div>
-          </div>
-          <div class="card flavor-card">
-            <div class="badge">Descafeinado con sabor</div>
-            <div class="flavor-chip">
-              Para cuando quieres café a cualquier hora… sin renunciar a que sepa a café.
-            </div>
-            <div class="product-notes-row">
-              <span><strong>En taza:</strong> notas a chocolate y galleta; decafeinado con procesos más cuidados.</span>
-            </div>
-            <div class="flavor-notes">
-              <span class="note-pill">Chocolate</span>
-              <span class="note-pill">Galleta</span>
-              <span class="note-pill">Cacao suave</span>
-            </div>
-            <div class="product-cta-row">
-              <button class="btn-ghost">Ver descafeinados</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CÓMO FUNCIONA -->
-      <section class="section">
-        <div class="grid-3">
-          <div>
-            <div class="section-kicker">Así de simple</div>
-            <h2 class="section-title">Tres pasos. Sin complicarte.</h2>
-            <p class="section-subtitle">
-              No vienes aquí a cambiar toda tu cocina. Vienes a cambiar cómo sabe tu café.
-              Por eso el proceso es exactamente igual al que haces ahora. Solo cambian las cápsulas.
-            </p>
-          </div>
-          <div class="card-soft">
-            <div class="card-title">1 · Elige tus cápsulas</div>
-            <div class="card-sub">
-              Empieza por el estilo que más te llame la atención: intenso, equilibrado, frutal o descafeinado.
-              Si te pierdes, el asistente te ayuda en menos de 1 minuto.
-            </div>
-          </div>
-          <div class="card-soft">
-            <div class="card-title">2 · Recíbelas frescas en casa</div>
-            <div class="card-sub">
-              Tostamos en pequeños lotes y enviamos rápido, para que no se queden “dormidas” en el almacén.
-              Al abrir la caja, lo notas en el aroma.
-            </div>
-          </div>
-        </div>
-        <div class="grid-3" style="margin-top:14px;">
-          <div></div>
-          <div class="card-soft">
-            <div class="card-title">3 · Disfruta el café en 25 segundos</div>
-            <div class="card-sub">
-              Metes la cápsula, pulsas el botón y listo. Solo que ahora la pausa sabe mejor
-              y no te pide añadirle azúcar para que sea agradable.
-            </div>
-          </div>
-          <div class="card-soft">
-            <div class="card-sub">
-              <div class="pill-set">
-                <div class="pill-small">Compatible con la mayoría de máquinas Nespresso®*</div>
-                <div class="pill-small">Sin registro obligatorio para tu primer pedido</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- TESTIMONIOS -->
-      <section class="section narrow">
-        <div class="section-kicker">Lo que sienten quienes ya lo han probado</div>
-        <h2 class="section-title">“Es la primera vez que mi café en casa sabe a cafetería buena.”</h2>
-        <p class="section-subtitle">
-          El mejor argumento siempre es lo que pasa en la taza de la gente.
-          Estas son algunas de las frases que más se repiten cuando alguien cambia
-          su café habitual por café de especialidad en cápsulas.
-        </p>
-        <div class="testimonials">
-          <div class="testimonial">
-            <p>
-              “He pasado de echarle dos sobres de azúcar al café, a no echarle nada.
-              No es que sea menos intenso: es que no es tan agresivo.”
-            </p>
+        <!-- CAFÉ DE ESPECIALIDAD EN CÁPSULAS -->
+        <section class="section">
+          <div class="grid-2">
             <div>
-              <strong>Laura, 34</strong>
-              <div class="rating">★★★★★</div>
+              <div class="section-kicker">El formato cambia. La esencia se queda.</div>
+              <h2 class="section-title">Café de especialidad, en cápsulas.</h2>
+              <p class="section-subtitle">
+                No queremos que cambies tu máquina. Queremos que cambie lo que hay dentro de tu taza.
+                Cápsulas que conservan lo mejor del café de especialidad: su origen, su frescura
+                y su sabor, en un gesto que ya conoces de memoria.
+              </p>
+              <ul class="inline-list" style="margin-top:12px;">
+                <li><strong>Trazable:</strong> cada cápsula viene de un origen concreto, con nombre y apellidos.</li>
+                <li><strong>Fresca:</strong> tostamos en pequeños lotes para que huela y sepa a café recién hecho.</li>
+                <li><strong>Real:</strong> las notas que lees en la caja vienen del grano, no de aromas añadidos.</li>
+              </ul>
             </div>
-          </div>
-          <div class="testimonial">
-            <p>
-              “Tengo la misma máquina de siempre en la oficina, pero ahora la gente
-              viene y me pregunta qué café estamos usando. Esa es toda la diferencia.”
-            </p>
-            <div>
-              <strong>Andrés, 41</strong>
-              <div class="rating">★★★★★</div>
-            </div>
-          </div>
-          <div class="testimonial">
-            <p>
-              “Pensaba que el café de especialidad era complicado. Aquí es lo mismo que hacía antes,
-              solo que ahora la pausa de las mañanas me sabe a capricho.”
-            </p>
-            <div>
-              <strong>María, 29</strong>
-              <div class="rating">★★★★☆</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- PRODUCTO DESTACADO: FICHA DE CÁPSULA (texto ejemplo de ficha) -->
-      <section class="section narrow">
-        <div class="section-kicker">Ejemplo de cápsula</div>
-        <h2 class="section-title">Así se presenta una cápsula Spresso.</h2>
-        <p class="section-subtitle">
-          Una ficha pensada para que no tengas que ser barista para entenderla:
-          lees, te imaginas el sabor y decides en segundos si va contigo.
-        </p>
-
-        <div class="product-feature">
-          <!-- VISUAL + INFO RÁPIDA -->
-          <div class="product-visual">
-            <div>
-              <div class="product-label">Cápsula de café de especialidad</div>
-              <h3 class="product-title">Spresso No.1 · Cacao &amp; Caramelo</h3>
-              <div class="product-subtitle">
-                Intenso y achocolatado · Ideal para espresso solo o con un poco de leche.
-              </div>
-              <div class="pricing-row">
+            <div class="card-soft">
+              <div class="card-header">
                 <div>
-                  <div class="price-main">6,90€</div>
-                  <div class="price-note">Caja de 20 cápsulas · ~0,35€ por taza</div>
-                </div>
-                <div style="text-align:right;">
-                  <div class="badge">
-                    <span class="badge-dot"></span>
-                    Especialidad
+                  <div class="card-title">El mismo botón, otra liga de sabor</div>
+                  <div class="card-sub">
+                    No aprender métodos nuevos. No cambiar hábitos. Solo cambiar lo que pones en la máquina.
                   </div>
-                  <div class="product-meta-row">
-                    <div class="intensity-bar">
-                      Intensidad
-                      <div class="intensity-dots">
-                        <span class="intensity-dot active"></span>
-                        <span class="intensity-dot active"></span>
-                        <span class="intensity-dot active"></span>
-                        <span class="intensity-dot active"></span>
-                        <span class="intensity-dot"></span>
-                        <span class="intensity-dot"></span>
-                        <span class="intensity-dot"></span>
-                        <span class="intensity-dot"></span>
-                        <span class="intensity-dot"></span>
-                        <span class="intensity-dot"></span>
+                </div>
+                <div class="badge">
+                  <span class="badge-dot"></span>
+                  25 segundos
+                </div>
+              </div>
+              <div class="inline-list">
+                <li><strong>1.</strong> Metes una cápsula Spresso en tu máquina habitual.</li>
+                <li><strong>2.</strong> Pulsas el mismo botón de siempre.</li>
+                <li><strong>3.</strong> La diferencia está en la taza: más aroma, más sabor, menos necesidad de azúcar.</li>
+              </div>
+              <div class="pill-set" style="margin-top:12px;">
+                <div class="pill">
+                  <span class="pill-dot"></span>
+                  Sin aluminio · Menos residuos difíciles de reciclar
+                </div>
+                <div class="pill pill-muted" data-page="sostenibilidad">
+                  Más sobre nuestras cápsulas sostenibles →
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TESTIMONIOS -->
+        <section class="section narrow">
+          <div class="section-kicker">Lo que sienten quienes ya lo han probado</div>
+          <h2 class="section-title">“Es la primera vez que mi café en casa sabe a cafetería buena.”</h2>
+          <p class="section-subtitle">
+            El mejor argumento siempre es lo que pasa en la taza de la gente.
+            Estas son algunas de las frases que más se repiten cuando alguien cambia
+            su café habitual por café de especialidad en cápsulas.
+          </p>
+          <div class="testimonials">
+            <div class="testimonial">
+              <p>
+                “He pasado de echarle dos sobres de azúcar al café, a no echarle nada.
+                No es que sea menos intenso: es que no es tan agresivo.”
+              </p>
+              <div>
+                <strong>Laura, 34</strong>
+                <div class="rating">★★★★★</div>
+              </div>
+            </div>
+            <div class="testimonial">
+              <p>
+                “Tengo la misma máquina de siempre en la oficina, pero ahora la gente
+                viene y me pregunta qué café estamos usando. Esa es toda la diferencia.”
+              </p>
+              <div>
+                <strong>Andrés, 41</strong>
+                <div class="rating">★★★★★</div>
+              </div>
+            </div>
+            <div class="testimonial">
+              <p>
+                “Pensaba que el café de especialidad era complicado. Aquí es lo mismo que hacía antes,
+                solo que ahora la pausa de las mañanas me sabe a capricho.”
+              </p>
+              <div>
+                <strong>María, 29</strong>
+                <div class="rating">★★★★☆</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- CÁPSULAS PAGE -->
+      <div class="page-view" data-page="capsulas">
+        <!-- ESTILOS -->
+        <section class="section" id="capsulas">
+          <div class="section-kicker">Elige según lo que te apetece, no según tecnicismos</div>
+          <h2 class="section-title">Encuentra tu sabor en 4 estilos.</h2>
+          <p class="section-subtitle">
+            No hace falta hablar de altitud y variedades para saber qué café te va a gustar.
+            Piensa en cómo te gusta sentir el café y empieza por ahí.
+          </p>
+          <div class="grid-4" style="margin-top:22px;">
+            <div class="card flavor-card">
+              <div class="badge">Intenso y achocolatado</div>
+              <div class="flavor-chip">
+                Para quien dice: “si no es café con carácter, no es café”.
+              </div>
+              <div class="product-notes-row">
+                <span><strong>En taza:</strong> cuerpo alto, crema densa, notas a chocolate negro, cacao y frutos secos.</span>
+              </div>
+              <div class="flavor-notes">
+                <span class="note-pill">Chocolate negro</span>
+                <span class="note-pill">Avellana tostada</span>
+                <span class="note-pill">Caramelo</span>
+              </div>
+              <div class="product-cta-row">
+                <button class="btn-ghost">Ver cápsulas intensas</button>
+              </div>
+            </div>
+            <div class="card flavor-card">
+              <div class="badge">Equilibrado y dulce</div>
+              <div class="flavor-chip">
+                Si quieres que el café te acompañe, no que te invada.
+              </div>
+              <div class="product-notes-row">
+                <span><strong>En taza:</strong> dulzor suave, nada agresivo, perfecto para tomar solo o con un poco de leche.</span>
+              </div>
+              <div class="flavor-notes">
+                <span class="note-pill">Chocolate con leche</span>
+                <span class="note-pill">Caramelo blando</span>
+                <span class="note-pill">Galleta</span>
+              </div>
+              <div class="product-cta-row">
+                <button class="btn-ghost">Ver cápsulas equilibradas</button>
+              </div>
+            </div>
+            <div class="card flavor-card">
+              <div class="badge">Frutal y jugoso</div>
+              <div class="flavor-chip">
+                Para quienes disfrutan probar cosas distintas sin pasarse de raros.
+              </div>
+              <div class="product-notes-row">
+                <span><strong>En taza:</strong> acidez amable, tipo fruta madura; ideal para tomar solo y notar cómo el sabor cambia al enfriar.</span>
+              </div>
+              <div class="flavor-notes">
+                <span class="note-pill">Frutos rojos</span>
+                <span class="note-pill">Fruta de hueso</span>
+                <span class="note-pill">Miel</span>
+              </div>
+              <div class="product-cta-row">
+                <button class="btn-ghost">Ver cápsulas frutales</button>
+              </div>
+            </div>
+            <div class="card flavor-card">
+              <div class="badge">Descafeinado con sabor</div>
+              <div class="flavor-chip">
+                Para cuando quieres café a cualquier hora… sin renunciar a que sepa a café.
+              </div>
+              <div class="product-notes-row">
+                <span><strong>En taza:</strong> notas a chocolate y galleta; descafeinado con procesos más cuidados.</span>
+              </div>
+              <div class="flavor-notes">
+                <span class="note-pill">Chocolate</span>
+                <span class="note-pill">Galleta</span>
+                <span class="note-pill">Cacao suave</span>
+              </div>
+              <div class="product-cta-row">
+                <button class="btn-ghost">Ver descafeinados</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CÓMO FUNCIONA + PRODUCTO EJEMPLO -->
+        <section class="section">
+          <div class="grid-3">
+            <div>
+              <div class="section-kicker">Así de simple</div>
+              <h2 class="section-title">Tres pasos. Sin complicarte.</h2>
+              <p class="section-subtitle">
+                No vienes aquí a cambiar toda tu cocina. Vienes a cambiar cómo sabe tu café.
+                Por eso el proceso es exactamente igual al que haces ahora. Solo cambian las cápsulas.
+              </p>
+            </div>
+            <div class="card-soft">
+              <div class="card-title">1 · Elige tus cápsulas</div>
+              <div class="card-sub">
+                Empieza por el estilo que más te llame la atención. Si te pierdes,
+                el asistente te guía en menos de un minuto.
+              </div>
+            </div>
+            <div class="card-soft">
+              <div class="card-title">2 · Recíbelas frescas en casa</div>
+              <div class="card-sub">
+                Tostamos en pequeños lotes y enviamos rápido, para que no se queden “dormidas”
+                en el almacén. Al abrir la caja, lo notas en el aroma.
+              </div>
+            </div>
+          </div>
+          <div class="grid-3" style="margin-top:14px;">
+            <div></div>
+            <div class="card-soft">
+              <div class="card-title">3 · Disfruta el café en 25 segundos</div>
+              <div class="card-sub">
+                Metes la cápsula, pulsas el botón y listo. Solo que ahora la pausa sabe mejor
+                y no te pide añadirle azúcar para que sea agradable.
+              </div>
+            </div>
+            <div class="card-soft">
+              <div class="card-sub">
+                <div class="pill-set">
+                  <div class="pill">Compatible con la mayoría de máquinas Nespresso®*</div>
+                  <div class="pill pill-muted" data-page="sostenibilidad">
+                    Cápsulas sin aluminio y compostables →
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FICHA EJEMPLO -->
+        <section class="section narrow">
+          <div class="section-kicker">Ejemplo de cápsula</div>
+          <h2 class="section-title">Así se presenta una cápsula Spresso.</h2>
+          <p class="section-subtitle">
+            Una ficha pensada para que no tengas que ser barista para entenderla:
+            lees, te imaginas el sabor y decides en segundos si va contigo.
+          </p>
+
+          <div class="product-feature">
+            <div class="product-visual">
+              <div>
+                <div class="product-label">Cápsula de café de especialidad</div>
+                <h3 class="product-title">Spresso No.1 · Cacao &amp; Caramelo</h3>
+                <div class="product-subtitle">
+                  Intenso y achocolatado · Ideal para espresso solo o con un poco de leche.
+                </div>
+                <div class="pricing-row">
+                  <div>
+                    <div class="price-main">6,90€</div>
+                    <div class="price-note">Caja de 20 cápsulas · ~0,35€ por taza</div>
+                  </div>
+                  <div style="text-align:right;">
+                    <div class="badge">
+                      <span class="badge-dot"></span>
+                      Especialidad
+                    </div>
+                    <div class="product-meta-row">
+                      <div class="intensity-bar">
+                        Intensidad
+                        <div class="intensity-dots">
+                          <span class="intensity-dot active"></span>
+                          <span class="intensity-dot active"></span>
+                          <span class="intensity-dot active"></span>
+                          <span class="intensity-dot active"></span>
+                          <span class="intensity-dot"></span>
+                          <span class="intensity-dot"></span>
+                          <span class="intensity-dot"></span>
+                          <span class="intensity-dot"></span>
+                          <span class="intensity-dot"></span>
+                          <span class="intensity-dot"></span>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
+
+                <div class="product-meta-row">
+                  <div class="product-meta">
+                    ☕ Mejor para: espresso &amp; cortado
+                  </div>
+                  <div class="product-meta">
+                    📅 Tostado reciente · fecha visible en la caja
+                  </div>
+                </div>
               </div>
 
-              <div class="product-meta-row">
-                <div class="product-meta">
-                  <span>☕</span>
-                  Mejor para: Espresso &amp; cortado
+              <div>
+                <div class="product-notes-row">
+                  <span><strong>Sabor en una frase:</strong> café con carácter, mucha crema y notas claras
+                    a chocolate negro y caramelo, sin ese amargor que se queda pegado en la boca.</span>
+                  <span><strong>Textura:</strong> cuerpo alto, sensación de chocolate espeso. Perfecto si te gusta
+                    notar el café incluso con leche.</span>
                 </div>
-                <div class="product-meta">
-                  <span>📅</span>
-                  Tostado reciente · fecha visible en la caja
+
+                <div class="product-specs">
+                  <div>
+                    <div class="spec-label">Origen</div>
+                    <div class="spec-value">Brasil · Región Cerrado Mineiro</div>
+                    <div class="origin-chip">
+                      <span class="origin-flag">🇧🇷</span>
+                      Cooperativa de pequeños productores
+                    </div>
+                  </div>
+                  <div>
+                    <div class="spec-label">Proceso</div>
+                    <div class="spec-value">Natural</div>
+                    <div style="font-size:11px;color:var(--muted);margin-top:2px;">
+                      Más cuerpo y dulzor, con notas a chocolate y frutos secos.
+                    </div>
+                  </div>
+                  <div>
+                    <div class="spec-label">Altitud</div>
+                    <div class="spec-value">1.000–1.200 m</div>
+                    <div style="font-size:11px;color:var(--muted);margin-top:2px;">
+                      Alturas moderadas que dan taza estable, dulce y muy disfrutable.
+                    </div>
+                  </div>
+                  <div>
+                    <div class="spec-label">Puntuación SCA</div>
+                    <div class="spec-value">&gt; 85 pts</div>
+                    <div style="font-size:11px;color:var(--muted);margin-top:2px;">
+                      Traducido: menos defectos, más sabor y menos amargor inesperado.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="product-notes-row">
+                  <span><strong>Ideal si…</strong> te gusta que el café “se note”, que tenga presencia en boca
+                    y que se lleve bien con un poco de leche, sin volverse aguado.</span>
+                  <span><strong>Cómo prepararlo:</strong> 1 cápsula para espresso corto (25–30 ml).
+                    Si lo quieres en taza grande con leche, prueba con 2 cápsulas.</span>
+                </div>
+
+                <div class="product-meta-row">
+                  <div class="product-meta">
+                    ♻️ Cápsulas 100% biodegradables y compostables
+                  </div>
+                  <div class="product-meta">
+                    🌱 Compost home: lo que hoy es cápsula, mañana es abono para tus plantas
+                  </div>
+                </div>
+
+                <div class="product-cta-row">
+                  <button class="btn-primary">
+                    Añadir al carrito
+                    <span>→</span>
+                  </button>
+                  <button class="btn-ghost" data-page="encuentra">
+                    No sé si es para mí · Ver recomendación
+                  </button>
                 </div>
               </div>
             </div>
 
-            <div>
-              <div class="product-notes-row">
-                <span><strong>Sabor en una frase:</strong> café con carácter, mucha crema y notas claras a chocolate
-                  negro y caramelo, sin ese amargor que se queda pegado en la boca.</span>
-                <span><strong>Textura:</strong> cuerpo alto, sensación de chocolate espeso. Perfecto si te gusta
-                  notar el café incluso con leche.</span>
-              </div>
-
-              <div class="product-specs">
+            <div class="card">
+              <div class="card-header">
                 <div>
-                  <div class="spec-label">Origen</div>
-                  <div class="spec-value">Brasil · Región Cerrado Mineiro</div>
-                  <div class="origin-chip">
-                    <span class="origin-flag">🇧🇷</span>
-                    Cooperativa de pequeños productores
-                  </div>
-                </div>
-                <div>
-                  <div class="spec-label">Proceso</div>
-                  <div class="spec-value">Natural</div>
-                  <div style="font-size:11px;color:var(--muted);margin-top:2px;">
-                    Más cuerpo y dulzor, con notas a chocolate y frutos secos.
-                  </div>
-                </div>
-                <div>
-                  <div class="spec-label">Altitud</div>
-                  <div class="spec-value">1.000–1.200 m</div>
-                  <div style="font-size:11px;color:var(--muted);margin-top:2px;">
-                    Alturas moderadas que dan taza estable, dulce y muy disfrutable.
-                  </div>
-                </div>
-                <div>
-                  <div class="spec-label">Puntuación SCA</div>
-                  <div class="spec-value">&gt; 85 pts</div>
-                  <div style="font-size:11px;color:var(--muted);margin-top:2px;">
-                    Traducido: menos defectos, más sabor y menos amargor inesperado.
+                  <div class="card-title">Cómo vendemos esta cápsula a la mente.</div>
+                  <div class="card-sub">
+                    Más que datos técnicos: lo que esta cápsula le promete a quien la toma.
                   </div>
                 </div>
               </div>
+              <ul class="inline-list">
+                <li>
+                  <strong>Placer:</strong> describimos textura y sabor (“chocolate espeso”, “caramelo”) para que la persona
+                  prácticamente lo pruebe al leer.
+                </li>
+                <li>
+                  <strong>Recompensa:</strong> “misma máquina, otra liga de sabor” refuerza que un cambio mínimo
+                  mejora muchos momentos del día.
+                </li>
+                <li>
+                  <strong>Estatus:</strong> origen, proceso y puntuación SCA traducidos: siente que “entiende” de café
+                  sin esfuerzo mental extra.
+                </li>
+                <li>
+                  <strong>Seguridad:</strong> datos concretos y cápsulas compostables: placer sin culpa, ni por el café
+                  ni por el residuo.
+                </li>
+                <li>
+                  <strong>Simplicidad:</strong> indicamos cuándo usar 1 o 2 cápsulas. No tiene que improvisar.
+                </li>
+                <li>
+                  <strong>Acción siguiente clara:</strong> CTA directo “Añadir al carrito” + alternativa
+                  “ver recomendación” si aún no está listo.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
 
-              <div class="product-notes-row">
-                <span><strong>Ideal si…</strong> te gusta que el café “se note”, que tenga presencia en boca y
-                  que se lleve bien con un poco de leche, sin volverse aguado.</span>
-                <span><strong>Cómo prepararlo:</strong> 1 cápsula para espresso corto (25–30 ml). Si lo quieres en
-                  taza grande con leche, prueba con 2 cápsulas.</span>
-              </div>
+      <!-- ENCUENTRA TU CAFÉ PAGE -->
+      <div class="page-view" data-page="encuentra">
+        <section class="section narrow">
+          <div class="section-kicker">Si no sabes por dónde empezar</div>
+          <h2 class="section-title">Te ayudamos a encontrar tu cápsula ideal.</h2>
+          <p class="section-subtitle">
+            Piensa menos en el tipo de grano y más en cómo te gusta sentir el café.
+            Este pequeño asistente es el mismo criterio que usaría un barista… traducido en tres preguntas.
+          </p>
 
-              <div class="product-meta-row">
-                <div class="product-meta">
-                  <span>♻️</span>
-                  Cápsulas reciclables / compostables (según indicación en envase)
+          <div class="quiz-grid">
+            <div class="quiz-options">
+              <div>
+                <div class="quiz-step-title">1 · ¿Cómo sueles tomar el café?</div>
+                <div class="option-row">
+                  <span class="option-pill selected">Solo</span>
+                  <span class="option-pill">Con un poco de leche</span>
+                  <span class="option-pill">Con mucha leche / tipo latte</span>
                 </div>
-                <div class="product-meta">
-                  <span>✓</span>
-                  Compatible con la mayoría de máquinas Nespresso®* domésticas
+              </div>
+              <div>
+                <div class="quiz-step-title">2 · ¿Qué te apetece más?</div>
+                <div class="option-row">
+                  <span class="option-pill selected">Intenso y achocolatado</span>
+                  <span class="option-pill">Equilibrado y dulce</span>
+                  <span class="option-pill">Frutal y diferente</span>
                 </div>
               </div>
-
-              <div class="product-cta-row">
-                <button class="btn-primary">
-                  Añadir al carrito
-                  <span>→</span>
+              <div>
+                <div class="quiz-step-title">3 · ¿Con cafeína o sin?</div>
+                <div class="option-row">
+                  <span class="option-pill selected">Con cafeína</span>
+                  <span class="option-pill">Descafeinado</span>
+                </div>
+              </div>
+            </div>
+            <div class="quiz-result">
+              <h4>Tu combinación ideal (ejemplo):</h4>
+              <p>
+                <strong>Spresso No.1 · Cacao &amp; Caramelo</strong> —
+                intenso, achocolatado y perfecto para tomar solo o con un poco de leche.
+                Si sueles echar azúcar al café, aquí probablemente lo dejes de necesitar.
+              </p>
+              <p style="margin-top:6px;">
+                <strong>Siguiente paso:</strong> añade esta cápsula a tu primer pedido
+                y combínala con una opción equilibrada para tener café para varios momentos del día.
+              </p>
+              <div class="product-cta-row" style="margin-top:8px;">
+                <button class="btn-primary" data-page="capsulas">
+                  Ver cápsulas recomendadas
                 </button>
-                <button class="btn-ghost">
-                  Ver todos los cafés intensos
+                <button class="btn-ghost" data-page="especialidad">
+                  Quiero entender mejor esto de “especialidad”
                 </button>
               </div>
             </div>
           </div>
+        </section>
+      </div>
 
-          <!-- BLOQUE EXPLICATIVO / NEUROVENTAS -->
-          <div class="card">
+      <!-- ESPECIALIDAD PAGE -->
+      <div class="page-view" data-page="especialidad">
+        <section class="section narrow">
+          <div class="section-kicker">Para que sepas qué estás tomando</div>
+          <h2 class="section-title">¿Qué hace especial al café de especialidad?</h2>
+          <p class="section-subtitle">
+            Más allá del nombre, “café de especialidad” significa cafés evaluados por su calidad,
+            seleccionados grano a grano y trabajados para resaltar su sabor, no para tapar defectos.
+          </p>
+
+          <div class="grid-2" style="margin-top:20px;">
+            <div>
+              <div class="inline-list">
+                <li>
+                  <strong>Granos seleccionados, no mezclas al azar.</strong><br />
+                  En especialidad, los defectos se limitan al mínimo. Eso se traduce en menos sabores
+                  “extraños” y menos necesidad de tuestes muy oscuros para ocultarlos.
+                </li>
+                <li>
+                  <strong>Sabor que viene del origen, no de aromas añadidos.</strong><br />
+                  Las notas que lees en la caja (“frutos rojos”, “chocolate”) vienen de cómo se ha cultivado
+                  y procesado el café. No añadimos sabores artificiales.
+                </li>
+                <li>
+                  <strong>Mejor café, mejor relación con el productor.</strong><br />
+                  Cuando se paga por calidad, se pueden pagar mejores precios en origen.
+                  Tu café no solo te sienta bien a ti, también tiene sentido para quien lo cultiva.
+                </li>
+              </div>
+            </div>
+            <div class="card-soft">
+              <div class="card-title">¿Qué te aporta a ti, en tu día a día?</div>
+              <ul class="inline-list" style="margin-top:6px;">
+                <li><strong>Más disfrute por taza:</strong> cada café que tomas te aporta algo más que cafeína.</li>
+                <li><strong>Menos azúcar “por defecto”:</strong> cuando el café es agradable de entrada, no hace falta corregirlo.</li>
+                <li><strong>Mejor sensación en el cuerpo:</strong> menos cafés agresivos, menos pesadez al acumularlos.</li>
+                <li><strong>Tranquilidad:</strong> sabes de dónde viene tu café y qué hay detrás de esa cápsula.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- SOSTENIBILIDAD PAGE -->
+      <div class="page-view" data-page="sostenibilidad">
+        <section class="section narrow">
+          <div class="section-kicker">Placer sin culpa</div>
+          <h2 class="section-title">Sostenibilidad, cápsula a cápsula.</h2>
+          <p class="section-subtitle">
+            El objetivo es simple: que cada café que te tomas sea un pequeño placer del que
+            te puedas sentir bien, también por lo que pasa después de la taza.
+          </p>
+
+          <div class="story">
+            <div class="badge-green">
+              <span class="badge-leaf"></span>
+              Cápsulas sin aluminio · 100% biodegradables y compostables
+            </div>
+            <p>
+              Las cápsulas tradicionales suelen ser de aluminio. En teoría son reciclables,
+              en la práctica muchas acaban mezcladas con otros residuos. Con Spresso apostamos
+              por cápsulas sin aluminio, pensadas desde el inicio para que su final no sea un problema.
+            </p>
+          </div>
+
+          <div class="grid-2" style="margin-top:18px;">
+            <div class="card-soft">
+              <div class="card-title">Menos aluminio, más sentido común.</div>
+              <ul class="inline-list" style="margin-top:6px;">
+                <li><strong>Sin aluminio:</strong> nuestras cápsulas no aportan más metal a un sistema de reciclaje ya saturado.</li>
+                <li><strong>Material vegetal:</strong> fabricadas con biopolímeros de origen renovable, pensados para volver a la tierra.</li>
+                <li><strong>Impacto reducido:</strong> menos energía para producirlas y procesarlas al final de su vida útil.</li>
+              </ul>
+            </div>
+            <div class="card-soft">
+              <div class="card-title">Home compost: de cápsula a abono.</div>
+              <ul class="inline-list" style="margin-top:6px;">
+                <li><strong>100% biodegradables y compostables:</strong> en condiciones adecuadas,
+                  se descomponen hasta convertirse en materia orgánica.</li>
+                <li><strong>Home compost:</strong> en la gama indicada, puedes llevarlas a tu propio compost doméstico
+                  (sin la tapa de aluminio, si la hubiera), junto con restos de fruta y verdura.</li>
+                <li><strong>Abono para tus plantas:</strong> el café usado y la cápsula se convierten, con el tiempo,
+                  en alimento para la tierra. Lo que hoy es pausa, mañana nutre tus macetas.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:20px;">
             <div class="card-header">
               <div>
-                <div class="card-title">Cómo vendemos esta cápsula a la mente.</div>
+                <div class="card-title">Café que cuida de ti y de algo más.</div>
                 <div class="card-sub">
-                  Más que datos técnicos: lo que esta cápsula le promete a quien la toma.
+                  Vendemos placer, sí. Pero un placer que no te mete en conflicto con tus valores cada mañana.
                 </div>
               </div>
             </div>
-            <div class="inline-list">
-              <li>
-                <strong>Placer:</strong> describimos la textura (“chocolate espeso”) y las notas (“caramelo”) para
-                que la persona casi pueda saborearlo al leer. Su mente se adelanta al momento.
-              </li>
-              <li>
-                <strong>Recompensa:</strong> “misma máquina, otra liga de sabor” le dice que con un cambio mínimo
-                obtiene más disfrute cada día.
-              </li>
-              <li>
-                <strong>Estatus:</strong> hablamos de origen, puntuación SCA y proceso, pero traducidos. Siente que
-                entiende más de café sin tener que estudiar.
-              </li>
-              <li>
-                <strong>Seguridad:</strong> mostramos datos concretos (origen, altitud, compatibilidad) y explicamos
-                lo que significan. Reduce dudas antes de comprar.
-              </li>
-              <li>
-                <strong>Simplicidad:</strong> le decimos cuándo usar 1 cápsula y cuándo 2, para que no tenga que
-                experimentar a ciegas.
-              </li>
-              <li>
-                <strong>Acción siguiente clara:</strong> CTA directo “Añadir al carrito” + alternativa “Ver cafés
-                intensos” para quien aún no está listo para decidir.
-              </li>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ENCUENTRA TU CAFÉ (quiz) -->
-      <section class="section narrow" id="encuentra">
-        <div class="section-kicker">Si no sabes por dónde empezar</div>
-        <h2 class="section-title">Te ayudamos a encontrar tu cápsula ideal.</h2>
-        <p class="section-subtitle">
-          Piensa menos en el tipo de grano y más en cómo te gusta sentir el café.
-          Este pequeño asistente es el mismo criterio que usaría un barista… traducido en tres preguntas.
-        </p>
-
-        <div class="quiz-grid">
-          <div class="quiz-options">
-            <div>
-              <div class="quiz-step-title">1 · ¿Cómo sueles tomar el café?</div>
-              <div class="option-row">
-                <span class="option-pill selected">Solo</span>
-                <span class="option-pill">Con un poco de leche</span>
-                <span class="option-pill">Con mucha leche / tipo latte</span>
-              </div>
-            </div>
-            <div>
-              <div class="quiz-step-title">2 · ¿Qué te apetece más?</div>
-              <div class="option-row">
-                <span class="option-pill selected">Intenso y achocolatado</span>
-                <span class="option-pill">Equilibrado y dulce</span>
-                <span class="option-pill">Frutal y diferente</span>
-              </div>
-            </div>
-            <div>
-              <div class="quiz-step-title">3 · ¿Con cafeína o sin?</div>
-              <div class="option-row">
-                <span class="option-pill selected">Con cafeína</span>
-                <span class="option-pill">Descafeinado</span>
-              </div>
-            </div>
-          </div>
-          <div class="quiz-result">
-            <h4>Tu combinación ideal (ejemplo):</h4>
-            <p>
-              <strong>Spresso No.1 · Cacao &amp; Caramelo</strong> —
-              intenso, achocolatado y perfecto para tomar solo o con un poco de leche.
-              Si sueles echar azúcar al café, aquí probablemente lo dejes de necesitar.
-            </p>
-            <p style="margin-top:6px;">
-              <strong>Siguiente paso:</strong> añade esta cápsula a tu primer pedido
-              y combínala con una opción equilibrada para tener café para varios momentos del día.
-            </p>
-            <div class="product-cta-row" style="margin-top:8px;">
-              <button class="btn-primary">
-                Ver detalles de la cápsula
-              </button>
-              <button class="btn-ghost">
-                Ver más recomendaciones
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CAFÉ DE ESPECIALIDAD -->
-      <section class="section narrow" id="especialidad">
-        <div class="section-kicker">Para que sepas qué estás tomando</div>
-        <h2 class="section-title">¿Qué hace especial al café de especialidad?</h2>
-        <p class="section-subtitle">
-          Más allá del nombre, “café de especialidad” significa cafés evaluados por su calidad,
-          seleccionados grano a grano y trabajados para resaltar su sabor, no para tapar defectos.
-        </p>
-
-        <div class="grid-2" style="margin-top:20px;">
-          <div>
-            <div class="bullet">
-              <div class="bullet-icon"></div>
-              <div>
-                <strong>Granos seleccionados, no mezclas al azar.</strong><br />
-                En especialidad, los defectos se limitan al mínimo. Eso se traduce en menos sabores
-                “extraños” y menos necesidad de tuestes muy oscuros para ocultarlos.
-              </div>
-            </div>
-            <div class="bullet">
-              <div class="bullet-icon"></div>
-              <div>
-                <strong>Sabor que viene del origen, no de aromas añadidos.</strong><br />
-                Las notas que lees en la caja (“frutos rojos”, “chocolate”) vienen de cómo se ha cultivado y procesado el café.
-                No añadimos sabores artificiales.
-              </div>
-            </div>
-            <div class="bullet">
-              <div class="bullet-icon"></div>
-              <div>
-                <strong>Mejor café, mejor relación con el productor.</strong><br />
-                Cuando se paga por calidad, se pueden pagar mejores precios en origen. Así tu café
-                no solo te sienta bien a ti, también tiene sentido para quien lo cultiva.
-              </div>
-            </div>
-          </div>
-          <div class="card-soft">
-            <div class="card-title">¿Qué te aporta a ti, en tu día a día?</div>
             <ul class="inline-list">
-              <li><strong>Más disfrute por taza:</strong> cada café que tomas te aporta algo más que cafeína.</li>
-              <li><strong>Menos azúcar “por defecto”:</strong> cuando el café es agradable de entrada, no hace falta corregirlo.</li>
-              <li><strong>Mejor sensación en el cuerpo:</strong> menos cafés agresivos, menos pesadez al acumularlos.</li>
-              <li><strong>Tranquilidad:</strong> sabes de dónde viene tu café y qué hay detrás de esa cápsula.</li>
+              <li><strong>Placer:</strong> eliges buen café porque te gusta, no solo porque “es mejor para el planeta”.</li>
+              <li><strong>Seguridad:</strong> sabes que no estás generando residuos difíciles de gestionar cada vez que pulsas un botón.</li>
+              <li><strong>Estatus silencioso:</strong> sin postureo, pero con la tranquilidad de saber que estás en la siguiente generación de cápsulas.</li>
             </ul>
+            <div class="product-cta-row" style="margin-top:10px;">
+              <button class="btn-primary" data-page="capsulas">Ver cápsulas sostenibles</button>
+              <button class="btn-ghost" data-page="regenerativa">Conocer a los productores</button>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
-      <!-- PARA EMPRESAS -->
-      <section class="section" id="empresas">
-        <div class="section-kicker">Para oficinas, despachos y espacios con gente</div>
-        <h2 class="section-title">Café de especialidad en cápsulas para tu empresa.</h2>
-        <p class="section-subtitle">
-          El café que ofreces habla de tu marca. Y también impacta en cómo se siente tu equipo
-          cada mañana. Llevamos café de especialidad en cápsulas a tu oficina, sin añadirte
-          más trabajo de gestión.
-        </p>
+      <!-- AGRICULTURA REGENERATIVA PAGE -->
+      <div class="page-view" data-page="regenerativa">
+        <section class="section narrow">
+          <div class="section-kicker">Más allá de “sostenible”</div>
+          <h2 class="section-title">Agricultura regenerativa en las fincas de café.</h2>
+          <p class="section-subtitle">
+            No se trata solo de no hacer daño. Se trata de mejorar el suelo, el agua y la vida
+            alrededor de cada cafeto. Por eso trabajamos con productores que van un paso más allá.
+          </p>
 
-        <div class="business-grid">
-          <div>
-            <div class="business-bullets">
-              <div class="business-pack">
-                <h4>Para tu equipo</h4>
-                <p class="business-tagline">
-                  Una pausa que se siente como un pequeño cuidado diario, no como combustible barato.
-                </p>
-                <ul class="inline-list">
-                  <li>Mejor sabor = momento que realmente desconecta.</li>
-                  <li>Menos azúcar por defecto.</li>
-                  <li>Un detalle que se nota mucho más de lo que cuesta.</li>
-                </ul>
+          <div class="grid-2" style="margin-top:18px;">
+            <div>
+              <div class="badge-green">
+                <span class="badge-leaf"></span>
+                Suelo vivo, café vivo
               </div>
-              <div class="business-pack">
-                <h4>Para tu marca</h4>
-                <p class="business-tagline">
-                  Cuando alguien os visita, el café también comunica quién sois.
+              <div class="story" style="margin-top:8px;">
+                <p>
+                  La agricultura regenerativa busca que cada cosecha deje la finca mejor que el año anterior:
+                  más vida en el suelo, más sombra diversa, más agua retenida y menos necesidad de químicos.
                 </p>
-                <ul class="inline-list">
-                  <li>Café que refuerza la imagen que quieres transmitir.</li>
-                  <li>Origen y valores alineados con un consumo más consciente.</li>
-                  <li>Pequeño gesto que eleva la experiencia de la visita.</li>
-                </ul>
+                <p>
+                  En las fincas con las que trabajamos se combinan cafetos con árboles nativos y otras plantas
+                  que aportan sombra, refugio para la fauna y materia orgánica. El resultado es un ecosistema
+                  más estable… y un café con más complejidad en taza.
+                </p>
               </div>
-              <div class="business-pack">
-                <h4>Para operaciones</h4>
-                <p class="business-tagline">
-                  Todo el beneficio del buen café, sin añadir más tareas a nadie.
+            </div>
+            <div class="card-soft">
+              <div class="card-title">¿Qué significa esto en la práctica?</div>
+              <ul class="inline-list" style="margin-top:6px;">
+                <li><strong>Menos químicos:</strong> se prioriza la fertilización orgánica y el control biológico de plagas.</li>
+                <li><strong>Más biodiversidad:</strong> árboles de sombra, flores, aves e insectos que mantienen el sistema en equilibrio.</li>
+                <li><strong>Suelo más esponjoso:</strong> capaz de retener agua, resistir sequías y lluvias intensas.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- HISTORIA DE PRODUCTOR -->
+          <section class="section" style="padding-top:30px;padding-bottom:20px;">
+            <div class="section-kicker">Una historia entre miles</div>
+            <h2 class="section-title">Don Miguel y las cerezas rojas.</h2>
+            <p class="section-subtitle">
+              No es marketing. Es literalmente alguien caminando por la finca, cereza a cereza,
+              decidiendo qué café acabará en tu cápsula.
+            </p>
+
+            <div class="card" style="margin-top:16px;">
+              <div class="story">
+                <p>
+                  Imagina una finca en una ladera verde, en Latinoamérica. Amanece y Don Miguel,
+                  productor con el que trabajamos, sale al cafetal con su equipo. No vienen a “arrasar”
+                  el árbol de una vez. Vienen a escoger.
                 </p>
-                <ul class="inline-list">
-                  <li>Formato cápsula: fácil de contar, almacenar y reponer.</li>
-                  <li>Consumo predecible por persona / mes.</li>
-                  <li>Podemos ayudarte a definir el plan según tu oficina.</li>
-                </ul>
+                <p>
+                  Cada cafeto tiene cerezas de distintos tonos: verdes, amarillas, rojas oscuras.
+                  Las que nos interesan son las que parecen pequeñas ciruelas maduras, rojas y tensas.
+                  Esas cerezas son las que concentran dulzor, acidez amable y aromas complejos.
+                </p>
+                <p>
+                  El equipo va pasando de árbol en árbol, recogiendo solo las cerezas que están en su punto.
+                  Al día siguiente, vuelven a la misma planta para coger las que aún no estaban listas.
+                  Es más trabajo, pero el resultado se nota en tu taza: cafés más dulces,
+                  sin ese amargor hueco de cosechas masivas.
+                </p>
+                <p>
+                  Parte de lo que pagas por tu cápsula permite que Don Miguel pueda pagar mejor a su gente
+                  y dedicar tiempo a estas prácticas: cuidar el suelo, plantar árboles de sombra,
+                  seleccionar cerezas a mano. <strong>Cuando hablas de “café de especialidad”, en realidad
+                  estás hablando de personas como él.</strong>
+                </p>
               </div>
-              <div class="business-pack">
-                <h4>Para el planeta</h4>
-                <p class="business-tagline">
-                  Café trazable, con mejores prácticas en origen y opciones de cápsula más responsables.
-                </p>
-                <ul class="inline-list">
-                  <li>Cápsulas reciclables / compostables (según modelo).</li>
-                  <li>Compromiso con lotes seleccionados por calidad, no por volumen.</li>
-                </ul>
+            </div>
+
+            <div class="product-cta-row" style="margin-top:14px;">
+              <button class="btn-primary" data-page="capsulas">
+                Probar cafés de fincas como la de Don Miguel
+              </button>
+              <button class="btn-ghost" data-page="historia">
+                Saber más sobre nuestra historia
+              </button>
+            </div>
+          </section>
+        </section>
+      </div>
+
+      <!-- EMPRESAS PAGE -->
+      <div class="page-view" data-page="empresas">
+        <section class="section" id="empresas">
+          <div class="section-kicker">Para oficinas, despachos y espacios con gente</div>
+          <h2 class="section-title">Café de especialidad en cápsulas para tu empresa.</h2>
+          <p class="section-subtitle">
+            El café que ofreces habla de tu marca. Y también impacta en cómo se siente tu equipo
+            cada mañana. Llevamos café de especialidad en cápsulas a tu oficina, sin añadirte
+            más trabajo de gestión.
+          </p>
+
+          <div class="business-grid">
+            <div>
+              <div class="business-bullets">
+                <div class="business-pack">
+                  <h4>Para tu equipo</h4>
+                  <p class="business-tagline">
+                    Una pausa que se siente como un pequeño cuidado diario, no como combustible barato.
+                  </p>
+                  <ul class="inline-list">
+                    <li>Mejor sabor = momento que realmente desconecta.</li>
+                    <li>Menos azúcar por defecto.</li>
+                    <li>Un detalle que se nota mucho más de lo que cuesta.</li>
+                  </ul>
+                </div>
+                <div class="business-pack">
+                  <h4>Para tu marca</h4>
+                  <p class="business-tagline">
+                    Cuando alguien os visita, el café también comunica quién sois.
+                  </p>
+                  <ul class="inline-list">
+                    <li>Café que refuerza la imagen que quieres transmitir.</li>
+                    <li>Origen y valores alineados con un consumo más consciente.</li>
+                    <li>Pequeño gesto que eleva la experiencia de la visita.</li>
+                  </ul>
+                </div>
+                <div class="business-pack">
+                  <h4>Para operaciones</h4>
+                  <p class="business-tagline">
+                    Todo el beneficio del buen café, sin añadir más tareas a nadie.
+                  </p>
+                  <ul class="inline-list">
+                    <li>Formato cápsula: fácil de contar, almacenar y reponer.</li>
+                    <li>Consumo predecible por persona / mes.</li>
+                    <li>Te ayudamos a definir el plan según tu oficina.</li>
+                  </ul>
+                </div>
+                <div class="business-pack">
+                  <h4>Para el planeta</h4>
+                  <p class="business-tagline">
+                    Cápsulas sin aluminio y fincas que regeneran el suelo.
+                  </p>
+                  <ul class="inline-list">
+                    <li>Cápsulas compostables, con opción home compost.</li>
+                    <li>Productores trabajando con criterios regenerativos.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">Así trabajamos contigo (ejemplo):</div>
+              <ul class="inline-list" style="margin-top:6px;">
+                <li><strong>1.</strong> Entendemos tu oficina: nº de personas, máquinas, hábitos de consumo.</li>
+                <li><strong>2.</strong> Diseñamos un surtido sencillo: intenso, equilibrado, descafeinado.</li>
+                <li><strong>3.</strong> Definimos un plan mensual con envíos automáticos.</li>
+                <li><strong>4.</strong> Revisamos cada cierto tiempo según cómo lo esté viviendo el equipo.</li>
+              </ul>
+              <div class="product-cta-row" style="margin-top:12px;">
+                <button class="btn-primary">Solicitar propuesta para empresa</button>
+                <button class="btn-ghost">Pedir cápsulas de prueba</button>
+              </div>
+              <div style="margin-top:8px;font-size:11px;color:var(--muted);">
+                Sin mínimos imposibles ni contratos eternos. Empezamos con poco y crecemos
+                si el café se convierte en parte importante del día de tu equipo.
               </div>
             </div>
           </div>
-          <div class="card">
-            <div class="card-title">Así trabajamos contigo (ejemplo):</div>
-            <ul class="inline-list" style="margin-top:6px;">
-              <li><strong>1.</strong> Entendemos tu oficina: nº de personas, máquinas, hábitos de consumo.</li>
-              <li><strong>2.</strong> Diseñamos un surtido sencillo: intenso, equilibrado, descafeinado.</li>
-              <li><strong>3.</strong> Definimos un plan mensual con envíos automáticos.</li>
-              <li><strong>4.</strong> Revisamos cada cierto tiempo según cómo lo esté viviendo el equipo.</li>
-            </ul>
-            <div class="product-cta-row" style="margin-top:12px;">
-              <button class="btn-primary">Solicitar propuesta para empresa</button>
-              <button class="btn-ghost">Pedir cápsulas de prueba</button>
+        </section>
+      </div>
+
+      <!-- HISTORIA PAGE -->
+      <div class="page-view" data-page="historia">
+        <section class="section narrow" id="historia">
+          <div class="section-kicker">De “café para despertarme” a “café para disfrutar”</div>
+          <h2 class="section-title">Nuestra historia empieza con un cambio parecido al del vino.</h2>
+          <div class="story">
+            <div class="story-highlight">
+              Hace años, el vino en España dejó de ser solo “vino de mesa” para convertirse en vino de verdad:
+              origen, variedades, cultura. Con el café está pasando exactamente lo mismo.
             </div>
-            <div class="business-meta">
-              Sin mínimos imposibles, sin contratos eternos. Empezamos con poco
-              y crecemos si el café se convierte en parte importante del día de tu equipo.
-            </div>
+            <p>
+              Durante años, el café en casa ha sido algo funcional: te despierta, te acompaña trabajando,
+              pero pocas veces se convierte en un momento que realmente quieres alargar.
+              Si además lo tomas en cápsulas, casi siempre es a cambio de renunciar al sabor.
+            </p>
+            <p>
+              En Spresso nos obsesiona una idea sencilla: <strong>¿y si el café de especialidad,
+                el de las cafeterías que te encantan, pudiera vivir dentro de una cápsula?</strong>
+              Sin inventar un ritual nuevo. Sin obligarte a entender de tuestes o procesos. Sin añadir más pasos.
+            </p>
+            <p>
+              Por eso trabajamos con cafés de especialidad que antes solo veías en molino o bolsa,
+              y los llevamos al formato que más se usa en casa y en la oficina: la cápsula.
+              El objetivo es que, cuando pulses el botón de siempre, notes que tu café ya está en otra liga.
+            </p>
+            <p>
+              Lo que prometemos mantener siempre es simple: <strong>origen claro, tostado reciente,
+                cápsulas fáciles y comunicación honesta.</strong> Menos humo “premium” y más café que te apetece
+              tomarte, incluso cuando no tienes prisa.
+            </p>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
-      <!-- NUESTRA HISTORIA -->
-      <section class="section narrow" id="historia">
-        <div class="section-kicker">De “café para despertarme” a “café para disfrutar”</div>
-        <h2 class="section-title">Nuestra historia empieza con un cambio similar al del vino.</h2>
-        <div class="story">
-          <div class="story-highlight">
-            Hace años, el vino en España dejó de ser solo “vino de mesa” para convertirse en vino de verdad:
-            origen, variedades, cultura. Con el café está pasando exactamente lo mismo.
+      <!-- FAQ PAGE -->
+      <div class="page-view" data-page="faq">
+        <section class="section narrow" id="faq">
+          <div class="section-kicker">Por si aún te queda alguna duda</div>
+          <h2 class="section-title">Preguntas frecuentes.</h2>
+          <p class="section-subtitle">
+            El objetivo es que probar café de especialidad en cápsulas te resulte tan sencillo
+            como seguir comprando lo de siempre, pero con mucha más información y tranquilidad.
+          </p>
+
+          <div class="faq-grid">
+            <details>
+              <summary>¿Son compatibles con mi máquina?</summary>
+              <p>
+                Nuestras cápsulas están diseñadas para ser compatibles con la mayoría de máquinas
+                Nespresso®* domésticas. Antes de comprar, puedes revisar la lista de modelos recomendados
+                o preguntarnos directamente si tienes dudas.
+              </p>
+            </details>
+            <details>
+              <summary>¿Qué significa “tostado reciente”?</summary>
+              <p>
+                No tenemos cápsulas meses en un almacén. Tostamos en pequeños lotes y llenamos las cápsulas
+                en un periodo corto, para que el café llegue con su aroma y sabor en buen momento.
+                Verás la fecha de tueste en la caja.
+              </p>
+            </details>
+            <details>
+              <summary>¿Voy a notar mucha diferencia con mi café de siempre?</summary>
+              <p>
+                Lo más habitual es notar menos amargor, más aroma y más matices, incluso antes de añadir leche
+                o azúcar. Muchas personas reducen o eliminan el azúcar sin proponérselo, simplemente porque el café
+                entra mejor.
+              </p>
+            </details>
+            <details>
+              <summary>¿Qué hago con las cápsulas usadas?</summary>
+              <p>
+                Dependiendo de la gama, las cápsulas son reciclables o compostables. En cada caja verás
+                claramente cómo desecharlas de la mejor forma posible y qué opciones tienes según tu ciudad.
+                En las compatibles con home compost, puedes llevarlas a tu compostera junto con restos orgánicos.
+              </p>
+            </details>
+            <details>
+              <summary>¿Y si el café no me gusta?</summary>
+              <p>
+                Queremos que probar sea seguro. Si una cápsula no encaja contigo, contáctanos:
+                buscaremos una alternativa o solución. La idea es que encuentres tu estilo de café,
+                no que acumules cajas sin usar.
+              </p>
+            </details>
+            <details>
+              <summary>¿Necesito saber de café para elegir?</summary>
+              <p>
+                No. Por eso simplificamos todo en estilos de sabor (intenso, equilibrado, frutal, descafeinado)
+                y en un asistente de 3 pasos. Si alguna vez quieres profundizar, ahí sí tendrás toda la
+                información: origen, altitud, proceso y prácticas en la finca.
+              </p>
+            </details>
           </div>
-          <p>
-            Durante años, el café en casa ha sido algo funcional: te despierta, te acompaña trabajando,
-            pero pocas veces se convierte en un momento que realmente quieres alargar.
-            Si además lo tomas en cápsulas, casi siempre es a cambio de renunciar al sabor.
-          </p>
-          <p>
-            En Spresso nos obsesiona una idea sencilla: <strong>¿y si el café de especialidad,
-              el de las cafeterías que te encantan, pudiera vivir dentro de una cápsula?</strong>
-            Sin inventar un ritual nuevo. Sin obligarte a entender de tuestes o procesos. Sin añadir más pasos.
-          </p>
-          <p>
-            Por eso trabajamos con cafés de especialidad que antes solo veías en molino o bolsa,
-            y los llevamos al formato que más se usa en casa y en la oficina: la cápsula.
-            El objetivo es que, cuando pulses el botón de siempre, notes que tu café ya está en otra liga.
-          </p>
-          <p>
-            Lo que prometemos mantener siempre es simple: <strong>origen claro, tostado reciente,
-              cápsulas fáciles y comunicación honesta.</strong> Menos humo “premium” y más café que te apetece
-            tomarte, incluso cuando no tienes prisa.
-          </p>
-        </div>
-      </section>
-
-      <!-- FAQ / AYUDA -->
-      <section class="section narrow" id="faq">
-        <div class="section-kicker">Por si aún te queda alguna duda</div>
-        <h2 class="section-title">Preguntas frecuentes.</h2>
-        <p class="section-subtitle">
-          El objetivo es que probar café de especialidad en cápsulas te resulte tan sencillo
-          como seguir comprando lo de siempre, pero con mucha más información y tranquilidad.
-        </p>
-
-        <div class="faq-grid">
-          <details>
-            <summary>¿Son compatibles con mi máquina?</summary>
-            <p>
-              Nuestras cápsulas están diseñadas para ser compatibles con la mayoría de máquinas
-              Nespresso®* domésticas. Antes de comprar, puedes revisar la lista de modelos recomendados
-              o preguntarnos directamente si tienes dudas.
-            </p>
-          </details>
-          <details>
-            <summary>¿Qué significa “tostado reciente”?</summary>
-            <p>
-              No tenemos cápsulas meses en un almacén. Tostamos en pequeños lotes y llenamos las cápsulas
-              en un periodo corto, para que el café llegue con su aroma y sabor en buen momento.
-              Verás la fecha de tueste en la caja.
-            </p>
-          </details>
-          <details>
-            <summary>¿Voy a notar mucha diferencia con mi café de siempre?</summary>
-            <p>
-              Lo más habitual es notar menos amargor, más aroma y más matices, incluso antes de añadir leche
-              o azúcar. Muchas personas reducen o eliminan el azúcar sin proponérselo, simplemente porque el café
-              entra mejor.
-            </p>
-          </details>
-          <details>
-            <summary>¿Qué hago con las cápsulas usadas?</summary>
-            <p>
-              Dependiendo de la gama, las cápsulas son reciclables o compostables. En cada caja verás
-              claramente cómo desecharlas de la mejor forma posible y qué opciones tienes según tu ciudad.
-            </p>
-          </details>
-          <details>
-            <summary>¿Y si el café no me gusta?</summary>
-            <p>
-              Queremos que probar sea seguro. Si una cápsula no encaja contigo, contáctanos:
-              buscaremos una alternativa o solución. La idea es que encuentres tu estilo de café,
-              no que acumules cajas sin usar.
-            </p>
-          </details>
-          <details>
-            <summary>¿Necesito saber de café para elegir?</summary>
-            <p>
-              No. Por eso simplificamos todo en estilos de sabor (intenso, equilibrado, frutal, descafeinado)
-              y en un asistente de 3 pasos. Si alguna vez quieres profundizar, ahí sí tendrás toda la
-              información: origen, altitud, proceso.
-            </p>
-          </details>
-        </div>
-      </section>
+        </section>
+      </div>
     </main>
 
     <!-- FOOTER -->
     <footer>
       <div class="footer-inner">
         <div>
-          © Spresso · Café de especialidad en cápsulas.
-          <br />*Nespresso® es una marca registrada de un tercero no relacionado con Spresso.
+          © Spresso · Café de especialidad en cápsulas.<br />
+          *Nespresso® es una marca registrada de un tercero no relacionado con Spresso.
         </div>
         <div class="footer-links">
           <a href="#">Envíos y devoluciones</a>
@@ -2007,5 +1924,35 @@
       </div>
     </footer>
   </div>
+
+  <!-- Navegación tipo "nueva página" -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const views = document.querySelectorAll(".page-view");
+      const navLinks = document.querySelectorAll("[data-page]");
+
+      function showPage(page) {
+        views.forEach(v => v.classList.toggle("active", v.dataset.page === page));
+        navLinks.forEach(l => {
+          if (l.tagName.toLowerCase() === "a") {
+            l.classList.toggle("active-link", l.dataset.page === page);
+          }
+        });
+        window.scrollTo({ top: 0, behavior: "auto" });
+      }
+
+      navLinks.forEach(link => {
+        link.addEventListener("click", (e) => {
+          const page = link.dataset.page;
+          if (!page) return;
+          e.preventDefault();
+          showPage(page);
+        });
+      });
+
+      // Página inicial
+      showPage("home");
+    });
+  </script>
 </body>
 </html>
